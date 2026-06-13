@@ -67,6 +67,7 @@ async function Gura(audioBuffer) {
 }
 
 let handler = async (m, { conn, usedPrefix, command }) => {
+
   if (!m.quoted || !m.quoted.mimetype || !m.quoted.mimetype.includes('audio'))
     return m.reply('المرجو الرد على رسالة صوتية!')
 
@@ -76,7 +77,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   if (!result.url) return m.reply("فشل فـي تحويل الصوت لفيديو.")
 
   await conn.sendFile(m.chat, result.url, 'output.mp4', 'هاهو الفيديو ديالك:', m)
-}
+  }
 
 handler.help = ['جورا']
 handler.tags = ['ai']

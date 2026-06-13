@@ -2,6 +2,7 @@ import { format } from 'util'
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
 	if (/list/.test(command)) {
 		let list = await Object.keys(db.data.chats)
 		let list2 = Object.keys(db.data.users)
@@ -15,7 +16,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 		for (let x of listgc) { if (!x.endsWith('@g.us')) delete db.data.chats[x] }
 		await m.reply('succes delete all unused data')
 	}
-}
+	}
 handler.menuowner = ['cleandb','cleandblist']
 handler.tagsowner = ['owner']
 handler.command = /^(مسح-البيانات2|مسح-البيانات)$/i

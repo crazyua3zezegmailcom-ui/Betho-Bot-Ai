@@ -6,6 +6,7 @@ import { spawn } from 'child_process';
 import fs from 'fs'
 import syntaxError from 'syntax-error'
 import path from 'path'
+import { channelButton } from '../system/buttons.js'
 const _fs = fs.promises
 
 let midsoune = async (m, { text, usedPrefix, command, __dirname }) => {

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 let handler = async (m, { text, command, usedPrefix }) => {
     if (!text) throw 'البحث عن مشاريع في github مثال :\n\n*.githubsearch bobiza*'
     let res = await fetch(global.API('https://api.github.com', '/search/repositories', {
@@ -20,7 +20,7 @@ ${repo.open_issues} Issue${repo.description ? `
 *Clone:* \`\`\`$ git clone ${repo.clone_url}\`\`\`
 `.trim()
     }).join('\n\n')
-    m.reply(str)
+  m.reply(str)
 }
 handler.help = ['بحث-جيتهاب']
 handler.tags = ['search']

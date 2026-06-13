@@ -10,6 +10,7 @@ import {
 } from "fs";
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
+
   conn.reply(m.chat, "Succes !", m);
 
   const tmp = [tmpdir(), join(__dirname, "../tmp")];
@@ -21,7 +22,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
     const stats = statSync(file);
     unlinkSync(file);
   });
-};
+  };
 handler.help = ["مسح-ويندوز"];
 handler.tags = ["owner"];
 handler.command = /^(مسح-ويندوز)$/i;

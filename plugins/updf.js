@@ -121,6 +121,7 @@ class UPDF {
 }
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+
     if (!text) {
         return m.reply(`
 🧠 *UPDF AI Assistant*
@@ -157,7 +158,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     const updf = new UPDF();
     let result = await updf.chat(msg, type, 'ar');
     m.reply(result || '❌ لم يتم الحصول على رد.');
-};
+    };
 
 handler.help = ['رفع-pdf'];
 handler.tags = ['ai'];

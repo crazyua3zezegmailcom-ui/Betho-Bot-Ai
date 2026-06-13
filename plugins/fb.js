@@ -1,5 +1,5 @@
 import axios from "axios";
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 async function fesnuk(postUrl, cookie = "", userAgent = "") {
     if (!postUrl || !postUrl.trim()) throw new Error("Please specify a valid Facebook URL.");

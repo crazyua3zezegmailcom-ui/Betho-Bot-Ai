@@ -5,6 +5,7 @@ import { webp2png } from '../lib/webp2mp4.js';
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
+
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || '';
     const { mtype } = m;
@@ -138,7 +139,7 @@ let handler = async (m, { conn, text }) => {
             });
         }
     }
-};
+    };
 
 handler.help = ['اقتباس-قناة2'];
 handler.tags = ['sticker'];

@@ -75,6 +75,7 @@ const gemini = {
 const geminiSessions = {};
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
   if (!text) throw `*Example:* ${usedPrefix + command} on/off`;
 
   const phone = m.sender.split('@')[0];
@@ -87,7 +88,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     delete conn.autoGemini[phone];
     m.reply("[ ✓ ] Auto AI mode disabled.");
   }
-};
+  };
 
 // 🧠 Auto AI reply logic
 handler.before = async (m, { conn }) => {

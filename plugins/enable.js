@@ -3,6 +3,7 @@ let handler = async (
   m,
   { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner },
 ) => {
+
   let isEnable = /true|enable|(turn)?on|1/i.test(command);
   let chat = global.db.data.chats[m.chat];
   let user = global.db.data.users[m.sender];
@@ -510,7 +511,7 @@ Example :
  *For* : ${isAll ? "Bot Ini" : isUser ? "" : "this chat"}
 
 `);
-};
+  };
 handler.help = ["enable", "disable"];
 handler.tags = ["owner"];
 handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i;

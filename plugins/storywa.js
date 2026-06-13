@@ -2,7 +2,7 @@
 // scrape by malik
 import axios from "axios";
 import crypto from "crypto";
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 // ========== CLIENT CLASS ==========
 class LulaStoryClient {
@@ -178,34 +178,25 @@ let handler = async (m, { conn, args }) => {
 
 // ========== GUIDE TEXT IN ENGLISH ==========
 const guideText = `
-📘 *Lula Story WA Downloader*
-This feature lets you search, view categories, get status videos, music lists, and download StoryWA videos.
+📘 *Lula Story WA Downloader*This feature lets you search, view categories, get status videos, music lists, and download StoryWA videos.
 
 🧩 *How To Use:*
 
-🔍 *Search videos*
-> .storywa search love
+🔍 *Search videos*> .storywa search love
 
-📂 *List categories*
-> .storywa cats
+📂 *List categories*> .storywa cats
 
-📁 *Get videos by category*
-> .storywa bycat Romantic
+📁 *Get videos by category*> .storywa bycat Romantic
 
-🎵 *Get all music list*
-> .storywa music
+🎵 *Get all music list*> .storywa music
 
-🎞 *List status videos*
-> .storywa status
+🎞 *List status videos*> .storywa status
 
-🏷 *List status categories*
-> .storywa statuscats
+🏷 *List status categories*> .storywa statuscats
 
-⬇️ *Download video by ID*
-> .storywa download 192828
+⬇️ *Download video by ID*> .storywa download 192828
 
-Use English keywords for better accuracy.
-`;
+Use English keywords for better accuracy.`;
 
 handler.help = handler.command = ['ستوري-واتس'];
 handler.tags = ['search'];

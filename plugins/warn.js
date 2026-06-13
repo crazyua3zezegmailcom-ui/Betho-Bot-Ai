@@ -6,6 +6,7 @@ usedPrefix,
 command,
 participants
 }) => {
+
   let who = m.mentionedJid[0] 
 if (!who) return conn.sendMessage(m.chat, {text: `وسّم أو رد على الشخص الذي تريد تطبيق أمر ${command} عليه!`, mentions: participants.map(a => a.id)}, {quoted: m})
 let user = db.data.users[who]
@@ -24,7 +25,7 @@ user.warn -= 1
 conn.reply(m.chat, `*✅ تم تقليل تحذيرات ${await conn.getName(who.split(`@`)[0] + '@s.whatsapp.net') || who.split(`@`)[0]}* •> ${user.warn}/5`, m, {mentions: participants.map(a => a.id)})
 }
 }
-}
+  }
 handler.help = ['تحذير']
 handler.tags = ['owner']
 handler.command = /^(رفع-تحذير|تحذير)$/i

@@ -8,6 +8,7 @@ import moment from "moment-timezone";
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, command }) => {
+
     switch (command) {
         case "channel-list": {
             let id = Object.keys(db.data.chats).filter(a => a.endsWith("@newsletter"));
@@ -34,7 +35,7 @@ let handler = async (m, { conn, command }) => {
         }
         break;
     }
-};
+    };
 
 handler.help = handler.command = ["قائمة-القنوات"];
 handler.tags = ["tools"];

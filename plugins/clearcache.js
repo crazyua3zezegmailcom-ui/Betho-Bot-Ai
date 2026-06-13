@@ -1,6 +1,7 @@
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { usedPrefix, command, conn, text }) => {
+
   let noReg = Object.values(global.db.data.users).filter(user => user.registered == false)
   let user = db.data.users
   for (let data in user) {
@@ -9,7 +10,7 @@ let handler = async (m, { usedPrefix, command, conn, text }) => {
   } 
   }
   conn.reply(m.chat, `*Successfully cleared users who were not registered* [ \`\`\`${noReg.length }\`\`\` ]`, fkon)
-}
+  }
 
 handler.help = ['مسح-الكاش']
 handler.tags = ['owner']

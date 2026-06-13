@@ -1,7 +1,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 // scrape by wolfyflutter thanks brother 
 import fetch from 'node-fetch'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 const googleSearchImage = async (query) => {
   if (!query) throw Error('Search query must not be empty')

@@ -4,6 +4,7 @@ import { toPTT } from '../lib/converter.js'
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
+
   let q = m.quoted ? m.quoted : m
   let mime = (m.quoted ? m.quoted : m.msg).mimetype || ''
 
@@ -18,7 +19,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   if (!audio.data) throw 'تعذّر تحويل الوسائط إلى رسالة صوتية.'
 
   await conn.sendFile(m.chat, audio.data, 'audio.mp3', '', m, true, { mimetype: 'audio/mp4' })
-}
+  }
 
 handler.help = ['رسالة-صوتية']
 handler.tags = ['tools']

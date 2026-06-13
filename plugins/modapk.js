@@ -2,7 +2,7 @@
 // scrape by shaanz thanks brother
 import axios from 'axios'
 import cheerio from 'cheerio'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 const mod = {
   search: async (query) => {
@@ -98,7 +98,8 @@ let handler = async (m, { text, conn }) => {
   let teks = results.map((app, i) => 
     `*${i + 1}. ${app.headline}*\n${app.link}\n📅 ${app.publishedDate}`).join('\n\n')
 
-  await m.reply(teks)
+  await
+ m.reply(teks)
 }
 
 handler.help = ['تطبيق-مهكر']

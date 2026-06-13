@@ -42,6 +42,7 @@ class Gock {
 }
 
 let handler = async (m, { conn, args }) => {
+
   let text = args.join(" ")
   if (!text) return m.reply("✏️ Please enter a prompt. Example:\n.gock Bird flying over mountain")
 
@@ -53,7 +54,7 @@ let handler = async (m, { conn, args }) => {
   caption += result.map((p, i) => `\n${i + 1}. ${p}`).join("\n")
 
   await m.reply(caption)
-}
+  }
 
 handler.help = handler.command = ['غوك']
 handler.tags = ['ai']

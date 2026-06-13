@@ -48,6 +48,7 @@ async function ssweb(url) {
 }
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
+
   if (!args[0]) {
     throw `📸 Usage:\n${usedPrefix + command} https://example.com`
   }
@@ -64,7 +65,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 
   await conn.sendFile(m.chat, result.fileUrl, 'screenshot.png', `🖼️ Screenshot of:\n${url}`, m)
-}
+  }
 
 handler.help = ['انشاء-لقطة']
 handler.tags = ['tools']

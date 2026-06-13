@@ -1,5 +1,6 @@
 import { channelButton } from '../system/buttons.js'
 const handler = async (m, { conn }) => {
+
   const channel = "120363428186936884@newsletter"
 
   // تأكد أن الرسالة تحتوي على فيديو
@@ -20,7 +21,7 @@ const handler = async (m, { conn }) => {
   })
 
   m.reply("✅ Video sent as PTV successfully")
-}
+  }
 
 handler.command = ["ارسال-لقناة-ptv"]
 handler.owner = true

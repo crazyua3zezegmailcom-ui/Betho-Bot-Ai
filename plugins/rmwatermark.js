@@ -58,6 +58,7 @@ async function ezremove(path) {
 // ==================================================================
 
 let handler = async (m, { conn }) => {
+
   if (!m.quoted || !m.quoted.mimetype) {
     return m.reply(`❗ Please reply to an image with the command.`)
   }
@@ -90,7 +91,7 @@ let handler = async (m, { conn }) => {
   )
 
   fs.unlinkSync(path)
-}
+  }
 
 handler.help = handler.command = ['ازالة-العلامة-المائية']
 handler.tags = ['editor']

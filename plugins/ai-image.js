@@ -60,6 +60,7 @@ const aiLabs = {
 // --- End of AI Generation Logic ---
 
 let handler = async (m, { conn, text }) => {
+
   if (!text) throw `Usage: .ai-image your prompt here`;
   await m.reply(`⏳ Generating your image... Please wait.`);
   const response = await aiLabs.generateImage(text);
@@ -68,7 +69,7 @@ let handler = async (m, { conn, text }) => {
   } else {
     await m.reply(response.result.error);
   }
-};
+  };
 
 handler.help = ['صورة-ذكاء'];
 handler.command = ['صورة-ذكاء'];

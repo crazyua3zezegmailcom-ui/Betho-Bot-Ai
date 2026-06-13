@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 // اذاعه - إذاعة رسالة لكل الجروبات
 
 const run = async (m, { conn }) => {

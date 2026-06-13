@@ -2,7 +2,7 @@
 // plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy 
 
 import axios from "axios"
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 async function capcutDownloader(url) {
   try {
@@ -42,7 +42,8 @@ let handler = async (m, { conn, text }) => {
     video: { url: res.video },
     caption: `🎬 *${res.title}*\n👤 Author: ${res.author}`,
         footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
-        buttons: downloadButtons()}, { quoted: m })
+        buttons: downloadButtons()},
+{ quoted: m })
 }
 
 handler.help = handler.command = ['تنزيل-كابكات']

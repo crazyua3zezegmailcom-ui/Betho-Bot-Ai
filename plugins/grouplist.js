@@ -1,6 +1,7 @@
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, participants }) => {
 
+
     let now = new Date() * 1;
     let groups = Object.entries(conn.chats)
         .filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats && !chat.metadata?.read_only && !chat.metadata?.announce)
@@ -26,8 +27,7 @@ Total Groups: ${groups.length}
 ${txt}
 
 `.trim());
-
-}
+    }
 
 handler.help = ['قائمة-المجموعات'];
 handler.tags = ['owner'];

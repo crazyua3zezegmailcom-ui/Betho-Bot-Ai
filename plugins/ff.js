@@ -287,6 +287,7 @@ ${characterList}
     let listenerActive = true;
 
     const listener = async ({ messages }) => {
+
       if (!listenerActive) return;
 
       const reply = messages[0];
@@ -330,7 +331,7 @@ ${characterList}
 
       listenerActive = false;
       conn.ev.off("messages.upsert", listener);
-    };
+      };
 
     conn.ev.on("messages.upsert", listener);
 

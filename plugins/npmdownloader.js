@@ -6,8 +6,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) return m.reply(`*Example* :\n ${usedPrefix + command} yt-search`);
 
   async function npmDownloader(packageName, packageVersion) {
-    try {
-      const filePath = await new Promise((resolve, reject) => {
+    const filePath = await new Promise((resolve, reject) => {
         exec(`npm pack ${packageName}@${packageVersion}`, (error, stdout) => {
           if (error) {
             m.reply('Error or package not found');
@@ -18,6 +17,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
           resolve(stdout.trim());
         });
       });
+    try {
 
       const fileName = filePath.split('/').pop();
       const data = await fs.promises.readFile(filePath);

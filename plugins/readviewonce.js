@@ -1,5 +1,6 @@
 import { channelButton } from '../system/buttons.js'
 const handler = async (m, { conn }) => {
+
 	if (!m.quoted) {
 		return m.reply("Reply to viewOnce message");
 	}
@@ -27,7 +28,7 @@ const handler = async (m, { conn }) => {
 		},
 		{ quoted: m }
 	);
-};
+	};
 
 handler.help = ["قراءة-مرة-واحدة"];
 handler.tags = ["tools"];

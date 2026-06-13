@@ -38,11 +38,12 @@ async function getTranscript(videoUrl) {
 }
 
 let handler = async (m, { text, conn }) => {
+
   if (!text) throw '✳️ أرسل رابط فيديو يوتيوب:\nمثال: .transcript https://youtu.be/xxx';
 
   const result = await getTranscript(text);
   await m.reply(`📄 *نص الفيديو:*\n\n${result}`);
-};
+  };
 
 handler.help = ['نص-مقطع'];
 handler.command = ['نص-مقطع'];

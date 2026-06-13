@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import cheerio from 'cheerio';
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 let handler = async (m, { text, conn }) => {
   if (!text) return m.reply('Please enter a search query.\nExample: .youtubesearch cat videos');
@@ -17,8 +17,7 @@ ${i + 1}. ${v.title}
 👁️ Views: ${v.views}
 🕒 Published: ${v.published}
   `.trim()).join('\n\n');
-
-  m.reply(msg);
+ m.reply(msg);
 };
 
 handler.help = handler.command = ['بحث-في-يوتيوب'];

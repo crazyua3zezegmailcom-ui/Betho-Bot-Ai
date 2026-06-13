@@ -2,6 +2,7 @@ import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
+
 // Database 
     const menu = global.db.data.settings[conn.user.jid]
     let menus = ['teks','document','image','gif','button']

@@ -8,8 +8,7 @@ let handler = async function (m, { text, usedPrefix, command }) {
   let user = global.db.data.users[m.sender]
   const pp = await conn.profilePictureUrl(m.sender, "image").catch((_) => "https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg")
 
-  try {
-    if (user.registered === true) throw `لقد قمت بالتسجيل مسبقاً! هل تريد إعادة التسجيل؟ *${usedPrefix}إلغاء-تسجيل*`
+  if (user.registered === true) throw `لقد قمت بالتسجيل مسبقاً! هل تريد إعادة التسجيل؟ *${usedPrefix}إلغاء-تسجيل*`
     if (!Reg.test(text)) return m.reply(`Enter your name and age\nExample: .daftar 𝐶𝑟𝑎𝑧𝑦.17`)
 
     let [_, name, splitter, age] = text.match(Reg)
@@ -49,17 +48,7 @@ let handler = async function (m, { text, usedPrefix, command }) {
         buttons: channelButton()
       }, { quoted: m })
     }
-  } catch (e) {
-    console.error('[register] Error:', e.message || e)
-    try {
-      await conn.sendMessage(m.chat, {
-        text: '❌ ' + (e.message || e),
-        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
-        buttons: channelButton()
-      }, { quoted: m })
-    } catch (_e) {}
   }
-}
 
 handler.help = ['تسجيل']
 handler.tags = ['infobot']

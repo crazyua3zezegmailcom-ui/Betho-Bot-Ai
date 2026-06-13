@@ -2,8 +2,10 @@ import fetch from "node-fetch";
 import crypto from "crypto";
 import { FormData, Blob } from "formdata-node";
 import { fileTypeFromBuffer } from "file-type";
+import { channelButton } from '../system/buttons.js'
 
 const cif = async (m, { conn }) => {
+
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || "";
     if (!mime) return m.reply("لا توجد وسائط");
@@ -16,7 +18,7 @@ ${link}
 📛 *E x p i r e d :* "No Expiry Date"`;
 
     await m.reply(caption);
-};
+    };
 
 cif.command = ['tourl'];
 cif.help = ['tourl'];

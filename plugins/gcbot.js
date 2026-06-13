@@ -1,5 +1,6 @@
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
   const sgc = "https://chat.whatsapp.com/JNUcrtcQjPGJpKoW78dkEc";
 
   const message = {
@@ -7,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   };
 
   await conn.sendMessage(m.chat, message, { quoted: m });
-};
+  };
 
 handler.help = ["بوت-المجموعة"];
 handler.tags = ["tools"];

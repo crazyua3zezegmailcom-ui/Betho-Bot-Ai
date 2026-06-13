@@ -2,6 +2,7 @@ import fetch from 'node-fetch'
 import { Sticker } from 'wa-sticker-formatter'
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
 	let [emo1, emo2] = text.split`+`
 	if (!(emo1 && emo2)) throw `Ex: *.emojimix* 😟+🥺`
 	let url = `https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${emo1}_${emo2}`
@@ -11,7 +12,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 		let stiker = await (new Sticker(x.url, { type: 'full', categories: x.tags })).toMessage()
 		conn.sendMessage(m.chat, stiker, { quoted: m })
 	}
-}
+	}
 handler.help = ['مزج-ايموجي']
 handler.tags = ['sticker']
 handler.command = /^(مزج-ايموجي)$/i

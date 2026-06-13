@@ -4,6 +4,7 @@ FEATURE: REACT TO WHATSAPP CHANNEL 😹
 */
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
   if (!text) throw ("Please enter a WhatsApp channel link in the correct format. exemple :\n\n*.reactchannel* https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e/475");
 
   const match = text.match(/https:\/\/whatsapp\.com\/channel\/(\w+)(?:\/(\d+))?/);
@@ -23,7 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   });
 
   m.reply("Success");
-}
+  }
 
 handler.help = ['تفاعل-على-القناة'];
 handler.command = ['تفاعل-على-القناة'];

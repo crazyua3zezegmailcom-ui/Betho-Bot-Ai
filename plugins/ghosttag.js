@@ -4,6 +4,7 @@ import { generateWAMessageFromContent } from '@adiwajshing/baileys'
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
+
     const userJid = conn.user?.id
     let jid = m.chat
 
@@ -29,7 +30,7 @@ let handler = async (m, { conn, text }) => {
     await conn.relayMessage(jid, album.message, {
         messageId: album.key.id
     })
-}
+    }
 
 handler.command = ['وسم-خفي','وسم-خفي2']
 handler.help = ['وسم-خفي']

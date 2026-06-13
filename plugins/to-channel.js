@@ -41,12 +41,6 @@ async function handler(m, { conn, text }) {
                 newsletterJid: idsal,
                 serverMessageId: 20,
                 newsletterName: 'betho Ai | أسطورة البوتات '
-            },
-            externalAdReply: {
-                title: pushname,
-                body: `Betho Bot runtime is active.| بيثو رهن الاشارة`,
-                mediaType: 1,
-                sourceUrl: 'https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e'
             }
         };
 

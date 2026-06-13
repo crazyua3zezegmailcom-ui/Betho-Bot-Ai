@@ -1,6 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 const { generateWAMessageContent, generateWAMessageFromContent, proto } = (await import('@adiwajshing/baileys')).default;
 
 const base = "https://www.pinterest.com";
@@ -162,7 +162,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }
     }, {});
 
-    await conn.relayMessage(m.chat, bot.message, { messageId: bot.key.id });
+    await conn.relayMessage(m.chat, bot.message, { messageId:
+bot.key.id });
 };
 
 handler.help = ['بينتيريست'];

@@ -2,6 +2,7 @@ import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.js';
 import { channelButton } from '../system/buttons.js'
 async function handler(m, { conn, usedPrefix, command, args, text }) {
+
   if (!text) return m.reply('send video/audio with caption .fakesecond <number>');
   const angka = args.join(' ');
   const q = m.quoted ? m.quoted : m;
@@ -27,7 +28,7 @@ async function handler(m, { conn, usedPrefix, command, args, text }) {
   } else {
     m.reply(`إرسال الصوت/الفيديو مع التسميات التوضيحية *\m${usedPrefix + command}* <الرقم> أو علامة الصوت/الفيديو التي تم إرسالها.`);
   }
-}
+  }
 
 handler.help = ['رقم-وهمي'];
 handler.tags = ['tools'];

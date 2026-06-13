@@ -6,6 +6,7 @@ import { channelButton } from '../system/buttons.js'
  */
 
 let handler = async (m, { conn }) => {
+
   const teks = `📦 *رابط السورس كود الخاص بالبوت:*\n` +
     `https://github.com/𝐶𝑟𝑎𝑧𝑦ouafy/betho-lite-ofc\n\n` +
     `📢 *القناة الرسمية على واتساب:*\n` +
@@ -13,7 +14,7 @@ let handler = async (m, { conn }) => {
     `⭐ لا تنسَ وضع نجمة على المستودع إذا أعجبك المشروع!`;
 
   await conn.reply(m.chat, teks, m);
-};
+  };
 
 handler.help = handler.command = ['سكريبت2','سكريبت'];
 handler.tags = ['tools'];

@@ -1,5 +1,6 @@
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, args }) => {
+
   let list = Object.entries(global.db.data.users);
   let type = (args[0] || "").toLowerCase();
 
@@ -35,7 +36,7 @@ let handler = async (m, { conn, args }) => {
     default:
       return m.reply("[❗] invalid command\n/reset limit 20");
   }
-};
+  };
 handler.help = ["اعادة-ضبط"];
 handler.tags = ["owner"];
 handler.command = /^(اعادة-ضبط)$/i;

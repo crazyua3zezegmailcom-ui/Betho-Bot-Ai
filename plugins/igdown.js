@@ -3,7 +3,7 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
 import qs from 'qs'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 async function igdl(urls) {
   const [baseUrl, paramsString] = urls.split('?')
@@ -60,7 +60,8 @@ let handler = async (m, { conn, text }) => {
     video: { url: result.downloadUrl },
     caption: 'Here is your Instagram video.',
         footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
-        buttons: downloadButtons()}, { quoted: m })
+        buttons: downloadButtons()},
+{ quoted: m })
 }
 
 handler.help = handler.command = ['تنزيل-انستا']

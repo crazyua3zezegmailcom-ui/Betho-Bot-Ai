@@ -1,5 +1,5 @@
 import { toAudio } from '../lib/converter.js'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     let chat = global.db.data.chats[m.chat]
@@ -14,7 +14,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     let audio = await toAudio(media, 'mp4')
     if (!audio.data) throw 'تعذّر تحويل الوسائط إلى صوت'
     
-    conn.sendFile(m.chat, audio.data, 'audio.mp3', '', m, null, { mimetype: 'audio/mp4', asDocument: chat.useDocument })
+    conn.sendFile(m.chat, audio.data, 'audio.mp3', '', m, null, { mimetype: 'audio/mp4', asDocument: chat.
+useDocument })
 }
 
 handler.help = ['تحويل-لصوت']

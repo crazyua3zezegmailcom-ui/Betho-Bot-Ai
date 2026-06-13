@@ -59,6 +59,7 @@ class ChatUpAI {
 }
 
 let handler = async (m, { conn, text }) => {
+
   if (!text) return m.reply("⚠️ Please provide a message to chat with ChatUpAI.");
 
   const api = new ChatUpAI();
@@ -69,7 +70,7 @@ let handler = async (m, { conn, text }) => {
   } else {
     m.reply("❌ Error: " + (result.error?.message || "Failed to fetch response."));
   }
-};
+  };
 
 handler.help = handler.command = ["شات-ذكاء"];
 handler.tags = ["ai"];

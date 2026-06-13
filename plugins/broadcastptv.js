@@ -1,4 +1,5 @@
 import { generateWAMessageContent } from "@adiwajshing/baileys";
+import { channelButton } from '../system/buttons.js'
 
 const neura = async (m, { conn, usedPrefix, command }) => {
     const q = m.quoted ? m.quoted : m;

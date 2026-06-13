@@ -68,6 +68,7 @@ async function tts(text) {
 
 // handler
 let handler = async (m, { conn, text }) => {
+
   if (!text) return m.reply("من فضلك أرسل النص الذي تريد تحويله إلى صوت.");
 
   let msg = await m.reply("🔄 جاري تحويل النص إلى صوت...");
@@ -78,7 +79,7 @@ let handler = async (m, { conn, text }) => {
   if (!first) return m.reply("❌ حدث خطأ أثناء توليد الصوت، حاول لاحقاً.");
 
   await conn.sendFile(m.chat, first.oss_url, 'tts.mp3', `🎤 Voice: ${first.voice_name}`, m);
-};
+  };
 
 handler.help = ['نطق-انمي'];
 handler.tags = ['ai'];

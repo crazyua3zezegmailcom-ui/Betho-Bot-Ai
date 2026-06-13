@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 /**
  * Shorten a URL using lnk.ink API
@@ -44,7 +44,8 @@ Original URL: ${result.originalUrl}
 Short URL: ${result.shortUrl}
 Stats URL: ${result.statsUrl}`;
 
-    m.reply(replyMessage);
+    m.reply(
+replyMessage);
 };
 
 handler.help = handler.command = ['اختصار-الرابط'];

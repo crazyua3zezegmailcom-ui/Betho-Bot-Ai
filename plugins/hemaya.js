@@ -147,6 +147,7 @@ async function processMessage(m, conn) {
 }
 
 const handler = async (m, { conn, args }) => {
+
   const chatId = m.chat
   const sub    = (args?.[0] || '').trim()
 
@@ -197,7 +198,7 @@ const handler = async (m, { conn, args }) => {
     `▫️ *.حمايه إيقاف*\n` +
     `▫️ *.حمايه سجل*`
   )
-}
+  }
 
 handler.before   = async (m, { conn }) => { await processMessage(m, conn) }
 handler.command  = /^حماي[هة]/i

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
   if (!text) {
@@ -40,8 +40,7 @@ async function bingSearch(query) {
     const url = []
     $(".iuscp").each((i, el) => {
       let img = $(el).find(".img_cont > img").attr("data-src")
-      if (!img) return
-      url.push({
+      if (!img) returnurl.push({
         title: $(el).find(".b_dataList > li > a").text(),
         images: img,
         source: {

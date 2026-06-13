@@ -1,5 +1,6 @@
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text, args, command, prefix }) => {
+
     const models = {
         'fluffy-logo': 'fluffy-logo',
         'lava-logo': 'lava-logo',
@@ -42,7 +43,7 @@ let handler = async (m, { conn, text, args, command, prefix }) => {
     const res = `https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=${models[model]}&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&text=${encodeURIComponent(textInput)}`;
 
     await conn.sendFile(m.chat, res, 'flamingtext.jpg', 'Here is your Flaming Text!', m, false);
-};
+    };
 
 handler.help = handler.command = ['نص-ناري'];
 handler.tags = ['tools'];

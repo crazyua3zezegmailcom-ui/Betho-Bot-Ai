@@ -92,6 +92,7 @@ May Allah bless you 🤲
 // ─── Handler ──────────────────────────────────────────────────────────────────
 let handler = async (m, { conn, args }) => {
 
+
   // If the user typed a number, send that episode
   if (args[0]) {
     const num = parseInt(args[0])
@@ -165,7 +166,7 @@ let handler = async (m, { conn, args }) => {
       { quoted: m }
     )
   }
-}
+  }
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 handler.help    = ['السيرة-النبوية']

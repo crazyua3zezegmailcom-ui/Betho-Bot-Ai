@@ -3,6 +3,7 @@ import path from "path";
 import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { conn }) => {
+
   const directory = "./sessions";
   function deleteFilesExceptOne(directory, fileNameToKeep) {
     fs.readdir(directory, (err, files) => {
@@ -27,7 +28,7 @@ const handler = async (m, { conn }) => {
   }
   deleteFilesExceptOne(directory, "creds.json");
   m.reply("Success Clear all sessions ✅ except one creds.json");
-};
+  };
 handler.command = handler.help = ["مسح-الجلسات"];
 handler.tags = ["owner"];
 handler.rowner = true;

@@ -43,6 +43,7 @@ const gmailProfile = {
 };
 
 let handler = async (m, { conn, text }) => {
+
   if (!text) {
     return conn.reply(m.chat, 'Please provide a valid email to check!', m);
   }
@@ -64,7 +65,7 @@ let handler = async (m, { conn, text }) => {
   `;
 
   return conn.reply(m.chat, profileInfo, m);
-};
+  };
 
 handler.help = handler.command = ['ملف-جيميل'];
 handler.tags = ['tools'];

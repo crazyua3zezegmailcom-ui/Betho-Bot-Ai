@@ -2,7 +2,7 @@
 // scrape by GilangSan
 import axios from 'axios'
 import cheerio from 'cheerio'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 class Wallpaper {
   constructor() {
@@ -82,22 +82,16 @@ let handler = async (m, { conn, args }) => {
     return m.reply(`📌 *كيفية استخدام أمر 4kwallpaper*:
 
 ✅ لعرض الخلفيات حسب التصنيف:
-• .4kwallpaper popular
-• .4kwallpaper featured
-• .4kwallpaper random
-• .4kwallpaper collection
+• .4kwallpaper popular• .4kwallpaper featured• .4kwallpaper random• .4kwallpaper collection
 
 🔍 للبحث عن خلفية:
-• .4kwallpaper search nature
-• .4kwallpaper search car
+• .4kwallpaper search nature• .4kwallpaper search car
 
 📥 لتحميل الخلفية:
-1. ابحث عن الخلفية أو اختر رابطاً من النتائج.
-2. ثم أرسل الأمر التالي:
+1. ابحث عن الخلفية أو اختر رابطاً من النتائج.2. ثم أرسل الأمر التالي:
 • .4kwallpaper dl https://4kwallpapers.com/...
 
-✳️ ملاحظة: سيتم إرسال روابط التحميل التي يمكنك الضغط عليها لتنزيل الصور بدقة عالية.
-`)
+✳️ ملاحظة: سيتم إرسال روابط التحميل التي يمكنك الضغط عليها لتنزيل الصور بدقة عالية.`)
   }
 
   if (['popular', 'featured', 'random', 'collection'].includes(type)) {

@@ -6,6 +6,7 @@ This plugin sends a message to a specified WhatsApp channel.
 */
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
     if (!text) throw(`Example:\n${usedPrefix}${command} Hello?`)
     conn.sendMessage(m.chat, { react: { text: "⏳", key: m.key } })
 
@@ -19,7 +20,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
     m.reply('Your message has been sent. Please check your channel.')
-}
+    }
 
 handler.command = /^(رسالة-للقناة)$/i
 handler.help = ['رسالة-للقناة']

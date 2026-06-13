@@ -55,6 +55,7 @@ const BASE_HEADERS = {
 }
 
 const createJob = async (prompt, aspectRatio = '1:1') => {
+
   const cryptoHeaders = gencryptoheaders('create')
   const res = await fetch('https://app.live3d.io/aitools/of/create', {
     method: 'POST',
@@ -76,7 +77,7 @@ const createJob = async (prompt, aspectRatio = '1:1') => {
   })
   const data = await res.json()
   return { taskId: data.data.task_id, fp: cryptoHeaders.fp }
-}
+  }
 
 const cekjob = async (taskId, fp) => {
   const cryptoHeaders = gencryptoheaders('check', fp)

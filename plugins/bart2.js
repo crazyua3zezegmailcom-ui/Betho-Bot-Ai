@@ -6,6 +6,7 @@ import uploadImage from '../lib/uploadImage.js';
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { text }) => {
+
   if (!text) return m.reply("Please provide the text!\nExample: .bart Hello World");
 
   const canvasSize = 500;
@@ -150,7 +151,7 @@ let handler = async (m, { text }) => {
   await conn.sendMessage(m.chat, { sticker: stickerBuffer }, { quoted: m });
 
   fs.unlinkSync(imagePath);
-};
+  };
 
 handler.help = ['بارت'];
 handler.tags = ['sticker'];

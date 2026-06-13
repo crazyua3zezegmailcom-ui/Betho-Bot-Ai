@@ -2,6 +2,7 @@ import jimp from 'jimp'
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
+
 	let image = m.message?.imageMessage
 		? await m.download()
 			: /image/.test(m.quoted?.mediaType)
@@ -16,7 +17,7 @@ let handler = async (m, { conn, text }) => {
 		if (err) throw err?.message || `Couldn't blur the image`
 		m.reply(buffer)
 	})
-}
+	}
 handler.help = ['ضبابي']
 handler.tags = ['tools']
 handler.command = /^(ضبابي)$/i

@@ -67,6 +67,7 @@ async function getSurah(surahIndex) {
 }
 
 let handler = async (m, { conn, text }) => {
+
     if (!text || isNaN(text)) {
         return conn.reply(m.chat, "⚠️ *الرجاء إدخال رقم السورة التي تريد البحث عنها.*", m);
     }
@@ -74,7 +75,7 @@ let handler = async (m, { conn, text }) => {
     let surahNumber = parseInt(text);
     let response = await getSurah(surahNumber);
     conn.reply(m.chat, response, m);
-};
+    };
 
 handler.help = ['سورة-قرآنية'];
 handler.tags = ['tools'];

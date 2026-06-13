@@ -181,6 +181,7 @@ const gistlib = {
 };
 
 const handler = async (m, { conn, text }) => {
+
   const [language, ...promptArray] = text.split(' ');
   const prompt = promptArray.join(' ');
   
@@ -199,7 +200,7 @@ const handler = async (m, { conn, text }) => {
   responseText += `${codeResult.language}\n\n${codeResult.code}`;
   
   m.reply(responseText);
-};
+  };
 
 handler.help = ['مكتبة-جست'];
 handler.command = ['مكتبة-جست'];

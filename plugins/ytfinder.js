@@ -1,7 +1,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import fetch from "node-fetch"
 import { generateWAMessageFromContent } from "@adiwajshing/baileys"
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
   if (!text) throw "This command is for searching on YouTube, for example:\n.ytfinder 𝐶𝑟𝑎𝑧𝑦 ouafy"

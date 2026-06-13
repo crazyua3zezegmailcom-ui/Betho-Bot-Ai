@@ -7,7 +7,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 async function githubStalk(username) {
   try {
@@ -48,7 +48,8 @@ let handler = async (m, { conn, args }) => {
 *Packages:* ${a.packages}
 *Stars:* ${a.stars}`).join('\n\n')
 
-  await m.reply(info)
+  await
+ m.reply(info)
 }
 
 handler.help = ['تتبع-جيتهاب']

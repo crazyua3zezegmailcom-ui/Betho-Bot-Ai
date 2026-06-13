@@ -2,6 +2,7 @@ import fs from 'fs';
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
+
     m.reply('لحظة سوف يتم تلبية طلبكم');
 
     // Read the content of creds.json
@@ -14,7 +15,7 @@ let handler = async (m, { conn, text }) => {
 
     // Send the creds.json file as a document
     return await conn.sendMessage(m.chat, { document: Buffer.from(sesi), mimetype: 'application/json', fileName: 'creds.json' }, { quoted: m });
-}
+    }
 
 handler.help = ['جلب-الجلسة'];
 handler.tags = ['owner'];

@@ -2,7 +2,7 @@
 // plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
 
 import axios from 'axios'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 class YouTubeDownloader {
   constructor() {
@@ -59,8 +59,7 @@ class YouTubeDownloader {
 /* ================= HELPERS ================= */
 
 function cleanFileName(text) {
-  return text
-    .replace(/[\\/:*?"<>|]/g, '')
+  return text.replace(/[\\/:*?"<>|]/g, '')
     .replace(/\s+/g, ' ')
     .trim()
 }
@@ -71,25 +70,15 @@ function sendGuide(m) {
 
 Download YouTube videos directly.
 
-📌 *Usage*
-.ytdl <youtube_url> [quality]
+📌 *Usage*.ytdl <youtube_url> [quality]
 
-🎥 *Video qualities*
-144, 240, 320, 480, 720, 1080, 1440, 4k
+🎥 *Video qualities*144, 240, 320, 480, 720, 1080, 1440, 4k
 
-⭐ *Default quality*
-720p (if not specified)
+⭐ *Default quality*720p (if not specified)
 
-🧪 *Examples*
-.ytdl https://youtu.be/9zvdMLfYFkM
-.ytdl https://youtu.be/9zvdMLfYFkM 480
-.ytdl https://youtube.com/watch?v=9zvdMLfYFkM 1080
+🧪 *Examples*.ytdl https://youtu.be/9zvdMLfYFkM.ytdl https://youtu.be/9zvdMLfYFkM 480.ytdl https://youtube.com/watch?v=9zvdMLfYFkM 1080
 
-⚠️ *Notes*
-• Large videos may be sent as a download link
-• WhatsApp size limits apply
-• File name will match the video title
-`.trim())
+⚠️ *Notes*• Large videos may be sent as a download link• WhatsApp size limits apply• File name will match the video title`.trim())
 }
 
 /* ================= HANDLER ================= */
@@ -123,8 +112,7 @@ let handler = async (m, { conn, args }) => {
 
 🔗 Download it here:
 ${data.downloadUrl}`,
-      m
-    )
+      m)
   }
 
   const fileRes = await axios.get(data.downloadUrl, {

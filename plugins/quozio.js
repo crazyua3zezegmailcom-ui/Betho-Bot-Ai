@@ -7,6 +7,7 @@ let handler = async (m, {
     args,
     command
 }) => {
+
     let text
     if (args.length >= 1) {
         text = args.slice(0).join(" ")
@@ -16,8 +17,7 @@ let handler = async (m, {
 
     let quote = await createQuote(m.name, text)
     await conn.sendFile(m.chat, quote, '', "*Request by:*\nfollow 𝐶𝑟𝑎𝑧𝑦 On ig : 𝐶𝑟𝑎𝑧𝑦_ouafy" + m.name, m)
-
-}
+    }
 handler.tags = ["tools"]
 handler.command = handler.help = ["كوزيو"]
 handler.limit = true 

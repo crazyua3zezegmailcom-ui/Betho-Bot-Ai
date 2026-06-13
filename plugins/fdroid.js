@@ -3,7 +3,7 @@
 
 import axios from 'axios';
 import baileys from '@adiwajshing/baileys';
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 const { generateWAMessageFromContent, proto } = baileys;
 
@@ -110,13 +110,11 @@ async function getPackageInfo(packageId) {
 async function handleSearch(m, conn, query) {
   if (!query) {
     return m.reply(
-`❌ *Usage / الاستخدام:*
-• \`.fdroid termux\`
+`❌ *Usage / الاستخدام:*• \`.fdroid termux\`
 • \`.fdroid whatsapp\`
 • \`.fdroid firefox\`
 
-[EN] Type an app name to search F-Droid.
-[AR] اكتب اسم التطبيق للبحث في F-Droid.`
+[EN] Type an app name to search F-Droid.[AR] اكتب اسم التطبيق للبحث في F-Droid.`
     );
   }
 
@@ -131,8 +129,7 @@ async function handleSearch(m, conn, query) {
 
   if (!apps.length) {
     return m.reply(
-`❌ No apps found for *${query}*
-لم يتم العثور على تطبيقات لـ *${query}*`
+`❌ No apps found for *${query}*لم يتم العثور على تطبيقات لـ *${query}*`
     );
   }
 
@@ -140,8 +137,7 @@ async function handleSearch(m, conn, query) {
     title:       app.title.slice(0, 24),
     description: (app.summary || 'F-Droid App').slice(0, 72),
     // [EN] When user selects → bot receives this as a message → fdroidl handler runs
-    // [AR] عند اختيار المستخدم → البوت يستقبل هذا النص → يشتغل أمر fdroidl تلقائياً
-    id: `.fdroidl https://f-droid.org${app.href}`
+    // [AR] عند اختيار المستخدم → البوت يستقبل هذا النص → يشتغل أمر fdroidl تلقائياًid: `.fdroidl https://f-droid.org${app.href}`
   }));
 
   const body =
@@ -150,8 +146,7 @@ async function handleSearch(m, conn, query) {
 • *Query:* ${query}
 • *Found:* ${apps.length} app${apps.length > 1 ? 's' : ''}
 
-[EN] Select an app to see available versions.
-[AR] اختر تطبيقاً لعرض الإصدارات المتاحة.`;
+[EN] Select an app to see available versions.[AR] اختر تطبيقاً لعرض الإصدارات المتاحة.`;
 
   let fallback = `🔍 *F-Droid: "${query}"*\n\n`;
   apps.forEach((app, i) => {
@@ -174,14 +169,12 @@ async function handleSearch(m, conn, query) {
 async function handleDownload(m, conn, raw) {
   if (!raw) {
     return m.reply(
-`❌ *Usage / الاستخدام:*
-• \`.fdroidl com.termux\`
+`❌ *Usage / الاستخدام:*• \`.fdroidl com.termux\`
 • \`.fdroidl org.mozilla.fenix\`
 • \`.fdroidl https://f-droid.org/en/packages/com.termux\`
 • \`.fdroidl com.termux | 0\`  ← direct index
 
-[EN] Provide a package ID or F-Droid URL.
-[AR] أدخل معرف الحزمة أو رابط F-Droid.`
+[EN] Provide a package ID or F-Droid URL.[AR] أدخل معرف الحزمة أو رابط F-Droid.`
     );
   }
 
@@ -215,8 +208,7 @@ async function handleDownload(m, conn, raw) {
   } catch (e) {
     if (e?.response?.status === 404) {
       return m.reply(
-`❌ App not found on F-Droid: *${packageId}*
-التطبيق غير موجود في F-Droid: *${packageId}*`
+`❌ App not found on F-Droid: *${packageId}*التطبيق غير موجود في F-Droid: *${packageId}*`
       );
     }
     return m.reply(`❌ API Error: ${e.message}`);
@@ -236,8 +228,7 @@ async function handleDownload(m, conn, raw) {
         title:       `v${v.versionName || v.versionCode}`,
         description: `Code: ${v.versionCode} • ${sizeMB}`,
         // [EN] Selecting triggers download with index i
-        // [AR] الاختيار يشغل التحميل بالرقم i
-        id: `.fdroidl ${packageId} | ${i}`
+        // [AR] الاختيار يشغل التحميل بالرقم iid: `.fdroidl ${packageId} | ${i}`
       };
     });
 
@@ -249,8 +240,7 @@ ${summary ? `• *Info:* ${summary}` : ''}
 • *Package:* \`${packageId}\`
 • *Versions:* ${versions.length} available
 
-[EN] Select a version to download the APK.
-[AR] اختر إصداراً لتحميل ملف APK.`;
+[EN] Select a version to download the APK.[AR] اختر إصداراً لتحميل ملف APK.`;
 
     let fallback = `📦 *${appName}* — Choose a version:\n\n`;
     versions.slice(0, 10).forEach((v, i) => {
@@ -285,8 +275,7 @@ ${summary ? `• *Info:* ${summary}` : ''}
   const fileName = `${appName.replace(/[^\w\s.\-()]/g, '')} v${versionName}.apk`;
 
   await m.reply(
-`⏳ *Preparing download...*
-جاري تجهيز التحميل...
+`⏳ *Preparing download...*جاري تجهيز التحميل...
 
 • *App:* ${appName}
 • *Version:* v${versionName}

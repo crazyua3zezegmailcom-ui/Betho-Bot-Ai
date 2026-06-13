@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import moment from "moment-timezone";
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, args, command }) => {
+
   let _muptime;
   if (process.send) {
     process.send("uptime");
@@ -20,7 +21,7 @@ let handler = async (m, { conn, args, command }) => {
   let mentionedJid = [m.sender];
 
   m.reply(`乂 *U P T I M E*\n•> ${uptime}`);
-};
+  };
 handler.help = ["مدة-تشغيل"];
 handler.tags = ["tools"];
 handler.command = ["مدة-تشغيل", "مدة-تشغيل2"];

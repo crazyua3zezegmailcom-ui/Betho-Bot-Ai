@@ -8,6 +8,7 @@ import fetch from 'node-fetch'
 import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
     if (!text) {
         throw `Example:\n${usedPrefix + command} Hello world`
     }
@@ -34,7 +35,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     })
 
     m.reply('✅ Done. If you keep asking, that’s outside the system.')
-}
+    }
 
 handler.command = /^(رفع-ch)$/i
 handler.help = ['رفع-ch']

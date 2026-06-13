@@ -223,7 +223,7 @@ async function getPostGraphqlData(postId, proxy) {
 
 function extractPostInfo(mediaData) {
     try {
-        const getUrlFromData = (data) => {
+    const getUrlFromData = (data) => {
             if (data.edge_sidecar_to_children) {
                 return data.edge_sidecar_to_children.edges.map((edge) => edge.node.video_url || edge.node.display_url);
             }

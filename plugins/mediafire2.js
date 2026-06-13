@@ -3,7 +3,7 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
 import { URL } from 'url'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 /* ================= MEDIAFIRE SCRAPER ================= */
 
@@ -25,8 +25,7 @@ class MediaFireDownloader {
     const selectors = [
       '#downloadButton',
       'a.input.popsok',
-      '.download_link a.input'
-    ]
+      '.download_link a.input']
 
     for (const s of selectors) {
       const btn = $(s)

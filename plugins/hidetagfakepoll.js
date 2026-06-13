@@ -5,6 +5,7 @@ author  : HanzXD (edited)
 */
 
 let handler = async (m, { conn, participants }) => {
+
   let users = participants.map(u => u.id)
 
   // Default poll question
@@ -43,7 +44,7 @@ let handler = async (m, { conn, participants }) => {
   }
 
   await conn.relayMessage(m.chat, content, { mentions: users })
-}
+  }
 
 handler.help = ['استفتاء-مخفي']
 handler.tags = ['owner']

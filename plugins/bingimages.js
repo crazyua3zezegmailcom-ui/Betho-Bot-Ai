@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import * as cheerio from 'cheerio'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 async function getBingImages(query, limit = 5) {
   const headers = {
@@ -63,7 +63,8 @@ let handler = async (m, { conn, text }) => {
   if (!data.results || data.results.length === 0) return m.reply('لم يتم العثور على أي صور 🥲')
 
   for (const result of data.results) {
-    await conn.sendFile(m.chat, result.original_url, result.image_name, `🔍 نتيجة البحث: ${text}`, m)
+    await conn.sendFile(m.chat, result.original_url, result.image_name, `🔍 نتيجة البحث: ${
+text}`, m)
   }
 }
 

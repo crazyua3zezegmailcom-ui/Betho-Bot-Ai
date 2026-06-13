@@ -1,12 +1,9 @@
-/* 
-`[pinterest-img]`
-type : ESM plugin
-API : https://api.siputzx.my.id
-plugin modified by 𝐶𝑟𝑎𝑧𝑦 ouafy
+/*`[pinterest-img]`
+type : ESM pluginAPI : https://api.siputzx.my.idplugin modified by 𝐶𝑟𝑎𝑧𝑦 ouafy
 */
 
 import fetch from 'node-fetch'
-import { downloadButtons } from '../system/buttons.js'
+import { downloadButtons, channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, command }) => {
   global.db.data.users = global.db.data.users || {}
@@ -14,8 +11,7 @@ let handler = async (m, { conn, text, command }) => {
 
   if (command === 'صور-بينتيريست') {
     if (!text) return m.reply(`Please enter a search keyword.\nExample: ${command} nature`)
-    user.lastPinterestQuery = text
-    global.db.data.users[m.sender] = user
+    user.lastPinterestQuery = textglobal.db.data.users[m.sender] = user
     await sendPinterestImage(m, conn, text)
   }
 
@@ -43,13 +39,11 @@ async function sendPinterestImage(m, conn, query) {
     let result = json.data[Math.floor(Math.random() * json.data.length)]
 
     let caption = `
-📌 *${result.grid_title || 'No Title'}*
-📝 ${result.description || '-'}
+📌 *${result.grid_title || 'No Title'}*📝 ${result.description || '-'}
 👤 ${result.pinner.full_name} (@${result.pinner.username})
 🔗 ${result.pin}
 
-Type *again* for the next image.
-    `.trim()
+Type *again* for the next image.`.trim()
 
     await conn.sendFile(m.chat, result.image_url, 'pinterest.jpg', caption, m)
 

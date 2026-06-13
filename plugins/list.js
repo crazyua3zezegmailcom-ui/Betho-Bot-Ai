@@ -1,5 +1,6 @@
 import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn }) => {
+
   let caption = `*بيثو بوت* هو بوت واتساب ذكي متعدد المهام، يتيح تحميل الوسائط، إدارة المجموعات، البحث، الترجمة، ومعالجة الصور والفيديو. تم تطويره من قبل *𝐶𝑟𝑎𝑧𝑦 وافي*، هاوٍ للتقنية والتعديل على الأكواد، ويشارك أفكاره ومشاريعه عبر إنستغرام
 
 *Betho Bot Bot* is a smart, multi-purpose WhatsApp bot that allows media downloading, group management, searching, translation, and image/video processing. It was created by *𝐶𝑟𝑎𝑧𝑦 Ouafy*, a tech enthusiast who enjoys modifying codes, and shares his ideas and projects on Instagram: 📸 instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy`
@@ -19,7 +20,7 @@ let handler = async (m, { conn }) => {
     mimetype: 'audio/mp4',
     ptt: true
   }, { quoted: m })
-}
+  }
 
 handler.help = ['القائمة']
 handler.command = ['القائمة']

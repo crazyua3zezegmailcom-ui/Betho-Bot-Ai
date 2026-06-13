@@ -3,6 +3,7 @@ import fetch from 'node-fetch'
 import { channelButton } from '../system/buttons.js'
 
 const netflixTrending = async () => {
+
   const region = '/ar' // '/id-en' لو حاب إنجليزي
   const netflixUrl = 'https://www.netflix.com' + region
 
@@ -13,12 +14,10 @@ const netflixTrending = async () => {
   const jsonString = html.match(/reactContext = (.*?);/)?.[1]
   if (!jsonString) throw Error('Netflix data not found!')
 
-  const cleaned = jsonString.replace(/\\x([0-9A-Fa-f]{2})/g, (_, hex) =>
-    String.fromCharCode(parseInt(hex, 16)))
+  const cleaned = jsonString.replace(/\\x([0-9A-Fa-f]{2})/g, (_, hex) =>String.fromCharCode(parseInt(hex, 16)))
 
   const json = JSON.parse(cleaned)
-  const movieAndShow = Object.entries(json.models.graphql.data).filter(v =>
-    !v?.[1]?.__typename.match(/Genre|Query/))
+  const movieAndShow = Object.entries(json.models.graphql.data).filter(v =>!v?.[1]?.__typename.match(/Genre|Query/))
 
   const result = movieAndShow.map(([_, v]) => {
     const genreList = v.coreGenres.edges.map(v => v.node.__ref)
@@ -36,7 +35,7 @@ const netflixTrending = async () => {
   })
 
   return result
-}
+  }
 
 let handler = async (m, { conn }) => {
   try {

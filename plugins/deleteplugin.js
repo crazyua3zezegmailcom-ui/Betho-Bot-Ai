@@ -13,6 +13,7 @@ let handler = async (
   m,
   { conn, usedPrefix, usedPrefix: _p, __dirname, args, text, command },
 ) => {
+
   let ar = Object.keys(plugins);
   let ar1 = ar.map((v) => v.replace(".js", ""));
   if (!text) throw `where the text?\n\n example:\n${usedPrefix + command} info`;
@@ -23,7 +24,7 @@ let handler = async (
   const file = join(__dirname, "../plugins/" + args[0] + ".js");
   unlinkSync(file);
   conn.reply(m.chat, `Succes deleted "plugins/${args[0]}.js"`, m);
-};
+  };
 handler.help = ["حذف-اضافة", "حذف-اضافة2"];
 handler.tags = ["owner"];
 handler.command = /^(حذف-اضافة2|حذف-اضافة)$/i;

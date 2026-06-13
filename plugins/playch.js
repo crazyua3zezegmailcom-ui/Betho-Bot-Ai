@@ -6,6 +6,7 @@ import { toPTT } from '../lib/converter.js'
 import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
+
   let channelId = "120363428186936884@newsletter" // Your updated channel ID
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || q.mediaType || ''
@@ -32,7 +33,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     await m.reply("Audio successfully sent to channel")
 
   } else throw `Reply to an audio with the command ${usedPrefix + command}`
-}
+  }
 
 handler.command = ['تشغيل-قناة']
 handler.tags = ['owner']
