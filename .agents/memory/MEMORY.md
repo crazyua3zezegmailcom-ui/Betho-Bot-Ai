@@ -1,0 +1,1 @@
+- [Betho Bot branding](betho-branding.md) — all Nezuko/Monte/Ziad references replaced; pairing code is BETHO123; Baileys lib banner patched in node_modules.

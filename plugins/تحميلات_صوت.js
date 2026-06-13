@@ -1,0 +1,103 @@
+import crypto from "crypto"
+import axios from "axios"
+
+class SaveTube {
+  constructor() {
+    this.ky = 'C5D58EF67A7584E4A29F6C35BBC4EB12'
+    this.m = /^((?:https?:)?\/\/)?((?:www|m|music)\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(?:embed\/)?(?:v\/)?(?:shorts\/)?([a-zA-Z0-9_-]{11})/
+    this.is = axios.create({
+      headers: {
+        'content-type': 'application/json',
+        'origin': 'https://yt.savetube.me',
+        'user-agent': 'Mozilla/5.0 (Android 15; Mobile)'
+      }
+    })
+  }
+
+  async decrypt(enc) {
+    const buf = Buffer.from(enc, 'base64')
+    const key = Buffer.from(this.ky, 'hex')
+    const iv = buf.slice(0, 16)
+    const data = buf.slice(16)
+
+    const decipher = crypto.createDecipheriv('aes-128-cbc', key, iv)
+    const decrypted = Buffer.concat([
+      decipher.update(data),
+      decipher.final()
+    ])
+
+    return JSON.parse(decrypted.toString())
+  }
+
+  async getCdn() {
+    const res = await this.is.get("https://media.savetube.vip/api/random-cdn")
+    return { status: true, data: res.data.cdn }
+  }
+
+  async download(url) {
+    const id = url.match(this.m)?.[3]
+    if (!id) throw "رابط يوتيوب غير صالح"
+
+    const cdn = await this.getCdn()
+    const info = await this.is.post(`https://${cdn.data}/v2/info`, {
+    })
+
+    const dec = await this.decrypt(info.data.data)
+
+    const dl = await this.is.post(`https://${cdn.data}/download`, {
+      id,
+      downloadType: 'audio',
+      quality: '128',
+      key: dec.key
+    })
+
+    return {
+      title: dec.title,
+      duration: dec.duration,
+      thumb: dec.thumbnail,
+      download: dl.data.data.downloadUrl
+    }
+  }
+}
+
+/* ================= المعالج ================= */
+
+let handler = async (m, { conn, args }) => {
+  if (!args[0]) {
+    return m.reply(
+      `❌ الاستخدام:\n.صوت <رابط_يوتيوب>\n\nمثال:\n.صوت https://youtu.be/U2vyax9Uufc`
+    )
+  }
+
+  const url = args[0]
+  const st = new SaveTube()
+
+  try {
+    m.reply("جــــاࢪي الــــتحــــمــــيل مــــن يــــوتيــــوب مـــقــــطع صــــوتــــي.............")
+
+    const res = await st.download(url)
+
+    let caption = `
+🎵 *اــــسم الاغــــنــــيه :* ${res.title}
+⏱ *مــــدت الــــمــــقــــطــــ؏ الصــــوتــــي🍇:* ${res.duration}
+📦 *الــــصــــيغــــه الــــمــــطلــــوبــــه:* MP3
+`
+
+    await conn.sendMessage(m.chat, {
+      audio: { url: res.download },
+      mimetype: 'audio/mpeg',
+      fileName: `${res.title}.mp3`,
+      caption
+    }, { quoted: m })
+
+  } catch (e) {
+    m.reply(`❌ خطأ: ${e}`)
+  }
+}
+
+handler.help = ['صوت']
+handler.command = ['صوت']
+handler.tags = ['download']
+//handler.limit = true
+
+export default handler
