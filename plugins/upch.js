@@ -5,6 +5,7 @@
 **/
 
 import fetch from 'node-fetch'
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
@@ -23,17 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     })
 
     let content = {
-        text: text,
-        contextInfo: {
-            externalAdReply: {
-                title: 'BETHO BOT - AI | بيثو بوت',
-                body: 'https://instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy',
-                thumbnail: thumbnail,
-                mediaType: 1,
-                renderLargerThumbnail: true,
-                showAdAttribution: false
-            }
-        }
+        text: text
     }
 
     await conn.sendMessage(idch, content)

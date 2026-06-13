@@ -1,5 +1,6 @@
 import cp, { exec as _exec } from 'child_process'
 import { promisify } from 'util'
+import { channelButton } from '../system/buttons.js'
 let exec = promisify(_exec).bind(cp)
 let handler = async (m, { conn, isOwner, command, text }) => {
   if (global.conn.user.jid != conn.user.jid) return

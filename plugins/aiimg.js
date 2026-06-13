@@ -3,6 +3,7 @@
 
 import crypto from 'crypto'
 import CryptoJS from 'crypto-js'
+import { channelButton } from '../system/buttons.js'
 
 const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCwlO+boC6cwRo3UfXVBadaYwcX
@@ -120,8 +121,9 @@ let handler = async (m, { conn, text }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url },
-      caption: `✅ Image generated!\n\n📝 Prompt: ${text}`
-    }, { quoted: m })
+      caption: `✅ Image generated!\n\n📝 Prompt: ${text}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
 
   } catch (err) {
     console.error(err)

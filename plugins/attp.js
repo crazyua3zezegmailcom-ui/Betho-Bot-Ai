@@ -2,6 +2,7 @@ import { createCanvas } from 'canvas';
 import { exec } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { channelButton } from '../system/buttons.js'
 
 async function create_frame(text, color, pathna) {
   const width = 400;

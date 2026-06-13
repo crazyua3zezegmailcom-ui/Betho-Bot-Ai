@@ -4,6 +4,7 @@
 import axios from 'axios'
 import FormData from 'form-data'
 import fs from 'fs'
+import { downloadButtons } from '../system/buttons.js'
 
 async function getAuthToken() {
   const { data } = await axios.get('https://freeimage.host/')

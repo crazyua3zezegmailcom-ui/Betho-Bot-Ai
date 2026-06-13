@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 const freeFireCharacters = [
   {
     name: "DJ Alok",
@@ -277,7 +278,9 @@ async function handler(m, { conn }) {
 ${characterList}
     `.trim();
 
-    const sentMsg = await conn.sendMessage(m.chat, { text: message }, { quoted: m });
+    const sentMsg = await conn.sendMessage(m.chat, { text: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
     console.log("Character list sent with ID:", sentMsg.key.id);
 
     const timeoutDuration = 60000;

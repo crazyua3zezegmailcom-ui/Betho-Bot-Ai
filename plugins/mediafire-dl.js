@@ -3,6 +3,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 class MediaFire {
   constructor() {
@@ -62,7 +63,9 @@ let handler = async (m, { conn, text }) => {
       m
     )
 
-  } catch (e) {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } catch (e) {
     console.error(e)
     m.reply(`❌ Error: ${e.message}`)
   }

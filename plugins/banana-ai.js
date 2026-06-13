@@ -5,6 +5,7 @@
 import axios from 'axios'
 import CryptoJS from 'crypto-js'
 import fs from 'fs'
+import { channelButton } from '../system/buttons.js'
 
 const AES_KEY = 'ai-enhancer-web__aes-key'
 const AES_IV = 'aienhancer-aesiv'
@@ -109,8 +110,9 @@ let handler = async (m, { conn, text }) => {
       m.chat,
       {
         image: { url: resultUrl },
-        caption: '✅ Banana AI enhancement completed!'
-      },
+        caption: '✅ Banana AI enhancement completed!',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     )
   } catch (e) {

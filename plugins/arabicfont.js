@@ -9,6 +9,7 @@ import fs         from 'fs'
 import path       from 'path'
 import { createWriteStream } from 'fs'
 import { execSync } from 'child_process'   // ✅ built-in — no extra package needed
+import { downloadButtons } from '../system/buttons.js'
 
 // ─────────────────────────────────────────────────────────────
 //  CONFIG
@@ -194,7 +195,8 @@ async function sendZip (conn, m, count) {
         ``,
         `🔤 Extract and install the fonts on your device!`,
       ].join('\n'),
-    },
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
     { quoted: m }
   )
 }
@@ -264,7 +266,8 @@ let handler = async (m, { conn, args }) => {
       `⚙️ Fetching *${maxFonts}* modern Arabic fonts …`,
       `⏳ Please wait, scraping alfont.com now.`,
     ].join('\n'),
-  }, { quoted: m })
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
   try {
     const result = await runScraper(maxFonts)
@@ -286,7 +289,9 @@ let handler = async (m, { conn, args }) => {
       result.failed.slice(0, 3).forEach(e => lines.push(`    ↳ ${e}`))
     }
 
-    await conn.sendMessage(m.chat, { text: lines.join('\n') }, { quoted: m })
+    await conn.sendMessage(m.chat, { text: lines.join('\n'),
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
   } catch (err) {
     await conn.sendMessage(m.chat, {
@@ -297,7 +302,8 @@ let handler = async (m, { conn, args }) => {
         ``,
         `Try again in a moment.`,
       ].join('\n'),
-    }, { quoted: m })
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
   } finally {
     cleanup()
   }

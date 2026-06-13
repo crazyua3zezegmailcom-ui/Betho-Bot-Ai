@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import { sticker } from '../lib/sticker.js'
 import uploadImage from '../lib/uploadImage.js'
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 let input = ` *exemple*
 	

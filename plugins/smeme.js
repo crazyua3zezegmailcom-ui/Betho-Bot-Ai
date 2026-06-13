@@ -7,6 +7,7 @@ import crypto from "crypto"
 import sharp from "sharp"
 import { FormData, Blob } from "formdata-node"
 import { fileTypeFromBuffer } from "file-type"
+import { channelButton } from '../system/buttons.js'
 
 /* ================= CATBOX UPLOADER ================= */
 

@@ -2,6 +2,7 @@
 // TRANSLATE PLUGIN - DEFAULT TO ARABIC
 
 import fetch from 'node-fetch';
+import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { args, usedPrefix, command, conn }) => {
   let lang, text;

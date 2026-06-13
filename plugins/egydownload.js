@@ -3,6 +3,7 @@
 
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 class EgyDeadScraper {
     constructor(baseURL = "https://egydead.center/") {

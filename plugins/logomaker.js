@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { parseStringPromise } from 'xml2js';
+import { channelButton } from '../system/buttons.js'
 
 const effects = [
   'sweetheart', 'flutter', 'pinkglow', 'volcano', 'petalprint', 'giftwrap', 'mrfrosty', 'littlehelper', 
@@ -42,7 +43,9 @@ const handler = async (m, { conn, text, command }) => {
   try {
     const glowTextUrl = await createGlowText(effect, message);
     if (glowTextUrl) {
-      await conn.sendMessage(m.chat, { image: { url: glowTextUrl }, caption: 'Glow Text' }, { quoted: m });
+      await conn.sendMessage(m.chat, { image: { url: glowTextUrl }, caption: 'Glow Text',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
     } else {
       m.reply('Failed to create Glow Text. Data not found.');
     }

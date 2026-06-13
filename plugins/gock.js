@@ -2,6 +2,7 @@
 // 📌 Plugin: Gock Prompt Generator
 // scrape by GilangSan
 import axios from 'axios'
+import { channelButton } from '../system/buttons.js'
 
 class Gock {
   constructor() {

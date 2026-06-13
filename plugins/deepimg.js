@@ -1,6 +1,7 @@
 // @𝐶𝑟𝑎𝑧𝑦_ouafy
 
 import axios from 'axios'
+import { channelButton } from '../system/buttons.js'
 
 // Simple helper function to translate text to English using Google Translate API
 const translateToEnglish = async (text) => {
@@ -67,8 +68,9 @@ If <style> is not provided, it will default to *realistic*`)
       await conn.sendMessage(m.chat, {
         image: { url: imageUrl },
         // We show the original prompt in the caption so the user sees what they asked for
-        caption: `✅ Image successfully generated!\n\n*Prompt (Original):* ${prompt}\n*Prompt (Used):* ${translatedPrompt}\n*Style:* ${style}`
-      }, { quoted: m })
+        caption: `✅ Image successfully generated!\n\n*Prompt (Original):* ${prompt}\n*Prompt (Used):* ${translatedPrompt}\n*Style:* ${style}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
       
     } else {
       m.reply('❌ Failed to generate image.')

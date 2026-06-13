@@ -4,6 +4,7 @@
 import axios from "axios"
 import crypto from "crypto"
 import yts from "yt-search"
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { text, conn }) => {
     try {
@@ -74,8 +75,9 @@ const handler = async (m, { text, conn }) => {
             m.chat,
             {
                 image: { url: meta.thumbnail },
-                caption
-            },
+                caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
             { quoted: m }
         )
 
@@ -83,8 +85,9 @@ const handler = async (m, { text, conn }) => {
             m.chat,
             {
                 audio: { url: download },
-                mimetype: "audio/mpeg"
-            },
+                mimetype: "audio/mpeg",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
             { quoted: m }
         )
 

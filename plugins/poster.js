@@ -1,6 +1,7 @@
 // @𝐶𝑟𝑎𝑧𝑦_ouafy
 // scrape by GilangSan
 import axios from 'axios'
+import { channelButton } from '../system/buttons.js'
 
 async function createPoster(prompt, text = '', type = 'custom', style = 'minimal') {
   if (!prompt) return 'فين هو البرومبت؟'

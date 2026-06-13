@@ -7,6 +7,7 @@ import crypto from "node:crypto";
 import axios from "axios"; // Used to download media from the message
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { channelButton } from '../system/buttons.js'
 
 // Get the current directory to store temporary files
 const __filename = fileURLToPath(import.meta.url);
@@ -196,8 +197,9 @@ let handler = async (m, { conn }) => {
             await conn.sendMessage(m.chat, {
                 video: Buffer.from(data),
                 caption: `🌟 **Video Upscale Successful!**\n\nResolution: 2K\nURL: ${output_url}`,
-                fileName: `upscaled-${job_id}.mp4`
-            }, { quoted: m });
+                fileName: `upscaled-${job_id}.mp4`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
             
         } else {
             m.reply("❌ Job finished, but the output URL was not found.");

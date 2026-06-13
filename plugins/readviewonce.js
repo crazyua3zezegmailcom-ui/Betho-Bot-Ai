@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 const handler = async (m, { conn }) => {
 	if (!m.quoted) {
 		return m.reply("Reply to viewOnce message");

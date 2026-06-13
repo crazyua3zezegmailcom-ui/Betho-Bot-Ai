@@ -9,6 +9,7 @@
 import axios from "axios"
 import * as cheerio from "cheerio"
 import crypto from "crypto"
+import { downloadButtons } from '../system/buttons.js'
 
 const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36"
@@ -24,7 +25,7 @@ const getDirectDownload = async (filePageUrl) => {
     })
     const $ = cheerio.load(res.data)
     return $("#downloadButton").attr("href") || null
-  } catch {
+  } catch (_e) {
     return null
   }
 }
@@ -137,11 +138,10 @@ let handler = async (m, { conn, args }) => {
         m.chat,
         buffer,
         item.filename,
-        `📦 MediaFire File\n\n📄 Name: ${item.filename}\n📦 Size: ${(item.size / 1024 / 1024).toFixed(
-          2
-        )} MB`,
+        `📦 MediaFire File\n\n📄 Name: ${item.filename}\n📦 Size: ${(item.size / 1024 / 1024).toFixed(2)} MB`,
         m
       )
+      try { await conn.sendMessage(m.chat, { text: `⬇️ *${item.filename}*`, footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
     }
   } catch (e) {
     conn.reply(m.chat, "❌ Error while downloading MediaFire file.", m)

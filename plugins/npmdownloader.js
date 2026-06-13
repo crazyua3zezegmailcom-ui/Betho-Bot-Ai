@@ -1,5 +1,6 @@
 import { exec } from 'child_process';
 import fs from 'fs';
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) return m.reply(`*Example* :\n ${usedPrefix + command} yt-search`);
@@ -30,8 +31,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         document: data,
         mimetype: "application/zip",
         fileName: fileName,
-        caption: `- \`Name\`: ${fileName}\n- \`Version\`: ${packageVersion}\n- \`Link\`: ${link}`
-      }, {
+        caption: `- \`Name\`: ${fileName}\n- \`Version\`: ${packageVersion}\n- \`Link\`: ${link}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, {
         quoted: m
       });
 

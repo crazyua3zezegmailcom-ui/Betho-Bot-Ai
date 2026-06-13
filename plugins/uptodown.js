@@ -1,5 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import { downloadButtons } from '../system/buttons.js'
 
 /**
  * Scraper function for Uptodown
@@ -119,7 +120,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     const fileName = `${res.nama_aplikasi.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '-')}-${res.versi}.apk`;
 
     // Send the APK file as a document
-    await conn.sendFile(m.chat, res.downloadLink, fileName, `Here is your file!`, m);
+    await conn.sendFile(m.chat, res.downloadLink, fileName, `Here is your file!`, m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
 
 
   } catch (e) {

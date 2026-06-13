@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import * as cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 async function getBingImages(query, limit = 5) {
   const headers = {
@@ -37,7 +38,7 @@ async function getBingImages(query, limit = 5) {
           preview_url: turl,
           original_url: murl
         })
-      } catch {}
+      } catch (_e) {}
     })
 
     return {

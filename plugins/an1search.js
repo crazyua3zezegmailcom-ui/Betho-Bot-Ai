@@ -7,6 +7,7 @@
 
 import fetch from 'node-fetch';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
   if (!text) return m.reply('🔍 Please enter a search query.\n\nExample:\n.an1search capcut');

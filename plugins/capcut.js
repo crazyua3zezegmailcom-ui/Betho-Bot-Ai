@@ -1,6 +1,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 // scrape by  Ponta Sensei
 import axios from 'axios'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, args }) => {
   const url = args[0]
@@ -10,7 +11,9 @@ let handler = async (m, { conn, args }) => {
   if (!res) return m.reply('❌ فشل في جلب الفيديو. تأكد من الرابط أو أعد المحاولة لاحقاً.')
 
   await conn.sendFile(m.chat, res.video, 'capcut.mp4', `🎬 *${res.title}*\n\n📸 *By:* ${res.author}`, m)
-}
+
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    }
 
 handler.help = ['كابكات']
 handler.command = ['كابكات']

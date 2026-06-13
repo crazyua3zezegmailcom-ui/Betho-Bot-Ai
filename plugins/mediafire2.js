@@ -3,6 +3,7 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
 import { URL } from 'url'
+import { downloadButtons } from '../system/buttons.js'
 
 /* ================= MEDIAFIRE SCRAPER ================= */
 
@@ -136,8 +137,9 @@ let handler = async (m, { conn, args }) => {
     {
       document: buffer,
       mimetype,
-      fileName: fixedName
-    },
+      fileName: fixedName,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
     { quoted: m }
   )
 }

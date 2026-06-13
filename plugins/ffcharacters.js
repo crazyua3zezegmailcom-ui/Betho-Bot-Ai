@@ -1,5 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import { channelButton } from '../system/buttons.js'
 
 const BASE_URL = "https://freefire.fandom.com";
 const LIST_URL = BASE_URL + "/wiki/Characters";

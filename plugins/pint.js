@@ -1,3 +1,4 @@
+import { downloadButtons } from '../system/buttons.js'
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 
 let handler = async (m, { conn, text }) => {

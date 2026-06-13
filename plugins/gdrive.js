@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { conn, usedPrefix, command, text }) => {
     if (!text) return m.reply(`*• مثال :* ${usedPrefix + command} *[رابط جوجل درايف]*`);
@@ -18,8 +19,9 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
         document: { url: data.downloadUrl },
         fileName: data.fileName,
         mimetype: data.mimetype,
-        caption: cap
-    }, { quoted: m });
+        caption: cap,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 };
 
 async function drive(url) {

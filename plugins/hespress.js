@@ -1,6 +1,7 @@
 import cheerio from 'cheerio';
 import fetch from 'node-fetch';
 import baileys from '@adiwajshing/baileys';
+import { channelButton } from '../system/buttons.js'
 
 const { proto, generateWAMessageFromContent } = baileys;
 

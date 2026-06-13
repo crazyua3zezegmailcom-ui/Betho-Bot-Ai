@@ -2,6 +2,7 @@
 // code origine by https://github.com/mruniquehacker/Knightbot-MD/blob/main/commands/video.js thanks brother
 import axios from 'axios'
 import yts from 'yt-search'
+import { downloadButtons } from '../system/buttons.js'
 
 const AXIOS_DEFAULTS = {
     timeout: 60000,
@@ -124,8 +125,9 @@ ${usedPrefix}ytvideo https://youtu.be/dQw4w9WgXcQ`,
             video: { url: videoData.download },
             mimetype: 'video/mp4',
             fileName: `${(videoData.title || videoTitle || 'video').replace(/[^\w\s-]/g, '')}.mp4`,
-            caption: `🎬 *${videoData.title || videoTitle || 'Video'}*\n\nDownloaded successfully!`
-        }, { quoted: m })
+            caption: `🎬 *${videoData.title || videoTitle || 'Video'}*\n\nDownloaded successfully!`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
     } catch (err) {
         console.error(err)

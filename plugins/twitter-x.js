@@ -4,6 +4,7 @@
 
 import axios from "axios";
 import crypto from "crypto";
+import { downloadButtons } from '../system/buttons.js'
 
 class Util {
   static PRIMARY_KEY = "73587A446B5642716E6A6A48325742733561436D5A457847555273367A4E4B79";
@@ -90,7 +91,9 @@ let handler = async (m, { conn, text }) => {
     if (result?.formats?.length) {
       const video = result.formats[result.formats.length - 1].url;
       const caption = `🎬 *${result.title || "Twitter Video"}*\n\n${result.description || ""}`;
-      await conn.sendMessage(m.chat, { video: { url: video }, caption }, { quoted: m });
+      await conn.sendMessage(m.chat, { video: { url: video }, caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
     } else {
       m.reply("⚠️ Failed to extract video link. Try another URL.");
     }

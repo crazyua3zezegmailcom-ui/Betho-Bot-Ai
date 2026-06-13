@@ -1,5 +1,6 @@
 import axios from 'axios';
 import FormData from 'form-data';
+import { downloadButtons } from '../system/buttons.js'
 
 async function uploadImage(imageBuffer) {
     try {
@@ -31,7 +32,9 @@ const handler = async (m, { conn }) => {
         let mime = (q.msg || q).mimetype || '';
         if (!mime.startsWith('image')) {
             await m.react('❌');
-            await conn.sendMessage(m.chat, { text: 'المرجو الاشارة لصورة التي تريد رفعها' }, { quoted: m });
+            await conn.sendMessage(m.chat, { text: 'المرجو الاشارة لصورة التي تريد رفعها',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
             return;
         }
 
@@ -42,11 +45,15 @@ const handler = async (m, { conn }) => {
 
         let caption = `*${imageUrl}*`;
 
-        await conn.sendMessage(m.chat, { text: caption }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     } catch (error) {
         await m.react('❌');
-        await conn.sendMessage(m.chat, { text: `❌ *Error:* ${error.message}` }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: `❌ *Error:* ${error.message}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
     }
 };
 

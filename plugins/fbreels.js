@@ -2,6 +2,7 @@
 // scrape by xbladev
 
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 // ─── Core Scraper Function ────────────────────────────────────────────────────
 async function fvideodown(fbUrl) {
@@ -61,8 +62,9 @@ This command lets you download Facebook videos and Reels in HD quality directly 
 
     // ── Processing notice ─────────────────────────────────────────────────────
     await conn.sendMessage(m.chat, {
-        text: '⏳ Fetching your Facebook video, please wait...'
-    }, { quoted: m });
+        text: '⏳ Fetching your Facebook video, please wait...',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     try {
         const data = await fvideodown(text.trim());
@@ -91,14 +93,16 @@ This command lets you download Facebook videos and Reels in HD quality directly 
         await conn.sendMessage(m.chat, {
             video: { url: videoUrl },
             caption: `${isHD ? '🎬 *HD Quality*' : '📹 *SD Quality*'} | ⏱️ ${dur}`,
-            mimetype: 'video/mp4'
-        }, { quoted: m });
+            mimetype: 'video/mp4',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     } catch (err) {
         console.error('[fbvideo] Error:', err.message);
         await conn.sendMessage(m.chat, {
-            text: `❌ *An error occurred.*\n\n> ${err.message}\n\nPlease make sure the video is public and try again.`
-        }, { quoted: m });
+            text: `❌ *An error occurred.*\n\n> ${err.message}\n\nPlease make sure the video is public and try again.`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
     }
 };
 

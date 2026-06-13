@@ -2,6 +2,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import baileys from '@adiwajshing/baileys';
+import { channelButton } from '../system/buttons.js'
 
 const { proto, generateWAMessageFromContent } = baileys;
 

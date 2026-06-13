@@ -3,6 +3,7 @@
 import axios from 'axios';
 import FormData from 'form-data';
 import * as cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { conn, text }) => {
   if (!text) return m.reply('المرجو إرسال رابط تغريدة يحتوي على فيديو');
@@ -45,6 +46,7 @@ const handler = async (m, { conn, text }) => {
     const res = await axios.get(best.url, { responseType: 'arraybuffer' });
 
     await conn.sendFile(m.chat, Buffer.from(res.data), 'twitter.mp4', null, m);
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
 
   } catch (e) {
     console.error(e);

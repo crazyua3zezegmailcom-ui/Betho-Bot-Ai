@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { channelButton } from '../system/buttons.js'
 
 async function selectSurah(link) { 
     let { data } = await axios.get(link);

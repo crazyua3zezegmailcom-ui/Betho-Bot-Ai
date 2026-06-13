@@ -1,3 +1,4 @@
+import { downloadButtons } from '../system/buttons.js'
 // plugin from  Toxic-v2/xhclintohn thanks 🌟
 // re-modified by instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 
@@ -82,7 +83,6 @@ let handler = async (m, { conn, text }) => {
         externalAdReply: {
           title: filename.substring(0, 30),
           body: `Betho Bot Bot • ${duration} • ${views} views`,
-          thumbnailUrl: thumbnail,
           sourceUrl: sourceUrl,
           mediaType: 1,
           renderLargerThumbnail: true,
@@ -104,8 +104,9 @@ let handler = async (m, { conn, text }) => {
         `├─────────────────────\n` +
         `├ 🇬🇧 Enjoy your music!\n` +
         `├ 🇲🇦 استمتع بالموسيقى ديالك!\n` +
-        `╰──────────────────☉`
-    }, { quoted: m });
+        `╰──────────────────☉`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
   } catch (error) {
     console.error('Play error:', error);

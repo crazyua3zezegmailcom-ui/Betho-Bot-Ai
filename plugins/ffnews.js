@@ -1,5 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn }) => {
     try {
@@ -25,7 +26,9 @@ let handler = async (m, { conn }) => {
             message += `*${index + 1}. ${item.title}*\nالوصف: ${item.desc}\n🔗 الرابط: ${item.url}\n\n`;
         });
 
-        await conn.sendMessage(m.chat, { text: message }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
     } catch (err) {
         console.error(err);

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
     if (!text) return m.reply(`Example: ${usedPrefix + command} Cristiano Ronaldo`);
@@ -27,7 +28,9 @@ let handler = async (m, { conn, text, command, usedPrefix }) => {
 ⚽ *Team's Logo*: ${playerData.fotoTeam}
         `.trim();
 
-        await conn.sendMessage(m.chat, { text: message, caption: playerData.fotoPemain }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: message, caption: playerData.fotoPemain,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
     } catch (e) {
         m.reply('Error: ' + e.message);

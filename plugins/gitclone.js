@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { downloadButtons } from '../system/buttons.js'
 
 let regexRepo = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/([^\/:]+)(?:\/tree\/[^\/]+|\/blob\/[^\/]+)?(?:\/(.+))?/i;
 let regexGist = /https:\/\/gist\.github\.com\/([^\/]+)\/([a-zA-Z0-9]+)/i;
@@ -24,8 +25,9 @@ let handler = async (m, { args }) => {
             document: { url: url },
             fileName: filename,
             mimetype: "application/zip",
-            caption: `*Result From*: ${args}`
-        }, { quoted: m });
+            caption: `*Result From*: ${args}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     } else if (isGist) {
         let [, user, gistId] = args[0].match(regexGist) || [];
@@ -36,8 +38,9 @@ let handler = async (m, { args }) => {
             document: { url: url },
             fileName: `${gistId}.zip`,
             mimetype: "application/zip",
-            caption: `*Result From*: ${args}`
-        }, { quoted: m });
+            caption: `*Result From*: ${args}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     } else if (isRawGitHub) {
         let [, user, repo, branch, filepath] = args[0].match(regexRawGitHub) || [];
@@ -49,8 +52,9 @@ let handler = async (m, { args }) => {
             document: { url: url },
             fileName: filename,
             mimetype: "application/octet-stream",
-            caption: `*Result From*: ${args}`
-        }, { quoted: m });
+            caption: `*Result From*: ${args}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
     }
 };
 

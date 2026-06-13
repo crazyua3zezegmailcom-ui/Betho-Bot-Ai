@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import FormData from "form-data";
+import { channelButton } from '../system/buttons.js'
 
 class NanoBanana {
   constructor() {
@@ -145,7 +146,9 @@ let handler = async (m, { conn, command, text }) => {
   // Processing notice
   await conn.sendMessage(
     m.chat,
-    { text: `🍌 *${isImg2Img ? "Transforming image" : "Generating image"}...*\n\n📝 Prompt: _${text}_\n\n⏳ Please wait (~15-30 seconds)` },
+    { text: `🍌 *${isImg2Img ? "Transforming image" : "Generating image"}...*\n\n📝 Prompt: _${text}_\n\n⏳ Please wait (~15-30 seconds)`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
     { quoted: m }
   );
 
@@ -164,15 +167,18 @@ let handler = async (m, { conn, command, text }) => {
         m.chat,
         {
           image: imgBuffer,
-          caption: `✅ *Done!*\n📝 Prompt: _${text}_\n🍌 Powered by NanoBanana`
-        },
+          caption: `✅ *Done!*\n📝 Prompt: _${text}_\n🍌 Powered by NanoBanana`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
         { quoted: m }
       );
     }
   } catch (err) {
     await conn.sendMessage(
       m.chat,
-      { text: `❌ *Failed:* ${err.message}\n\nTry again with a different prompt.` },
+      { text: `❌ *Failed:* ${err.message}\n\nTry again with a different prompt.`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     );
   }

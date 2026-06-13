@@ -1,8 +1,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import fetch from "node-fetch"
-import {
-  generateWAMessageFromContent
-} from "@adiwajshing/baileys"
+import { generateWAMessageFromContent } from "@adiwajshing/baileys"
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
   if (!text) throw "This command is for searching on YouTube, for example:\n.ytfinder 𝐶𝑟𝑎𝑧𝑦 ouafy"
@@ -55,22 +54,7 @@ Published: ${item.publishedAt}`
     let msg = await generateWAMessageFromContent(m.chat, {
       extendedTextMessage: {
         text: searchResults,
-        jpegThumbnail: ytthumb,
-        contextInfo: {
-          mentionedJid: [m.sender],
-          externalAdReply: {
-            title: "Y O U T U B E",
-            body: "S E A R C H",
-            containsAutoReply: true,
-            mediaType: 1,
-            mediaUrl: res.items[0].url,
-            renderLargerThumbnail: true,
-            showAdAttribution: true,
-            sourceUrl: res.items[0].url,
-            thumbnail: ytthumb,
-            thumbnailUrl: res.items[0].thumbnail
-          }
-        }
+        jpegThumbnail: ytthumb
       }
     }, {
       quoted: m

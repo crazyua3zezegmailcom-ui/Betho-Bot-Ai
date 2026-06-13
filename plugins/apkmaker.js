@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 class WebToNativeClient {
   constructor() {
@@ -108,8 +109,9 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     text: `⚙️ *Building your app...*\n\n` +
       `📛 App Name: *${appName}*\n` +
       `🌐 URL: ${websiteUrl}\n\n` +
-      `⏳ This may take 1–5 minutes. Please wait...`
-  }, { quoted: m });
+      `⏳ This may take 1–5 minutes. Please wait...`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
   try {
     const client = new WebToNativeClient();
@@ -121,16 +123,18 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
         `🌐 Website: ${websiteUrl}\n\n` +
         `📥 *Download Links:*\n` +
         `🤖 Android APK: ${result.android_url}\n` +
-        `🍎 iOS App: ${result.ios_url}`
-    }, { quoted: m });
+        `🍎 iOS App: ${result.ios_url}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
   } catch (err) {
     await conn.sendMessage(m.chat, {
       text: `❌ *Build Failed!*\n\nError: ${err.message}\n\n` +
         `Please make sure:\n` +
         `• The URL is valid and publicly accessible\n` +
-        `• The app name doesn't contain special characters`
-    }, { quoted: m });
+        `• The app name doesn't contain special characters`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
   }
 };
 

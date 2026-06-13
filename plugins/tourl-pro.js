@@ -3,6 +3,7 @@ import path from 'path'
 import axios from 'axios'
 import FormData from 'form-data'
 import { fileTypeFromBuffer } from 'file-type'
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { conn, command }) => {
   const q = m.quoted || m

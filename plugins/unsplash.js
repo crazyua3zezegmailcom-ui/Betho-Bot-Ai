@@ -4,6 +4,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     await conn.sendMessage(m.chat, {
@@ -32,6 +33,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         caption += `➤ Image : ${i + 1} of ${limit}\n`
 
         await conn.sendFile(m.chat, result[i], 'unsplash.jpg', caption, m)
+    
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
     }
 }
 

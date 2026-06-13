@@ -8,6 +8,7 @@
 
 import axios from "axios"
 import qs from "qs"
+import { downloadButtons } from '../system/buttons.js'
 
 // ─────────────────────────────────────────────
 // CORE SCRAPER
@@ -166,15 +167,17 @@ let handler = async (m, { conn, args }) => {
     // Send thumbnail with info first
     await conn.sendMessage(m.chat, {
       image: { url: thumbnail },
-      caption
-    }, { quoted: m })
+      caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
     // Send audio file
     await conn.sendMessage(m.chat, {
       audio: { url: audio.url },
       mimetype: "audio/mpeg",
-      fileName: `${title}.mp3`
-    }, { quoted: m })
+      fileName: `${title}.mp3`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
   } catch (sendErr) {
     return conn.reply(

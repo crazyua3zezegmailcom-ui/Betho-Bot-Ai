@@ -2,6 +2,7 @@
 // plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
 
 import axios from 'axios'
+import { downloadButtons } from '../system/buttons.js'
 
 class YouTubeDownloader {
   constructor() {
@@ -139,8 +140,9 @@ ${data.downloadUrl}`,
     {
       document: buffer,
       mimetype: 'video/mp4',
-      fileName: `${safeTitle}.mp4`
-    },
+      fileName: `${safeTitle}.mp4`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
     { quoted: m }
   )
 }

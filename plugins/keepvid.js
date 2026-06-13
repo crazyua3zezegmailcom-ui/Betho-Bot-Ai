@@ -1,3 +1,4 @@
+import { downloadButtons } from '../system/buttons.js'
 /*
 plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
 scrape by wolfyflutter
@@ -208,6 +209,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         let caption = `✅ *Téléchargement Terminé*\n\n*Titre:* ${result.title}\n*Identifiant:* ${result.identifier}\n*Type:* ${result.type}`;
         
         await conn.sendFile(m.chat, result.dlurl, `${result.title.replace(/[<>:"/\\|?*]/g, '')}.${result.type === 'video' ? 'mp4' : 'mp3'}`, caption, m);
+        try { await conn.sendMessage(m.chat, { text: `⬇️ *${result.title}*`, footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
         
         // Optionally delete the status message after sending the file
         await conn.relayMessage(m.chat, { protocolMessage: { key: statusMsg.key, type: 0 } }, {});

@@ -1,6 +1,7 @@
 // plugin from ARONA-MD sc thanks 
 // modified by instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import fetch from "node-fetch"
+import { channelButton } from '../system/buttons.js'
 
 class ImgEditor {
   static base = "https://imgeditor.co/api"
@@ -80,7 +81,9 @@ image-editor make this photo Pixar style`
   const prompt = text.trim()
   const wait = await conn.sendMessage(
     m.chat,
-    { text: "Downloading image..." },
+    { text: "Downloading image...",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
     { quoted: m }
   )
 
@@ -113,8 +116,9 @@ image-editor make this photo Pixar style`
       m.chat,
       {
         image: { url: resultUrl },
-        caption: `Done!\nPrompt: ${prompt}\n\n📝 *How to use:*\nReply to a photo or send a new one with caption:\nimage-editor <prompt>\n\nExamples:\n• image-editor make me look like a superhero\n• image-editor turn into cartoon style\n• image-editor convert to cyberpunk theme`
-      },
+        caption: `Done!\nPrompt: ${prompt}\n\n📝 *How to use:*\nReply to a photo or send a new one with caption:\nimage-editor <prompt>\n\nExamples:\n• image-editor make me look like a superhero\n• image-editor turn into cartoon style\n• image-editor convert to cyberpunk theme`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     )
 

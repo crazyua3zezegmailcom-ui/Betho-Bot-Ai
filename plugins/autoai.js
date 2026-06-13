@@ -1,5 +1,6 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import fetch from 'node-fetch';
+import { channelButton } from '../system/buttons.js'
 
 const gemini = {
   getNewCookie: async function () {
@@ -61,7 +62,7 @@ const gemini = {
           found = true;
           break;
         }
-      } catch {}
+      } catch (_e) {}
     }
 
     if (!found) throw new Error("Failed to parse Gemini response.");

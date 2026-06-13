@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, args }) => {
   if (!args[0]) {
@@ -28,7 +29,9 @@ let handler = async (m, { conn, args }) => {
 ${result.download_url}
     `.trim()
 
-    await conn.sendMessage(m.chat, { text: message }, { quoted: m })
+    await conn.sendMessage(m.chat, { text: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
   } catch (err) {
     throw `❌ Error:\n${err.message || err}`
   }

@@ -2,6 +2,7 @@
 // scrape by malik
 import axios from "axios"
 import FormData from "form-data"
+import { channelButton } from '../system/buttons.js'
 
 class KobaltGen {
   constructor() {
@@ -88,7 +89,9 @@ let handler = async (m, { conn, args }) => {
 
     await conn.sendMessage(
       m.chat,
-      { image: result, caption: "Here is your generated Windows MessageBox." },
+      { image: result, caption: "Here is your generated Windows MessageBox.",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     )
   } catch (e) {

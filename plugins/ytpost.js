@@ -38,6 +38,7 @@ export default handler;
 
 // تابع ytpost
 import fetch from 'node-fetch';
+import { downloadButtons } from '../system/buttons.js'
 
 const ytpost = async (ytpostUrl) => {
   if (!ytpostUrl) throw Error(`❌ لم يتم إدخال رابط منشور يوتيوب.`);

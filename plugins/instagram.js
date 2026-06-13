@@ -1,6 +1,7 @@
 import axios from "axios";
 import cheerio from "cheerio";
 import qs from "qs";
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
     if (!text) return m.reply(`• *Example*: ${usedPrefix + command} *[Instagram URL]*`);
@@ -23,7 +24,9 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
    *◦ Comments:* ${formatShortNumber(metadata.comment)}`.trim();
 
         for (const mediaUrl of mediaUrls) {
-            await conn.sendFile(m.chat, mediaUrl, "", caption, m);
+            await conn.sendFile(m.chat, mediaUrl, "", caption, m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
         }
     } catch (error) {
         m.reply("An error occurred. Please try again later.");

@@ -1,3 +1,4 @@
+import { downloadButtons } from '../system/buttons.js'
 /*
   plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
   scrape by wolep

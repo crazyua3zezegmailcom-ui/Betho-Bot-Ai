@@ -1,5 +1,6 @@
 import speed from "performance-now";
 import { spawn, exec, execSync } from "child_process";
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn }) => {
   let timestamp = speed();

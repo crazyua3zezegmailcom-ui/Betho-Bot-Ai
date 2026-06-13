@@ -3,6 +3,7 @@
 
 
 import fs from "fs"
+import { channelButton } from '../system/buttons.js'
 
 const ssweb = {
     _static: Object.freeze({
@@ -104,8 +105,9 @@ let handler = async (m, { conn, args }) => {
 
         await conn.sendMessage(m.chat, {
             image: buffer,
-            caption: "🖼 ScreenshotMachine Result"
-        }, { quoted: m })
+            caption: "🖼 ScreenshotMachine Result",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
 
     } catch (e) {
         m.reply("❌ Failed!\n" + e.message)

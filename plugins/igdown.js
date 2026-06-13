@@ -3,6 +3,7 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
 import qs from 'qs'
+import { downloadButtons } from '../system/buttons.js'
 
 async function igdl(urls) {
   const [baseUrl, paramsString] = urls.split('?')
@@ -32,11 +33,9 @@ async function igdl(urls) {
   try {
     const api = await axios.request(config)
     const $ = cheerio.load(api.data)
-    const thumbnailUrl = $('img').attr('src')?.replace(/\\"/g, '')
     const downloadUrl = $('a').attr('href')?.replace(/\\"/g, '')
 
     return {
-      thumbnail: thumbnailUrl,
       downloadUrl: downloadUrl
     }
   } catch (error) {
@@ -53,13 +52,15 @@ let handler = async (m, { conn, text }) => {
 
   await conn.sendMessage(m.chat, {
     image: { url: result.thumbnail },
-    caption: 'Here is the thumbnail preview.'
-  }, { quoted: m })
+    caption: 'Here is the thumbnail preview.',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
   await conn.sendMessage(m.chat, {
     video: { url: result.downloadUrl },
-    caption: 'Here is your Instagram video.'
-  }, { quoted: m })
+    caption: 'Here is your Instagram video.',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 }
 
 handler.help = handler.command = ['تنزيل-انستا']

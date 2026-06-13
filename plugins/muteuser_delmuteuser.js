@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, command }) => {
     if (!conn.muted) conn.muted = {};
     if (!conn.muted[m.chat]) conn.muted[m.chat] = [];

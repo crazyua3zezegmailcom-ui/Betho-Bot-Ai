@@ -4,6 +4,7 @@ import axios from 'axios'
 import crypto from 'crypto'
 import FormData from 'form-data'
 import fs from 'fs'
+import { channelButton } from '../system/buttons.js'
 
 function detectLanguage(text = '') {
     // Simple Arabic detection
@@ -84,7 +85,7 @@ let handler = async (m, { conn }) => {
                             const data = JSON.parse(jsonStr)
                             if (data.text) fullText += data.text
                             if (data.done) resolve()
-                        } catch {}
+                        } catch (_e) {}
                     }
                 }
             })

@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import FormData from "form-data";
+import { channelButton } from '../system/buttons.js'
 
 // 1. The API Client Class (kept mostly intact, but ready for Buffers)
 class ApiClient {
@@ -127,8 +128,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         // Send Result
         await conn.sendMessage(m.chat, { 
             image: result.resultBuffer, 
-            caption: '✅ *Background Removed Successfully*' 
-        }, { quoted: m });
+            caption: '✅ *Background Removed Successfully*',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
     } catch (e) {
         console.error(e);

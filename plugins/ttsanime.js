@@ -1,5 +1,6 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import axios from "axios";
+import { channelButton } from '../system/buttons.js'
 
 // دالة لتحويل النص إلى حروف مزخرفة
 async function generate(text) {

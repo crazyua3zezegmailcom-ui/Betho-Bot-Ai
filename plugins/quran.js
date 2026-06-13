@@ -2,6 +2,7 @@
 // scrape by Claude Ai
 
 import axios from 'axios';
+import { channelButton } from '../system/buttons.js'
 
 const API     = 'https://api.alquran.cloud/v1';
 const TOTAL_AYAHS = 6236;

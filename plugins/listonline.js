@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, args }) => {
   let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
 

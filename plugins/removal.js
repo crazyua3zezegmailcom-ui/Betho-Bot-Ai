@@ -1,5 +1,6 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import axios from 'axios'
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, command, quoted, prefix }) => {
   const removal = {
@@ -72,8 +73,9 @@ let handler = async (m, { conn, command, quoted, prefix }) => {
     if (result && result.status === 200 && result.low_resolution) {
       await conn.sendMessage(m.chat, {
         image: { url: result.low_resolution },
-        caption: `✨ تم حذف الخلفية بنجاح!`
-      }, { quoted: m })
+        caption: `✨ تم حذف الخلفية بنجاح!`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
     } else {
       throw new Error(result.message || "فشل في الحصول على النتيجة من API.")
     }

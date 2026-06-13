@@ -3,6 +3,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 const headers = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
@@ -66,8 +67,9 @@ let handler = async (m, { conn, text }) => {
         document: buffer,
         fileName: data.filename,
         mimetype: fileRes.headers['content-type'] || 'application/octet-stream',
-        caption: `📦 ${data.filename}\n📊 Size: ${data.filesize || 'Unknown'}`
-      },
+        caption: `📦 ${data.filename}\n📊 Size: ${data.filesize || 'Unknown'}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     )
 

@@ -1,6 +1,7 @@
 // plugin from my friend adnan thanks 
 
 import { generateWAMessageFromContent } from '@adiwajshing/baileys'
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
     const userJid = conn.user?.id

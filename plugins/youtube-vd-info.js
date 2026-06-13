@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 const headers = {
   "origin": "https://imageyoutube.com",
@@ -123,8 +124,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url: ytInfo.thumbnail || ytInfo.preview },
-      caption: caption
-    }, { quoted: m })
+      caption: caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
   } catch (error) {
     m.reply(`⚠️ Error: ${error.message}`)
   }

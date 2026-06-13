@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 import axios from 'axios';
 import FormData from 'form-data';
 import { fileTypeFromBuffer } from 'file-type';
+import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { conn }) => {
   const q = m.quoted ? m.quoted : m;
@@ -42,7 +43,9 @@ const handler = async (m, { conn }) => {
 
     await conn.sendMessage(
       m.chat,
-      { image: fs.readFileSync(filePath), caption: "Image generated successfully 🧞" },
+      { image: fs.readFileSync(filePath), caption: "Image generated successfully 🧞",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     );
 

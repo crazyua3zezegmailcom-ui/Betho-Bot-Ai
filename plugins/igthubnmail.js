@@ -1,6 +1,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import FormData from 'form-data';
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, {
     conn,
@@ -26,7 +27,9 @@ const handler = async (m, {
             return m.reply("لا نتيجة")
         } else {
             for (let i = 0; i < data.length; i++) {
-                await conn.sendFile(m.chat, data[i], '', `instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy *(${i + 1}/${data.length})*`, m, false, {
+                await conn.sendFile(m.chat, data[i], '', `instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy *(${i + 1}/${data.length})
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    *`, m, false, {
                     mentions: [m.sender]
                 });
             }

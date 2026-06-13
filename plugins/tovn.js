@@ -1,6 +1,7 @@
 // @𝐶𝑟𝑎𝑧𝑦_ouafy
 
 import { toPTT } from '../lib/converter.js'
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m

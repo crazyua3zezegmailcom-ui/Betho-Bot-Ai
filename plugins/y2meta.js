@@ -1,6 +1,7 @@
 //plugin by 𝐶𝑟𝑎𝑧𝑦 Ouafy 
 // scrape by wolfyflutter
 import fetch from 'node-fetch';
+import { downloadButtons } from '../system/buttons.js'
 
 const yt = {
   headers: {

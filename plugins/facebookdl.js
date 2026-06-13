@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 const fsaver = {
     download: async (url) => {
@@ -55,8 +56,9 @@ const handler = async (m, { conn, args }) => {
                 video: { url: video },
                 caption: `Here is your video.`,
                 mimetype: 'video/mp4',
-                fileName: 'video.mp4'
-            }, { quoted: m }
+                fileName: 'video.mp4',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m }
         );
 
     } catch (error) {

@@ -3,6 +3,7 @@
 
 import axios from "axios"
 import crypto from "crypto"
+import { downloadButtons } from '../system/buttons.js'
 
 // SpoofHead function merged inside
 const SpoofHead = (extra = {}) => {
@@ -102,7 +103,9 @@ let handler = async (m, { conn, args }) => {
   }
 
   await conn.sendFile(m.chat, result.proxyUrl, `${result.title}.mp3`, `🎵 ${result.title}`, m)
-}
+
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    }
 
 handler.help = handler.command = ['كوردات']
 handler.tags = ['downloader']

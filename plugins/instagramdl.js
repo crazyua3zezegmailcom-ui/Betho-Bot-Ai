@@ -6,6 +6,7 @@ import * as cheerio from "cheerio";
 import fs from "fs";
 import { tmpdir } from "os";
 import path from "path";
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn }) => {
   try {
@@ -96,7 +97,9 @@ let handler = async (m, { conn }) => {
       });
 
       // Send the video
-      await conn.sendFile(m.chat, tempPath, "video.mp4", "تم تحميل الفيديو من إنستغرام!", m);
+      await conn.sendFile(m.chat, tempPath, "video.mp4", "تم تحميل الفيديو من إنستغرام!", m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
 
       // Clean up temporary file
       fs.unlink(tempPath, (err) => {

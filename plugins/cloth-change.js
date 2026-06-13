@@ -8,6 +8,7 @@
 import { FormData, Blob } from 'formdata-node';
 import { fileTypeFromBuffer } from 'file-type';
 import fetch from 'node-fetch';
+import { channelButton } from '../system/buttons.js'
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -137,7 +138,9 @@ let handler = async (m, { conn, args }) => {
     await m.reply('🔄 المرجو الانتظار، يتم معالجة الصورة...');
     const pixnova = new Pixnova();
     const resultUrl = await pixnova.run(image, prompt);
-    await conn.sendMessage(m.chat, { image: { url: resultUrl }, caption: `✅ تم بنجاح!\n${resultUrl}` }, { quoted: m });
+    await conn.sendMessage(m.chat, { image: { url: resultUrl }, caption: `✅ تم بنجاح!\n${resultUrl}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
   } catch (err) {
     console.error(err);
     m.reply(`❌ خطأ:\n${err.message}`);

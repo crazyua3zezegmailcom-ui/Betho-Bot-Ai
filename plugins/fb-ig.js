@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import cheerio from "cheerio";
+import { downloadButtons } from '../system/buttons.js'
 
 async function yt5sIo(url) {
     try {
@@ -66,7 +67,9 @@ let handler = async (m, { conn, text }) => {
     try {
         let result = await yt5sIo(text);
         if (result.videoUrl) {
-            await conn.sendMessage(m.chat, { video: { url: result.videoUrl }, caption: "✅ تم التحميل بنجاح!" }, { quoted: m });
+            await conn.sendMessage(m.chat, { video: { url: result.videoUrl }, caption: "✅ تم التحميل بنجاح!",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
         } else {
             await m.reply("❌ لم يتم العثور على فيديو صالح للتحميل.");
         }

@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 async function handler(m, { conn, text }) {
     try {
         // Show loading reaction
@@ -44,7 +45,6 @@ async function handler(m, { conn, text }) {
             externalAdReply: {
                 title: pushname,
                 body: `Betho Bot runtime is active.| بيثو رهن الاشارة`,
-                thumbnailUrl: ppuser,
                 mediaType: 1,
                 sourceUrl: 'https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e'
             }

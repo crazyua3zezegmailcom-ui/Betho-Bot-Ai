@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text }) => {
     if (!text) return m.reply("🚨 *يرجى إدخال رابط الموقع!*");
 
@@ -6,8 +7,9 @@ let handler = async (m, { conn, text }) => {
 
     await conn.sendMessage(m.chat, { 
         image: { url: ssUrl },
-        caption: "📸 *تم التقاط لقطة الشاشة بنجاح!*"
-    }, { quoted: m });
+        caption: "📸 *تم التقاط لقطة الشاشة بنجاح!*",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 };
 
 handler.help = ['لقطة-شاشة'];

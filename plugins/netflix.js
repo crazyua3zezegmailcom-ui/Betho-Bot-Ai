@@ -1,5 +1,6 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import fetch from 'node-fetch'
+import { channelButton } from '../system/buttons.js'
 
 const netflixTrending = async () => {
   const region = '/ar' // '/id-en' لو حاب إنجليزي

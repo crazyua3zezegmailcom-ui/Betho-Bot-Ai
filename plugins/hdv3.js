@@ -1,5 +1,6 @@
 import fetch from "node-fetch"
 import FormData from "form-data"
+import { channelButton } from '../system/buttons.js'
 
 // Convert bytes to readable size
 function formatSize(bytes) {
@@ -148,8 +149,9 @@ let handler = async (m, { conn }) => {
 
   } catch (e) {
     await conn.sendMessage(m.chat, {
-      text: `❌ ${e}`
-    }, { quoted: m })
+      text: `❌ ${e}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
   }
 }
 

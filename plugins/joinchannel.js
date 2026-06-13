@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text }) => {
     if (!text && !m.quoted) return m.reply("Please provide a valid channel link.");
     if (!text.includes("https://whatsapp.com/channel/") && !m.quoted.text.includes("https://whatsapp.com/channel/")) {

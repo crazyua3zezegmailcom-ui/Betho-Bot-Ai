@@ -3,6 +3,7 @@
 
 import moment from 'moment-timezone'
 import { toPTT } from '../lib/converter.js'
+import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   let channelId = "120363428186936884@newsletter" // Your updated channel ID
@@ -26,15 +27,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       audio: media.data,
       mimetype: 'audio/mp4',
       ptt: true,
-      contextInfo: {
-        externalAdReply: {
-          title: text,
-          body: "#1 bot in middle east | بيثو بوت",
-          thumbnailUrl: ppUrl,
-          mediaType: 1,
-          renderLargerThumbnail: false
-        },
-      },
     })
 
     await m.reply("Audio successfully sent to channel")

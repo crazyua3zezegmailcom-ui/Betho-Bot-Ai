@@ -3,6 +3,7 @@
 import { loadImage, createCanvas } from 'canvas';
 import fs from 'fs';
 import path from 'path';
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text || !text.includes('|')) {
     return m.reply(
@@ -128,8 +129,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     // Send the generated image with a caption.
     await conn.sendMessage(m.chat, {
       image: buffer,
-      caption: 'Fake WhatsApp Profile by Noroshi'
-    }, { quoted: m });
+      caption: 'Fake WhatsApp Profile by Noroshi',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
   } catch (err) {
     console.error('[FAKEWA ERROR]', err);

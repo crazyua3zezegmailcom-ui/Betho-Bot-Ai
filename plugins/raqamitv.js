@@ -5,6 +5,7 @@
 
 import cheerio from 'cheerio';
 import fetch from 'node-fetch';
+import { channelButton } from '../system/buttons.js'
 
 let activeChats = {};
 
@@ -27,7 +28,9 @@ const handler = async (m, { conn, text, command }) => {
             return `النتيجة رقم ${index + 1}\nالعنوان: ${item.title}\n↳ للوصل إلى تفاصيل الخبر، قم بالرد على هذه الرسالة برقم *${index + 1}*`;
         }).filter(v => v).join("\n\n");
 
-        await conn.sendMessage(m.chat, { text: teks }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: teks,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
         activeChats[userKey] = { res, optionsSent: true };
     } catch (e) {
         await m.reply('حدث خطأ أثناء البحث. حاول مرة أخرى لاحقًا.');

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { downloadButtons } from '../system/buttons.js'
 
 async function fesnuk(postUrl, cookie = "", userAgent = "") {
     if (!postUrl || !postUrl.trim()) throw new Error("Please specify a valid Facebook URL.");
@@ -73,7 +74,8 @@ let handler = async (m, { args, conn }) => {
         await conn.sendMessage(m.chat, {
             video: { url: sdQuality },
             mimetype: 'video/mp4',
-        }, { quoted: m });
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
         m.reply(`Sending video...\nTitle: ${result.title}\nQuality: SD`);
     } else {

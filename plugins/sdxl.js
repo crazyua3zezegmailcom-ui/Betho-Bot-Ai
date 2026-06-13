@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { channelButton } from '../system/buttons.js'
 
 /**
  * Sdxl Generate Image - Magic Eraser
@@ -64,7 +65,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     
     // Send the image back with a caption
     const caption = `*Prompt:* ${text}`;
-    await conn.sendMessage(m.chat, { image: imageBuffer, caption: caption }, { quoted: m });
+    await conn.sendMessage(m.chat, { image: imageBuffer, caption: caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
   } catch (error) {
     console.error(error);

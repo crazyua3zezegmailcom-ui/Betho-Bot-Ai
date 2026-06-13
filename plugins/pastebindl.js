@@ -1,11 +1,14 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { conn, text }) => {
   if (!text || !text.startsWith('https://pastebin.com/')) {
     return await conn.sendMessage(
       m.chat,
-      { text: '❗ Please provide a valid Pastebin URL. exemple : \n\n *.pastebindl*  https://pastebin.com/0M5rH5w5' },
+      { text: '❗ Please provide a valid Pastebin URL. exemple : \n\n *.pastebindl*  https://pastebin.com/0M5rH5w5',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     );
   }
@@ -43,7 +46,8 @@ const handler = async (m, { conn, text }) => {
         mimetype: 'application/octet-stream',
         fileName: 'pastebin_content.js',
         caption,
-      },
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     );
 
@@ -51,7 +55,9 @@ const handler = async (m, { conn, text }) => {
     console.error('Error Issue:', error);
     await conn.sendMessage(
       m.chat,
-      { text: `❗ An error occurred: ${error.message}` },
+      { text: `❗ An error occurred: ${error.message}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     );
   }

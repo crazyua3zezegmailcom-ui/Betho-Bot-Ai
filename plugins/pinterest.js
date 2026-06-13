@@ -1,5 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import { downloadButtons } from '../system/buttons.js'
 const { generateWAMessageContent, generateWAMessageFromContent, proto } = (await import('@adiwajshing/baileys')).default;
 
 const base = "https://www.pinterest.com";

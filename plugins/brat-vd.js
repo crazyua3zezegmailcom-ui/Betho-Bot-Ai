@@ -13,6 +13,7 @@ import { createCanvas } from 'canvas'
 import Jimp from 'jimp'
 import { execSync } from 'child_process'
 import { fileURLToPath } from 'url'
+import { downloadButtons } from '../system/buttons.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

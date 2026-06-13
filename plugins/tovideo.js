@@ -4,6 +4,7 @@ import { randomBytes } from "crypto";
 import path from "path";
 import { spawn } from "child_process";
 import { tmpdir } from "os";
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
 

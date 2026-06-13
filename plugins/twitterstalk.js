@@ -7,6 +7,7 @@
 
 import axios from 'axios'
 import crypto from 'crypto'
+import { channelButton } from '../system/buttons.js'
 
 async function twitterStalk(username) {
     if (!username) throw new Error('Username is required')
@@ -83,16 +84,8 @@ ${data.bio || '-'}
             m.chat,
             {
                 text: result,
-                contextInfo: {
-                    externalAdReply: {
-                        title: data.name,
-                        body: data.bio || 'Twitter Profile',
-                        thumbnailUrl: data.avatar_url,
-                        sourceUrl: `https://twitter.com/${text}`,
-                        mediaType: 1,
-                        renderLargerThumbnail: true
-                    }
-                }
+                footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+                buttons: channelButton()
             },
             { quoted: m }
         )
@@ -100,7 +93,11 @@ ${data.bio || '-'}
     } catch (e) {
         await conn.sendMessage(
             m.chat,
-            { text: `❌ Error\n${e.message}` },
+            {
+                text: `❌ Error\n${e.message}`,
+                footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+                buttons: channelButton()
+            },
             { quoted: m }
         )
     }

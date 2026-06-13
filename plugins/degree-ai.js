@@ -1,21 +1,14 @@
 import axios from 'axios';
 import { randomBytes } from 'crypto';
 import { writeFileSync, unlinkSync } from 'fs';
+import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { conn, text }) => {
     try {
         // Validate input
         if (!text) {
             return conn.sendMessage(m.chat, {
-                text: `🎓 *DegreeGuru AI*\n\nUsage example:\n.degree <question>\nExample: .degree How to conduct scientific research?`,
-                contextInfo: {
-                    externalAdReply: {
-                        title: 'Academic Assistance',
-                        body: 'Powered by DegreeGuru',
-                        thumbnailUrl: 'https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg',
-                        sourceUrl: 'https://degreeguru.vercel.app'
-                    }
-                }
+                text: `🎓 *DegreeGuru AI*\n\nUsage example:\n.degree <question>\nExample: .degree How to conduct scientific research?`
             }, { quoted: m });
         }
 
@@ -61,8 +54,9 @@ const handler = async (m, { conn, text }) => {
                 document: { url: filename },
                 fileName: `DegreeGuru_Result_${Date.now()}.json`,
                 mimetype: 'application/json',
-                caption: `📚 Result for: ${text.slice(0, 35)}${text.length > 35 ? '...' : ''}`
-            }, { quoted: m });
+                caption: `📚 Result for: ${text.slice(0, 35)}${text.length > 35 ? '...' : ''}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
             
             return unlinkSync(filename);
         }
@@ -71,22 +65,16 @@ const handler = async (m, { conn, text }) => {
         await conn.sendMessage(m.chat, {
             text: `🎓 *DegreeGuru Result*\n\n${resultText}`,
             mentions: [m.sender],
-            contextInfo: {
-                externalAdReply: {
-                    title: 'Academic Assistant',
-                    body: 'Powered by AI',
-                    thumbnailUrl: 'https://i.postimg.cc/Fsx4fvfK/IMG-20260610-WA0075.jpg',
-                    sourceUrl: 'https://degreeguru.vercel.app'
-                }
-            }
-        }, { quoted: m });
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
     } catch (e) {
         console.error('Error:', e);
         await conn.sendMessage(m.chat, {
             text: `❌ Error: ${e.message}\nPlease try again or use a more specific question.`,
-            mentions: [m.sender]
-        }, { quoted: m });
+            mentions: [m.sender],
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
     }
 };
 

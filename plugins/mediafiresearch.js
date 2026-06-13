@@ -7,6 +7,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 // Shuffle function to randomize results
 function shuffle(arr) {

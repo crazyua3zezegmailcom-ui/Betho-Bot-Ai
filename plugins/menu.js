@@ -2,6 +2,7 @@ import moment from 'moment-timezone'
 import PhoneNumber from 'awesome-phonenumber'
 import fs from 'fs'
 import fetch from 'node-fetch'
+import { menuButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
   const cmd = args[0] || 'list';
@@ -147,15 +148,8 @@ if (_menu.image) {
 
 conn.sendMessage(m.chat, {
       text: list,
-      contextInfo: {
-      externalAdReply: {
-      title: namebot,
-      body: 'M E N U',
-      thumbnailUrl: thumbnail,
-      souceUrl: sgc,
-      mediaType: 1,
-      renderLargerThumbnail: true
-      }}}, {quoted: m})
+      footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+      buttons: menuButtons()}, {quoted: m})
       
       } else if (_menu.gif) {
 
@@ -163,16 +157,7 @@ conn.sendMessage(m.chat, {
       video: {url: "https://telegra.ph/file/ca2d038b71ff86e2c70d3.mp4"},
       gifPlayback: true,
       caption: list,
-      jpegThumbnail: await conn.resize((await conn.getFile(docUrl)).data, 180, 72),
-      contextInfo: {
-      externalAdReply: {
-      title: namebot,
-      body: 'M E N U',
-      thumbnailUrl: thumbnail,
-      souceUrl: sgc,
-      mediaType: 1,
-      renderLargerThumbnail: true
-      }}}, {quoted: m})
+      jpegThumbnail: await conn.resize((await conn.getFile(docUrl)).data, 180, 72)}, {quoted: m})
 
 } else if (_menu.teks) {
 
@@ -187,19 +172,6 @@ conn.sendMessage(m.chat, {
             pageCount: "2024",
             caption: list,
             jpegThumbnail: await conn.resize((await conn.getFile(docUrl)).data, 180, 72),
-            contextInfo: {
-              externalAdReply: {
-                containsAutoReply: true,
-                mediaType: 1,
-                mediaUrl: 'https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg',
-                renderLargerThumbnail: true,
-                showAdAttribution: true,
-                sourceUrl: sgc,
-                thumbnailUrl: thumbnail,
-                title: `${date}`,
-                body: '',
-              },
-            },
           }, {quoted: m});
           } else if (_menu.button) {
           
@@ -222,31 +194,15 @@ if (_menu.image) {
 conn.sendMessage(m.chat, {
       
       text: list2,
-      contextInfo: {
-      externalAdReply: {
-      title: namebot,
-      body: 'M E N U',
-      thumbnailUrl: thumbnail,
-      souceUrl: sgc,
-      mediaType: 1,
-      renderLargerThumbnail: true
-      }}}, {quoted: m})
+      footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+      buttons: menuButtons()}, {quoted: m})
       
       } else if (_menu.gif) {
 
 conn.sendMessage(m.chat, {
       video: {url: "https://telegra.ph/file/ca2d038b71ff86e2c70d3.mp4"},
       gifPlayback: true,
-      caption: list2,
-      contextInfo: {
-      externalAdReply: {
-      title: namebot,
-      body: 'M E N U',
-      thumbnailUrl: thumbnail,
-      souceUrl: sgc,
-      mediaType: 1,
-      renderLargerThumbnail: true
-      }}}, {quoted: m})
+      caption: list2}, {quoted: m})
 
 } else if (_menu.teks) {
 
@@ -261,19 +217,6 @@ conn.sendMessage(m.chat, {
             pageCount: "2024",
             jpegThumbnail: await conn.resize((await conn.getFile(docUrl)).data, 180, 72),
             caption: list2,
-            contextInfo: {
-              externalAdReply: {
-                containsAutoReply: true,
-                mediaType: 1,
-                mediaUrl: 'https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg',
-                renderLargerThumbnail: true,
-                showAdAttribution: true,
-                sourceUrl: sgc,
-                thumbnailUrl: thumbnail,
-                title: `${date}`,
-                body: '',
-              },
-            },
           }, {quoted: m});
           } else if (_menu.button) {
           conn.sendListImageButton(m.chat, `IM 𝑩𝒆𝒕𝒉𝒐 𝑩𝒐𝒕 AI\n\n${list2}`, datas, wm, thumbnail)
@@ -296,31 +239,15 @@ conn.sendMessage(m.chat, {
 
 conn.sendMessage(m.chat, {
       text: all,
-      contextInfo: {
-      externalAdReply: {
-      title: namebot,
-      body: 'M E N U',
-      thumbnailUrl: thumbnail,
-      souceUrl: sgc,
-      mediaType: 1,
-      renderLargerThumbnail: true
-      }}}, {quoted: m})
+      footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+      buttons: menuButtons()}, {quoted: m})
       
       } else if (_menu.gif) {
 
 conn.sendMessage(m.chat, {
       video: {url: "https://telegra.ph/file/ca2d038b71ff86e2c70d3.mp4"},
       gifPlayback: true,
-      caption: all,
-      contextInfo: {
-      externalAdReply: {
-      title: namebot,
-      body: 'M E N U',
-      thumbnailUrl: thumbnail,
-      souceUrl: sgc,
-      mediaType: 1,
-      renderLargerThumbnail: true
-      }}}, {quoted: m})
+      caption: all}, {quoted: m})
 
 } else if (_menu.teks) {
 
@@ -335,19 +262,6 @@ conn.sendMessage(m.chat, {
             pageCount: "2024",
             caption: all,
             jpegThumbnail: await conn.resize((await conn.getFile(docUrl)).data, 180, 72),
-            contextInfo: {
-              externalAdReply: {
-                containsAutoReply: true,
-                mediaType: 1,
-                mediaUrl: 'https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg',
-                renderLargerThumbnail: true,
-                showAdAttribution: true,
-                sourceUrl: sgc,
-                thumbnailUrl: thumbnail,
-                title: `${date}`,
-                body: '',
-              },
-            },
           }, {quoted: m});
           } else if (_menu.button) {
           conn.sendListImageButton(m.chat, `IM 𝑩𝒆𝒕𝒉𝒐 𝑩𝒐𝒕 AI\n${all}`, datas, 'instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy', thumbnail)

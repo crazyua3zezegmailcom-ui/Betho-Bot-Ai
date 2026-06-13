@@ -5,6 +5,7 @@
  */
 
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 async function getNonce() {
   const res = await axios.get('https://influencermarketinghub.com/tiktok-money-calculator/', {
@@ -75,8 +76,9 @@ let handler = async (m, { conn, args }) => {
 
     await conn.sendMessage(m.chat, {
       image: result.avatarBuffer,
-      caption: message
-    }, { quoted: m });
+      caption: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
   } catch (err) {
     m.reply(`❌ Error: ${err.message}`);

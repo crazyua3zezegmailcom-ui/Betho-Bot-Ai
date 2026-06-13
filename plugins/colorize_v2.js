@@ -7,6 +7,7 @@ import fs from 'fs'
 import FormData from 'form-data'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { channelButton } from '../system/buttons.js'
 
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 const BASE_URL = 'https://api.deepai.org'

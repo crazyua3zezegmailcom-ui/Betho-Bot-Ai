@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 // ============================================================
 //  📖  SEERAH — Biography of the Prophet ﷺ by Nabil Al-Awadi
 //  Command : .seerah  |  .seerah <episode number>
@@ -103,8 +104,9 @@ let handler = async (m, { conn, args }) => {
           text:
             `❌ *Invalid episode number!*\n\n` +
             `Please enter a number between *1* and *${EPISODES.length}*.\n\n` +
-            `Example: *.seerah 5*`
-        },
+            `Example: *.seerah 5*`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
         { quoted: m }
       )
       return
@@ -121,8 +123,9 @@ let handler = async (m, { conn, args }) => {
           `📖 Seerah — Biography of the Prophet ﷺ\n` +
           `👤 Sheikh Nabil Al-Awadi\n` +
           `📦 Size: *${episode.size}*\n\n` +
-          `_Please wait while the audio is being sent..._`
-      },
+          `_Please wait while the audio is being sent..._`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     )
 
@@ -146,8 +149,9 @@ let handler = async (m, { conn, args }) => {
           `✅ *Episode ${episode.ep} sent!*\n\n` +
           `_To listen to another episode, type:_\n` +
           `*.seerah <episode number>*\n\n` +
-          `Example: *.seerah ${episode.ep < EPISODES.length ? episode.ep + 1 : 1}*`
-      },
+          `Example: *.seerah ${episode.ep < EPISODES.length ? episode.ep + 1 : 1}*`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     )
 
@@ -155,7 +159,9 @@ let handler = async (m, { conn, args }) => {
     // No argument — send the full guide with episode list
     await conn.sendMessage(
       m.chat,
-      { text: buildGuide() },
+      { text: buildGuide(),
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     )
   }

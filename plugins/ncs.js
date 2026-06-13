@@ -7,6 +7,7 @@ import * as cheerio from "cheerio";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { downloadButtons } from '../system/buttons.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -94,7 +95,9 @@ Example:
       }
       message += `To download a track, use: *.ncsdl <track_id>*`;
 
-      await conn.sendFile(m.chat, results[0].image, "ncs.jpg", message, m);
+      await conn.sendFile(m.chat, results[0].image, "ncs.jpg", message, m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
     } catch (err) {
       console.error(err);
       m.reply("❌ Failed to fetch NCS results. Please try again later.");
@@ -165,7 +168,9 @@ Example:
 
       const caption = `🎵 *${info.title}*\n👤 Artist: ${info.artist}\n🎧 Genre: ${info.genre}\n📀 Version: ${info.version}\n\n⬇️ *Download Link:*\n${info.downloadUrl}\n\n📋 *Copy Text:*\n${info.copyText}`;
 
-      await conn.sendFile(m.chat, filePath, `${info.title}.mp3`, caption, m);
+      await conn.sendFile(m.chat, filePath, `${info.title}.mp3`, caption, m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
 
       fs.unlinkSync(filePath);
     } catch (err) {

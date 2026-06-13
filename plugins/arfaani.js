@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 // ارفعني - ترقية المطور أدمن
 
 const handler = async (m, { conn }) => {

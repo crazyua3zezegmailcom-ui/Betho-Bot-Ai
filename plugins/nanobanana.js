@@ -6,6 +6,7 @@ Created : Jumat 27 Februari 2026
 
 import crypto from 'crypto'
 import fetch from 'node-fetch'
+import { channelButton } from '../system/buttons.js'
 
 const publicKey = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCwlO+boC6cwRo3UfXVBadaYwcX
@@ -212,8 +213,9 @@ Nano Banana AI is a powerful AI image editing tool that lets you modify the back
   if (!prompt) prompt = 'enhance the background'
 
   await conn.sendMessage(m.chat, {
-    text: `⏳ *Processing your image...*\n\n📝 Prompt: _${prompt}_\n\nPlease wait, this may take 10–30 seconds.`
-  }, { quoted: m })
+    text: `⏳ *Processing your image...*\n\n📝 Prompt: _${prompt}_\n\nPlease wait, this may take 10–30 seconds.`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
 
   try {
     // ── Download image ───────────────────────────────────
@@ -244,8 +246,9 @@ Nano Banana AI is a powerful AI image editing tool that lets you modify the back
   } catch (err) {
     console.error('[nanobanana] Error:', err)
     await conn.sendMessage(m.chat, {
-      text: `❌ An error occurred while processing your image.\n\nError: ${err.message}`
-    }, { quoted: m })
+      text: `❌ An error occurred while processing your image.\n\nError: ${err.message}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
   }
 }
 

@@ -2,6 +2,7 @@
 //scrape by SaaOffc
 import axios from 'axios'
 import * as cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, args }) => {
   const url = args[0]
@@ -12,9 +13,13 @@ let handler = async (m, { conn, args }) => {
 
   if (result.video) {
     await conn.sendFile(m.chat, result.video, 'video.mp4', '🎥 تم تحميل الفيديو من Pinterest', m)
-  } else if (result.image) {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } else if (result.image) {
     await conn.sendFile(m.chat, result.image, 'image.jpg', '🖼️ تم تحميل الصورة من Pinterest', m)
-  } else {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } else {
     m.reply('❌ لم يتم العثور على صورة أو فيديو في هذا الرابط.')
   }
 }

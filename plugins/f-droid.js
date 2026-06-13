@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn }) => {
   const query = m.text.split(' ').slice(1).join(' ') || 'termux'; 
@@ -10,9 +11,13 @@ let handler = async (m, { conn }) => {
     apps.forEach((app, index) => {
       message += `**${index + 1}. ${app.title}**\nLink: ${app.apkUrl}\nImage: ${app.LinkGambar}\n\n`;
     });
-    await conn.sendMessage(m.chat, { text: message }, { quoted: m });
+    await conn.sendMessage(m.chat, { text: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
   } else {
-    await conn.sendMessage(m.chat, { text: 'No apps found for your query.' }, { quoted: m });
+    await conn.sendMessage(m.chat, { text: 'No apps found for your query.',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
   }
 };
 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, {
     conn,
@@ -13,8 +14,9 @@ if (!text) throw 'ex : \n .pixiv naruto'
         let result = await pixiv(text);
         await conn.sendMessage(m.chat, {
             image: result,
-            caption: 'Done'
-        }, {
+            caption: 'Done',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, {
             quoted: m
         })
     } catch (e) {

@@ -2,6 +2,7 @@
 // scrape by malik
 
 import axios from "axios";
+import { channelButton } from '../system/buttons.js'
 
 class StableHorde {
   constructor({ apiKey = "" }) {
@@ -59,7 +60,9 @@ let handler = async (m, { conn, text }) => {
       // Send image instead of sticker
       await conn.sendMessage(
         m.chat,
-        { image: { url: imageUrl }, caption: `✅ Prompt: ${text}` },
+        { image: { url: imageUrl }, caption: `✅ Prompt: ${text}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
         { quoted: m }
       );
     } else {

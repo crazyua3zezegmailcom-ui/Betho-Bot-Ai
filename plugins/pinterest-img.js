@@ -6,6 +6,7 @@ plugin modified by 𝐶𝑟𝑎𝑧𝑦 ouafy
 */
 
 import fetch from 'node-fetch'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, command }) => {
   global.db.data.users = global.db.data.users || {}
@@ -52,7 +53,9 @@ Type *again* for the next image.
 
     await conn.sendFile(m.chat, result.image_url, 'pinterest.jpg', caption, m)
 
-  } catch (e) {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } catch (e) {
     console.error(e)
     m.reply('Failed to fetch Pinterest data.')
   }

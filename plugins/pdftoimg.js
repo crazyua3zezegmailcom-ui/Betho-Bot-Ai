@@ -4,6 +4,7 @@
 
 import fetch from "node-fetch";
 import FormData from "form-data";
+import { channelButton } from '../system/buttons.js'
 
 const base = "https://pdftoimage.com";
 
@@ -110,7 +111,7 @@ async function convertPDFBuffer(pdfBuffer, filename = "document.pdf") {
     if (status.thumbUrl && !thumbBuffer) {
       try {
         thumbBuffer = await fetchThumb(sid, fid);
-      } catch {}
+      } catch (_e) {}
     }
   }
 
@@ -200,7 +201,7 @@ let handler = async (m, { conn }) => {
   if (thumbBuffer && thumbBuffer.length > 0) {
     try {
       await conn.sendFile(m.chat, thumbBuffer, "preview.png", "🖼️ *First page preview*", m);
-    } catch {}
+    } catch (_e) {}
   }
 
   // ── Send ZIP ──────────────────────────────────────────────────────────────

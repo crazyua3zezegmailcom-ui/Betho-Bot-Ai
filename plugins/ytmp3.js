@@ -1,6 +1,7 @@
 // plugin by instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import crypto from "crypto"
 import axios from "axios"
+import { downloadButtons } from '../system/buttons.js'
 
 class SaveTube {
   constructor() {
@@ -89,8 +90,9 @@ let handler = async (m, { conn, args }) => {
       audio: { url: res.download },
       mimetype: 'audio/mpeg',
       fileName: `${res.title}.mp3`,
-      caption
-    }, { quoted: m })
+      caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
   } catch (e) {
     m.reply(`❌ Error: ${e}`)

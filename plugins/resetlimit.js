@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 const isNumber = (x = 0) => !isNaN(parseInt(x)) && typeof x === "number";
 
 const handler = async (m, { conn, args }) => {

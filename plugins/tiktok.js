@@ -1,6 +1,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 
 import axios from 'axios'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { text, command, conn }) => {
   if (!text) return m.reply('⛔ المرجو إدخال رابط TikTok للتحميل')
@@ -23,6 +24,11 @@ let handler = async (m, { text, command, conn }) => {
 
     let res = response.data.data
     await conn.sendFile(m.chat, res.play, 'tiktok.mp4', `🎬 ${res.title || 'لا يوجد عنوان'}`, m)
+    await conn.sendMessage(m.chat, {
+      text: `🎬 *${res.title || 'تيك توك'}*`,
+      footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+      buttons: downloadButtons()
+    }, { quoted: m })
   } catch (e) {
     console.error(e)
     m.reply('❌ حدث خطأ أثناء تحميل فيديو TikTok')

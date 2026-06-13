@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import FormData from 'form-data';
 import { fileTypeFromBuffer } from 'file-type';
+import { downloadButtons } from '../system/buttons.js'
 const { proto, prepareWAMessageMedia } = (await import('@adiwajshing/baileys')).default;
 
 /**

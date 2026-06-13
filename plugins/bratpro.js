@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 const handler = async (m, { conn, text }) => {
   if (!text) return m.reply("Example: .bratpro Betho Bot");
 

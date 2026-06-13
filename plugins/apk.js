@@ -1,3 +1,4 @@
+import { downloadButtons } from '../system/buttons.js'
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
@@ -25,7 +26,8 @@ Developer : ${data.developer}
         {
           image: { url: data.img },
           caption: caption,
-        },
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
         { quoted: m },
       );
 

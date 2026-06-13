@@ -1,4 +1,5 @@
 import fs from "fs";
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text)
     throw `uhm.. where's the text?\n\nusage:\n${usedPrefix + command} <text>\n\nexemple:\n${usedPrefix + command} menu`;

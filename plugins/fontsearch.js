@@ -2,6 +2,7 @@
 //plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
 
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 // Define the googleFonts object with English messages
 const googleFonts = {

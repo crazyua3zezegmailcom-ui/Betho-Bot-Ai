@@ -1,6 +1,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import axios from "axios"
 import * as cheerio from "cheerio"
+import { downloadButtons } from '../system/buttons.js'
 
 class SpotdlDownloader {
   constructor(baseURL, headers) {

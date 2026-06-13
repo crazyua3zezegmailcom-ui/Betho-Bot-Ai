@@ -2,6 +2,7 @@
 //plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 // The main handler function
 let handler = async (m, { conn, args, text }) => {
@@ -80,8 +81,9 @@ let handler = async (m, { conn, args, text }) => {
       // Send the image with the response as the caption
       await conn.sendMessage(m.chat, {
         image: { url: result.profilePic },
-        caption: response
-      }, { quoted: m });
+        caption: response,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
     } else {
       // If no profile picture, just send the text response
       await conn.reply(m.chat, response, m);

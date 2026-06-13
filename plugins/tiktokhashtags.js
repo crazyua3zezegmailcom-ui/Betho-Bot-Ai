@@ -2,6 +2,7 @@
 // scrape by GilangSan
 import axios from "axios";
 import cheerio from "cheerio";
+import { downloadButtons } from '../system/buttons.js'
 
 async function getHashtagCount(hashtag) {
   if (!hashtag) throw new Error("Hashtag not provided");

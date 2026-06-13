@@ -4,6 +4,7 @@
 // Example: .writecream You are a helpful assistant.|What is the capital of Morocco?
 // Description: Sends a prompt to Writecream AI and replies with the generated response.
 import fetch from 'node-fetch'
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { text }) => {
   if (!text) throw 'Please provide input in the format: system message|user message'

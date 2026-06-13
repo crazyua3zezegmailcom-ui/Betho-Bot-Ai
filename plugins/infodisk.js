@@ -2,6 +2,7 @@ import cp from "child_process";
 import { promisify } from "util";
 import { createCanvas } from "canvas";
 import uploadImage from "../lib/uploadImage.js";
+import { channelButton } from '../system/buttons.js'
 
 const exec = promisify(cp.exec).bind(cp);
 
@@ -135,18 +136,8 @@ let handler = async (m, { conn }) => {
       m.chat,
       {
         text: caption,
-        contextInfo: {
-          externalAdReply: {
-            title: "Disk Usage Information",
-            body: "Bot Server Disk Usage",
-            thumbnailUrl: uploaded,
-            sourceUrl: global.sig || "",
-            renderLargerThumbnail: true,
-            mediaType: 1,
-            previewType: 1,
-          },
-        },
-      },
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     );
   }

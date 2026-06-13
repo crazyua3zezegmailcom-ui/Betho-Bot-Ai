@@ -1,4 +1,5 @@
 import axios from "axios";
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { args }) => {
   if (!args[0]) {
@@ -21,13 +22,17 @@ let handler = async (m, { args }) => {
 
     await conn.sendMessage(
       m.chat,
-      { image: { url: cover }, caption: message },
+      { image: { url: cover }, caption: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     );
 
     await conn.sendMessage(
       m.chat,
-      { video: { url: play }, caption: "🎥 *الفيديو بدون علامة مائية*" },
+      { video: { url: play }, caption: "🎥 *الفيديو بدون علامة مائية*",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     );
   } catch (error) {

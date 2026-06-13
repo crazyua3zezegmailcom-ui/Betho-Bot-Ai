@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text, args, command, prefix }) => {
     const models = {
         'fluffy-logo': 'fluffy-logo',

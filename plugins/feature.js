@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
     const tags = Object.values(global.plugins)

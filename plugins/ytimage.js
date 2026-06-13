@@ -4,6 +4,7 @@
 
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 // ── Page config for each mode ──────────────────────────────────
 const PAGE_CONFIG = {
@@ -161,7 +162,9 @@ _.ytimage thumb https://youtu.be/tFhm3KWT7M8?si=k_egUoqHH-cmbXua_`;
         return conn.reply(m.chat, `❌ Please enter a valid YouTube link.\nExample: _https://youtu.be/xxxxx_`, m);
     }
 
-    const sent = await conn.sendMessage(m.chat, { text: '⏳ _Fetching image, please wait..._' }, { quoted: m });
+    const sent = await conn.sendMessage(m.chat, { text: '⏳ _Fetching image, please wait..._',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     const editMsg = async (txt) => conn.sendMessage(m.chat, { text: txt, edit: sent.key });
 
@@ -217,7 +220,9 @@ _.ytimage thumb https://youtu.be/tFhm3KWT7M8?si=k_egUoqHH-cmbXua_`;
             if (allFrames.length) {
                 let info = `📽️ *Available Frames (${allFrames.length})*\n`;
                 info += allFrames.slice(0, 6).map((f, i) => `${i + 1}. ${f.resolution} → ${f.url}`).join('\n');
-                await conn.sendMessage(m.chat, { text: info }, { quoted: m });
+                await conn.sendMessage(m.chat, { text: info,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
             }
         }
 

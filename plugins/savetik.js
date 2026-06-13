@@ -2,6 +2,7 @@
 // scrape by CR Ponta Sensei WEB https://codeteam.my.id
 import axios from 'axios'
 import * as cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 const scrapeSavetik = async (tiktokUrl) => {
   try {
@@ -69,7 +70,9 @@ let handler = async (m, { conn, args }) => {
   if (!result) return m.reply('❌ فشل الحصول على البيانات.')
 
   if (result.type === 'photo') {
-    await conn.sendMessage(m.chat, { image: { url: result.thumbnail }, caption: `📸 ${result.title}` }, { quoted: m })
+    await conn.sendMessage(m.chat, { image: { url: result.thumbnail }, caption: `📸 ${result.title}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
     for (let img of result.images) {
       await conn.sendFile(m.chat, img, 'photo.jpg', null, m)
     }

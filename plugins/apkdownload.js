@@ -2,6 +2,7 @@
 // APK Downloader Plugin using NexOracle API
 
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, args }) => {
   const appName = args.join(" ");
@@ -30,8 +31,9 @@ let handler = async (m, { conn, args }) => {
     // إرسال صورة التطبيق مع رسالة
     await conn.sendMessage(m.chat, {
       image: { url: icon },
-      caption: `📦 *جاري تحميل ${name}...*`
-    }, { quoted: m });
+      caption: `📦 *جاري تحميل ${name}...*`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     const apkRes = await axios.get(dllink, { responseType: 'arraybuffer' });
     const apkBuffer = Buffer.from(apkRes.data, 'binary');
@@ -47,8 +49,9 @@ let handler = async (m, { conn, args }) => {
       document: apkBuffer,
       mimetype: 'application/vnd.android.package-archive',
       fileName: `${name}.apk`,
-      caption
-    }, { quoted: m });
+      caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     await m.reply("✅ تم إرسال التطبيق بنجاح");
 

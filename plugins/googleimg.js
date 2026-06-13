@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 async function googleImg(query) {
   try {
@@ -30,7 +31,9 @@ async function handler(m, { text, conn }) {
 
   let maxImages = images.slice(0, Math.min(5, images.length));
   for (let img of maxImages) {
-    await conn.sendMessage(m.chat, { image: { url: img } }, { quoted: m });
+    await conn.sendMessage(m.chat, { image: { url: img },
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
   }
 }
 

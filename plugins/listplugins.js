@@ -1,5 +1,6 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 import fs from "fs";
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn }) => {
   let dir = fs.readdirSync("./plugins");

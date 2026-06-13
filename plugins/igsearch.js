@@ -1,6 +1,7 @@
 // plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy 
 // scrape by andhikagg
 import axios from 'axios'
+import { downloadButtons } from '../system/buttons.js'
 
 async function reelsSearch(query, num = 10) {
   try {
@@ -115,8 +116,9 @@ The bot will return up to 10 Instagram Reels results matching your search query.
     if (results[0].image) {
       await conn.sendMessage(m.chat, {
         image: { url: results[0].image },
-        caption: message
-      }, { quoted: m })
+        caption: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
     } else {
       await m.reply(message)
     }

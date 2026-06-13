@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, args }) => {
   try {
@@ -36,9 +37,13 @@ let handler = async (m, { conn, args }) => {
     }
 
     if (mediaUrl.type === 'video') {
-      await conn.sendMessage(m.chat, { video: { url: mediaUrl.url } }, { quoted: m })
+      await conn.sendMessage(m.chat, { video: { url: mediaUrl.url },
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
     } else {
-      await conn.sendMessage(m.chat, { image: { url: mediaUrl.url } }, { quoted: m })
+      await conn.sendMessage(m.chat, { image: { url: mediaUrl.url },
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
     }
   } catch (e) {
     m.reply(e.message)

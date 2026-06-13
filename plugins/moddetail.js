@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 const detailDownload = async (url) => {
   try {
@@ -89,8 +90,9 @@ let handler = async (m, { conn, args }) => {
 
   await conn.sendMessage(m.chat, {
     image: { url: details.Thumbnail },
-    caption: teks
-  }, { quoted: m })
+    caption: teks,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 }
 
 handler.help = ['تفاصيل-مهكر']

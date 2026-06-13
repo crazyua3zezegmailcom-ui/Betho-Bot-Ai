@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import { Sticker } from 'wa-sticker-formatter'
+import { channelButton } from '../system/buttons.js'
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 	let [emo1, emo2] = text.split`+`
 	if (!(emo1 && emo2)) throw `Ex: *.emojimix* 😟+🥺`

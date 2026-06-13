@@ -4,6 +4,7 @@
 // ❗ لا تحذف حقوق المطور
 // plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
 import axios from 'axios'
+import { channelButton } from '../system/buttons.js'
 
 async function ssweb(url) {
   const headers = {

@@ -2,6 +2,7 @@
 // scrape by NekoLabs
 
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 /**
  * Searches for lyrics on lrclib.net.

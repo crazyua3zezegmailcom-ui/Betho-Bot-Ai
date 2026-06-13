@@ -8,6 +8,7 @@
 
 import axios from "axios"
 import qs from "qs"
+import { downloadButtons } from '../system/buttons.js'
 
 // ─────────────────────────────────────────────
 // CORE SCRAPER
@@ -198,8 +199,9 @@ let handler = async (m, { conn, args }) => {
       video: { url: video.url },
       mimetype: video.mime || "video/mp4",
       caption,
-      fileName: `${title}.mp4`
-    }, { quoted: m })
+      fileName: `${title}.mp4`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
 
   } catch (sendErr) {
     return conn.reply(

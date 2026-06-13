@@ -2,6 +2,7 @@
 
 import WebSocket from "ws"
 import fs from "fs"
+import { channelButton } from '../system/buttons.js'
 
 function generateRandomLetters(length = 6) {
   let result = ""

@@ -2,6 +2,7 @@
 // https://xyro.site/
 import axios from 'axios';
 import FormData from 'form-data';
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, command, quoted, prefix, usedPrefix, text }) => {
   let q = quoted ? quoted : m;
@@ -41,8 +42,9 @@ let handler = async (m, { conn, command, quoted, prefix, usedPrefix, text }) => 
       m.chat,
       {
         image: upscaledBuffer,
-        caption: '✅ Image successfully upscaled'
-      },
+        caption: '✅ Image successfully upscaled',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     );
 

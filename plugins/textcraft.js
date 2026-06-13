@@ -2,6 +2,7 @@
 // scrape by NusanTech
 import axios from 'axios'
 import { parseStringPromise } from 'xml2js'
+import { channelButton } from '../system/buttons.js'
 
 async function generateTextCraftImage(text, text2, text3) {
   const baseUrl = 'https://textcraft.net/gentext3.php'

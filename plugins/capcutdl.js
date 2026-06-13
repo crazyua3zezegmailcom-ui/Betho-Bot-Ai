@@ -2,6 +2,7 @@
 // scrape by andhikagg (NXNX.OSSYSTEM ARCHIVE)
 
 import axios from "axios"
+import { downloadButtons } from '../system/buttons.js'
 
 async function CapcutDl(url) {
   try {
@@ -111,7 +112,9 @@ Resolution: ${data.video_detail.width}x${data.video_detail.height}
       m
     )
 
-  } catch (err) {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } catch (err) {
     m.reply("❌ Failed to fetch CapCut template. Please make sure the link is valid.")
   }
 }

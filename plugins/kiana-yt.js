@@ -1,6 +1,7 @@
 import { createHash } from 'crypto'
 import axios from 'axios'
 import https from 'https'
+import { downloadButtons } from '../system/buttons.js'
 
 /* ============================================================
    🔧 Kiana-Chan YouTube Downloader — Core Scraper
@@ -151,6 +152,7 @@ _Powered by Betho Bot Bot 🤖_`
       caption,
       m
     )
+    try { await conn.sendMessage(m.chat, { text: `⬇️ *${result.title || 'فيديو'}*`, footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
 
   } catch (err) {
     const msg = err.message || 'Unknown error'

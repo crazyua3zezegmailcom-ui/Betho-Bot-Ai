@@ -1,6 +1,7 @@
 // plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy
 // scrape by NBS30 Daffa
 import axios from 'axios';
+import { channelButton } from '../system/buttons.js'
 
 // The main handler function that will be triggered by commands.
 let handler = async (m, { conn, text, usedPrefix, command }) => {

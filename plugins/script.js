@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 /**
  * Plugin: .sc

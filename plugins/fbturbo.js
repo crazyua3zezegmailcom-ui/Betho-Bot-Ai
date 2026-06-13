@@ -4,6 +4,7 @@
 
 import axios from 'axios'
 import * as cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 async function fbDownloaderTurbo(url) {
   try {
@@ -25,14 +26,12 @@ async function fbDownloaderTurbo(url) {
     )
 
     const $ = cheerio.load(data)
-    const thumbnailUrl = $('img.object-cover').attr('src')
 
     let videoUrl = $('span:contains("HD")').closest('div.block').find('a.dui-btn[href]').attr('href') ||
                    $('span:contains("SD")').closest('div.block').find('a.dui-btn[href]').attr('href')
 
     if (!videoUrl) throw new Error('Unable to find video download link.')
 
-    return { videoUrl, thumbnailUrl }
   } catch (error) {
     console.error('Error on Turbo Facebook Downloader:', error)
     throw error
@@ -47,7 +46,9 @@ let handler = async (m, { conn, text }) => {
   try {
     const result = await fbDownloaderTurbo(text)
     await conn.sendFile(m.chat, result.videoUrl, 'fb.mp4', `✅ Download complete!`, m)
-  } catch (e) {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } catch (e) {
     m.reply("❌ Failed to download video, please try another link.")
   }
 }

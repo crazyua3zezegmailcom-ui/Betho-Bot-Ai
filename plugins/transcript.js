@@ -2,6 +2,7 @@
 // YouTube Transcript Plugin
 // scrape by SaaOffc
 import fetch from 'node-fetch';
+import { channelButton } from '../system/buttons.js'
 
 async function getTranscript(videoUrl) {
   try {

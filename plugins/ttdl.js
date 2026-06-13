@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 // --- Scraper Logic for TikTok ---
 const SITE_URL = 'https://instatiktok.com/';
@@ -59,7 +60,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     const result = await tiktokDownloader(text);
     
-    await conn.sendFile(m.chat, result.download, '', `✨ تم التنزيل من تيك توك`, m);
+    await conn.sendFile(m.chat, result.download, '', `✨ تم التنزيل من تيك توك`, m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
 
   } catch (e) {
     await m.reply(`❌ خطأ: ${e.message}`);

@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 // حمايه - نظام الحماية الكامل مع كشف التهرب
 
 const protState = new Map()
@@ -58,7 +59,7 @@ function checkText(text) {
 }
 
 async function deleteMessage(conn, chatId, m) {
-  try { await conn.sendMessage(chatId, { delete: m.key }) } catch {}
+  try { await conn.sendMessage(chatId, { delete: m.key }) } catch (_e) {}
 }
 
 async function kickMember(conn, chatId, jid) {

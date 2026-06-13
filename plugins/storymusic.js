@@ -1,3 +1,4 @@
+import { downloadButtons } from '../system/buttons.js'
 let handler = async (m, { conn }) => {
     if (!m.quoted || !m.quoted.download) return m.reply("❌ | المرجو الرد على صورة لإرسالها في الستوري.");
 

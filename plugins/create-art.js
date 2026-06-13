@@ -7,6 +7,7 @@ import FormData from 'form-data';
 import fs from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
+import { channelButton } from '../system/buttons.js'
 
 // --- Translation Function ---
 async function translateToEnglish(text) {
@@ -91,8 +92,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
       await conn.sendMessage(m.chat, {
         image: resultBuffer,
-        caption: `*Prompt:* ${text}`
-      }, { quoted: m });
+        caption: `*Prompt:* ${text}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
     } else {
       await m.reply('🎨 Generating your image from text, please wait...');
@@ -100,8 +102,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
       await conn.sendMessage(m.chat, {
         image: resultBuffer,
-        caption: `*Prompt:* ${text}`
-      }, { quoted: m });
+        caption: `*Prompt:* ${text}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
     }
   } catch (e) {
     console.error(e);

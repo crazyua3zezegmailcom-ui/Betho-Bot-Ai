@@ -2,6 +2,7 @@
 // scrape by malik
 
 import axios from "axios";
+import { channelButton } from '../system/buttons.js'
 
 // ========================
 // API Keys (Decoded inline)
@@ -260,7 +261,9 @@ You can specify a model at the end:
         !!quotedMsg?.message?.stickerMessage;
 
       if (isImage) {
-        await conn.sendMessage(m.chat, { text: "⏳ Downloading your image..." }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: "⏳ Downloading your image...",
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
         // Try multiple download methods
         if (typeof quotedMsg.download === "function") {
@@ -288,8 +291,9 @@ You can specify a model at the end:
 
   // === Send processing message ===
   await conn.sendMessage(m.chat, {
-    text: `🎨 Generating image...\n\n📝 *Prompt:* ${prompt}\n🤖 *Mode:* ${imageBuffer ? "Image-to-Image" : "Text-to-Image"}`
-  }, { quoted: m });
+    text: `🎨 Generating image...\n\n📝 *Prompt:* ${prompt}\n🤖 *Mode:* ${imageBuffer ? "Image-to-Image" : "Text-to-Image"}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
   // === Generate image ===
   try {
@@ -303,14 +307,16 @@ You can specify a model at the end:
     // Send the generated image directly to chat
     await conn.sendMessage(m.chat, {
       image: result.buffer,
-      caption: `✅ *Image Generated!*\n\n📝 *Prompt:* ${prompt}\n🤖 *Model:* ${model || (imageBuffer ? "flux-kontext-pro" : "flux-1-schnell-fp8")}`
-    }, { quoted: m });
+      caption: `✅ *Image Generated!*\n\n📝 *Prompt:* ${prompt}\n🤖 *Model:* ${model || (imageBuffer ? "flux-kontext-pro" : "flux-1-schnell-fp8")}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
   } catch (error) {
     console.error("[Handler] Generation failed:", error.message);
     await conn.sendMessage(m.chat, {
-      text: `❌ *Generation Failed!*\n\nReason: ${error.message}`
-    }, { quoted: m });
+      text: `❌ *Generation Failed!*\n\nReason: ${error.message}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
   }
 };
 

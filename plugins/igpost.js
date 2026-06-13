@@ -1,3 +1,4 @@
+import { downloadButtons } from '../system/buttons.js'
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 // scrape by Wolfyflutter's
 let handler = async (m, { conn, args }) => {
@@ -9,10 +10,14 @@ let handler = async (m, { conn, args }) => {
 
     for (let img of images) {
       await conn.sendFile(m.chat, img, 'image.jpg', caption, m)
+    
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
     }
 
     for (let vid of videos) {
       await conn.sendFile(m.chat, vid, 'video.mp4', caption, m)
+    
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
     }
 
     if (images.length === 0 && videos.length === 0) {

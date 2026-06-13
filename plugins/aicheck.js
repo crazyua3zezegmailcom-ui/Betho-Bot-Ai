@@ -8,6 +8,7 @@
 */
 
 import axios from 'axios'
+import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { text, conn }) => {
     if (!text) throw 'Please input some text first 🥺\nExample: .aicheck hello world'
@@ -45,14 +46,17 @@ const handler = async (m, { text, conn }) => {
 "${result.inputText}"
         `.trim()
 
-        await conn.sendMessage(m.chat, { text: output }, { quoted: m })
+        await conn.sendMessage(m.chat, { text: output,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
 
     } catch (err) {
         await conn.sendMessage(
             m.chat,
             {
-                text: `Oops, an error occurred 😿\n${err.response?.data?.message || err.message}`
-            },
+                text: `Oops, an error occurred 😿\n${err.response?.data?.message || err.message}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
             { quoted: m }
         )
     }

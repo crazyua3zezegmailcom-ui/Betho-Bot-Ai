@@ -3,6 +3,7 @@
 
 import { createCanvas, loadImage } from 'canvas'
 import fs from 'fs'
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
   try {
@@ -62,8 +63,9 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 
     await conn.sendMessage(m.chat, {
       image: out,
-      caption: '✅ Fake Facebook comment created successfully!'
-    }, { quoted: m })
+      caption: '✅ Fake Facebook comment created successfully!',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m })
 
   } catch (e) {
     if (typeof e === 'string') return m.reply(e)

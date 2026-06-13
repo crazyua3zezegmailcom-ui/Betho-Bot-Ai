@@ -28,6 +28,7 @@
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { writeFile, unlink } from "node:fs/promises";
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn }) => {
   // ── 1. Locate the quoted or direct image message ──────────

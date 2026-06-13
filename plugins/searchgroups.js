@@ -2,6 +2,7 @@
 // scrape by https://pastebin.com/bTbi66Zp
 import axios from "axios";
 import cheerio from "cheerio";
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
     try {
@@ -13,7 +14,9 @@ let handler = async (m, { conn, text }) => {
                         `Example:\n` +
                         `.searchgroups anime, games, movies\n\n` +
                         `💡 The bot will search for groups matching these keywords and display the name, description, and invite link.`;
-            return await conn.sendMessage(m.chat, { text: guide }, { quoted: m });
+            return await conn.sendMessage(m.chat, { text: guide,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
         }
 
         const headers = {
@@ -98,7 +101,9 @@ let handler = async (m, { conn, text }) => {
             message += `*${i + 1}. ${g.Name}*\nDescription: ${g.Description}\n🔗 Link: ${g.Link}\nKeyword: ${g.Keyword}\n\n`;
         });
 
-        await conn.sendMessage(m.chat, { text: message }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     } catch (err) {
         console.error(err);

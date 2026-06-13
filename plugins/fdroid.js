@@ -3,6 +3,7 @@
 
 import axios from 'axios';
 import baileys from '@adiwajshing/baileys';
+import { downloadButtons } from '../system/buttons.js'
 
 const { generateWAMessageFromContent, proto } = baileys;
 
@@ -65,7 +66,7 @@ async function searchFDroid(query) {
 
   // Try cheerio first, fallback to regex
   let cheerio;
-  try { cheerio = (await import('cheerio')).default ?? (await import('cheerio')); } catch {}
+  try { cheerio = (await import('cheerio')).default ?? (await import('cheerio')); } catch (_e) {}
 
   if (cheerio) {
     const $ = cheerio.load(data);
@@ -306,8 +307,9 @@ ${summary ? `• *Info:* ${summary}` : ''}
 • *Package:* \`${packageId}\`
 • *Version / الإصدار:* v${versionName}
 • *Size / الحجم:* ${sizeMB}
-• *Source:* f-droid.org ✅`
-      },
+• *Source:* f-droid.org ✅`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     );
   } catch (e) {

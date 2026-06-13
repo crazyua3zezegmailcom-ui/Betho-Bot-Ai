@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 const appTeka = {
     api: {

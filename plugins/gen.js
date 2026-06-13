@@ -1,6 +1,7 @@
 // plugin by 𝐶𝑟𝑎𝑧𝑦 ouafy 
 // scrape by malik 
 import axios from "axios"; // Assuming you have 'axios' installed: npm install axios
+import { channelButton } from '../system/buttons.js'
 
 // Simple Google Translate API endpoint (no key needed)
 async function translateToEnglish(text) {
@@ -82,8 +83,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         // --- 7. Send Image to Chat ---
         await conn.sendMessage(m.chat, {
             image: { url: data.url },
-            caption: `✔ Image Generated Successfully!\nPrompt (AR): ${originalPrompt}\nPrompt (EN): ${prompt}`
-        }, { quoted: m });
+            caption: `✔ Image Generated Successfully!\nPrompt (AR): ${originalPrompt}\nPrompt (EN): ${prompt}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
     } catch (e) {
         // --- 8. General Error Handling ---

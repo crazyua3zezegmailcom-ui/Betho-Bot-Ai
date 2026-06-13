@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, command }) => {
     
@@ -6,8 +7,9 @@ let handler = async (m, { conn, text, command }) => {
     // 'text' is the query (e.g., "Instagram")
     if (!text) {
         await conn.sendMessage(m.chat, {
-            text: `*🔍 Please provide an app name to search.*\n\n_Usage:_\n.${command} Instagram`
-        },{ quoted: m });
+            text: `*🔍 Please provide an app name to search.*\n\n_Usage:_\n.${command} Instagram`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},{ quoted: m });
         return; // Stop execution
     }
 
@@ -45,18 +47,7 @@ let handler = async (m, { conn, text, command }) => {
             document: { url: app.file.path_alt },
             fileName: `${app.name}.apk`,
             mimetype: 'application/vnd.android.package-archive',
-            caption: caption,
-            contextInfo: {
-                externalAdReply: {
-                    title: app.name,
-                    body: "june md", // You can change this
-                    mediaType: 1,
-                    sourceUrl: app.file.path_alt,
-                    thumbnailUrl: app.icon,
-                    renderLargerThumbnail: true,
-                    showAdAttribution: false
-                }
-            } 
+            caption: caption 
         }, { quoted: m }); // 'quoted: m' is the third argument (options)
 
         // Final reaction

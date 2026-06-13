@@ -1,6 +1,7 @@
 // @𝐶𝑟𝑎𝑧𝑦_ouafy
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 async function igdl2(url) {
     let res = await axios("https://indown.io/")
@@ -56,9 +57,13 @@ let handler = async (m, { conn, args }) => {
     for (let media of results) {
         if (media.type === 'video') {
             await conn.sendFile(m.chat, media.url, 'video.mp4', '', m)
-        } else if (media.type === 'image') {
+        
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } else if (media.type === 'image') {
             await conn.sendFile(m.chat, media.url, 'image.jpg', '', m)
-        }
+        
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    }
     }
 }
 

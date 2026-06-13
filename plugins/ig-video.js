@@ -2,6 +2,7 @@
 // scrape by @zaenal-iyyl
 import axios from "axios";
 import cheerio from "cheerio";
+import { downloadButtons } from '../system/buttons.js'
 
 async function igram(url) {
   try {
@@ -48,8 +49,9 @@ let handler = async (m, { conn, text }) => {
 
     await conn.sendMessage(m.chat, {
       video: { url: result.download },
-      caption
-    }, { quoted: m });
+      caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
   } catch (error) {
     console.error(error);

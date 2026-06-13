@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 // بكاسه - طرد عضو من المجموعة
 
 const handler = async (m, { conn }) => {

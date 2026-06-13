@@ -2,6 +2,7 @@
 // scrape by Malik
 
 import axios from "axios";
+import { channelButton } from '../system/buttons.js'
 
 class AiImageEdit {
   constructor() {
@@ -147,7 +148,9 @@ let handler = async (m, { conn, text }) => {
   // Send processing notice
   await conn.sendMessage(
     m.chat,
-    { text: `🖼️ *Editing your image...*\n\n📝 Prompt: _${text}_\n\n⏳ Please wait (~10 seconds)` },
+    { text: `🖼️ *Editing your image...*\n\n📝 Prompt: _${text}_\n\n⏳ Please wait (~10 seconds)`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
     { quoted: m }
   );
 
@@ -159,14 +162,17 @@ let handler = async (m, { conn, text }) => {
       m.chat,
       {
         image: result.buffer,
-        caption: `✅ *Done!*\n📝 Prompt: _${text}_\n🤖 Model: \`${result.meta?.model || "auto"}\``
-      },
+        caption: `✅ *Done!*\n📝 Prompt: _${text}_\n🤖 Model: \`${result.meta?.model || "auto"}\``,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     );
   } catch (err) {
     await conn.sendMessage(
       m.chat,
-      { text: `❌ *Failed:* ${err.message}\n\nTry again with a different prompt.` },
+      { text: `❌ *Failed:* ${err.message}\n\nTry again with a different prompt.`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()},
       { quoted: m }
     );
   }

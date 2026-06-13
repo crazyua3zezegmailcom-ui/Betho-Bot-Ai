@@ -1,6 +1,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 // scrape by wolfyflutter thanks brother 
 import fetch from 'node-fetch'
+import { downloadButtons } from '../system/buttons.js'
 
 const googleSearchImage = async (query) => {
   if (!query) throw Error('Search query must not be empty')
@@ -51,7 +52,9 @@ let handler = async (m, { conn, args }) => {
     const result = await googleSearchImage(query)
     const img = result.images[Math.floor(Math.random() * result.images.length)]
     await conn.sendFile(m.chat, img.imageUrl, 'image.jpg', `📍 Result for: *${query}*\n🔗 Source: ${img.referer || 'unknown'}`, m)
-  } catch (e) {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } catch (e) {
     m.reply(`❌ Error:\n${e.message}`)
   }
 }

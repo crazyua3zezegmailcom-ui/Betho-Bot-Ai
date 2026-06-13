@@ -1,4 +1,5 @@
 import axios from "axios"
+import { downloadButtons } from '../system/buttons.js'
 
 const searchCache = new Map()
 
@@ -62,8 +63,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
           video: { url: videoUrl },
           caption:
             `🎬 ${video.title || "No title"}\n` +
-            `👤 ${video.author?.nickname || "Unknown"}`
-        },
+            `👤 ${video.author?.nickname || "Unknown"}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
         { quoted: m }
       )
 

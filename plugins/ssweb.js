@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { channelButton } from '../system/buttons.js'
 async function Screenshot(url) {
     try {
         const response = await axios.get(`https://image.thum.io/get/png/fullpage/viewportWidth/2400/${url}`, {

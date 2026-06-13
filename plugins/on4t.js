@@ -3,6 +3,7 @@
 // scrape by rikikangsc2-eng
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   if (!text) throw ` *On4t Video Downloader*
@@ -28,7 +29,9 @@ No watermark | Fast & Free`;
     if (!videoData.length) throw 'No downloadable videos found for this link.';
 
     for (const item of videoData) {
-      await conn.sendFile(m.chat, item.video_file_url, 'video.mp4', `*${item.title}*`, m);
+      await conn.sendFile(m.chat, item.video_file_url, 'video.mp4', `*${item.title}*`, m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
     }
 
   } catch (err) {

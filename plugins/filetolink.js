@@ -9,6 +9,7 @@ import crypto from "crypto";
 import { FormData, Blob } from "formdata-node";
 import { fileTypeFromBuffer } from "file-type";
 import axios from "axios";
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { conn }) => {
   const q = m.quoted ? m.quoted : m;

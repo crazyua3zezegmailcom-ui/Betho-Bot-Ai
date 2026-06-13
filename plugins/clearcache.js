@@ -1,3 +1,4 @@
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { usedPrefix, command, conn, text }) => {
   let noReg = Object.values(global.db.data.users).filter(user => user.registered == false)

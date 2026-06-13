@@ -7,6 +7,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
   if (!text) return m.reply('من فضلك أدخل الكلمة المفتاحية للبحث عن خلفيات مثل:\n\n.wallpaper anime')
@@ -48,7 +49,9 @@ let handler = async (m, { conn, text }) => {
     let res = results[0]
     let caption = `*${res.title}*\nResolution: ${res.resolution}\nDescription: ${res.description}\nSource: ${res.source}\nLink: ${res.link}`
     await conn.sendFile(m.chat, res.image, 'wallpaper.jpg', caption, m)
-  } catch (err) {
+  
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    } catch (err) {
     console.error(err)
     m.reply('حدث خطأ أثناء جلب البيانات.')
   }

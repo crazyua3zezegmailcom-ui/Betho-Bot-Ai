@@ -2,6 +2,7 @@
 // Plugin: Save Website to Zip using saveweb2zip.com
 // scrape by trash code
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 async function saveweb2zip(url, options = {}) {
     if (!url) throw new Error('URL is required');
@@ -75,8 +76,9 @@ let handler = async (m, { conn, args }) => {
             document: { url: result.downloadUrl },
             mimetype: 'application/zip',
             fileName: `Website.zip`,
-            caption: `✅ تم حفظ الموقع بنجاح\n📄 عدد الملفات: ${result.copiedFilesAmount}\n🔗 الموقع: ${result.url}`
-        }, { quoted: m });
+            caption: `✅ تم حفظ الموقع بنجاح\n📄 عدد الملفات: ${result.copiedFilesAmount}\n🔗 الموقع: ${result.url}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     } catch (err) {
         console.error(err);

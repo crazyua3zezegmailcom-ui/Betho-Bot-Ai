@@ -9,6 +9,7 @@ import FormData from 'form-data'
 import fs from 'fs'
 import path from 'path'
 import { tmpdir } from 'os'
+import { downloadButtons } from '../system/buttons.js'
 
 // ─── Guide ───────────────────────────────────────────────────────────────────
 const GUIDE = `
@@ -190,7 +191,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 🔗 *Link     :* ${result.url}
 `.trim()
 
-    await conn.sendMessage(m.chat, { text: reply }, { quoted: m })
+    await conn.sendMessage(m.chat, { text: reply,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
 
   } catch (err) {

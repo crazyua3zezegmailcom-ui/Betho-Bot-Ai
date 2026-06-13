@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { downloadButtons } from '../system/buttons.js'
 
 const handler = async (m, { text, conn }) => {
   async function igdl(instagramUrl) {
@@ -31,7 +32,8 @@ const handler = async (m, { text, conn }) => {
       await conn.sendMessage(m.chat, {
         video: { url: videoUrl },
         caption: 'Here is the video.',
-      }, { quoted: m });
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
     } else {
       m.reply('Could not find the video or an error occurred.');
     }

@@ -1,4 +1,5 @@
 import { generateWAMessageFromContent } from '@adiwajshing/baileys';
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { text, conn }) => {
   if (!text) return m.reply('Please provide the link.');

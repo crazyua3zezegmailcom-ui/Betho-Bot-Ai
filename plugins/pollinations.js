@@ -8,6 +8,7 @@
 import axios from "axios";
 import fs from "fs";
 import path from "path";
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
     if (!text) return conn.sendMessage(m.chat, { text: "❌ المرجو كتابة وصف للصورة." }, { quoted: m });
@@ -56,13 +57,16 @@ let handler = async (m, { conn, text }) => {
 
         await conn.sendMessage(m.chat, {
             image: fs.readFileSync(tempFile),
-            caption: `✨ ها هي الصورة بناءً على الوصف: "${text}"`
-        }, { quoted: m });
+            caption: `✨ ها هي الصورة بناءً على الوصف: "${text}"`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
         // حذف الملف المؤقت
         fs.unlinkSync(tempFile);
     } catch (err) {
-        await conn.sendMessage(m.chat, { text: "❌ حدث خطأ: " + err.message }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: "❌ حدث خطأ: " + err.message,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
     }
 };
 

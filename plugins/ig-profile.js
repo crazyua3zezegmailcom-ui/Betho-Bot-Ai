@@ -5,6 +5,7 @@
  */
 
 import axios from 'axios';
+import { downloadButtons } from '../system/buttons.js'
 
 async function StalkIg(username) {
   const formData = new URLSearchParams();
@@ -89,8 +90,9 @@ let handler = async (m, { conn, args }) => {
 
   await conn.sendMessage(m.chat, {
     image: { url: res.profile_pic },
-    caption
-  }, { quoted: m });
+    caption,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 };
 
 handler.help = handler.command = ['ملف-انستا'];

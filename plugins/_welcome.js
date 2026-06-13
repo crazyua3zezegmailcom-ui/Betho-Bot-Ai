@@ -112,7 +112,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
       ctx.clip()
       ctx.drawImage(avatarImg, avatarX, avatarY, avatarSize, avatarSize)
       ctx.restore()
-    } catch {}
+    } catch (_e) {}
 
     // ── النصوص بدعم RTL ──
     ctx.direction = 'rtl'

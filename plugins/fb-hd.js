@@ -3,6 +3,7 @@
 
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { downloadButtons } from '../system/buttons.js'
 
 async function fbdl(url){
   try{
@@ -68,8 +69,9 @@ Send a Facebook video link to download it in HD.
   try {
     await conn.sendMessage(m.chat, {
       video: { url: hd.url },
-      caption: `🎥 *Downloaded in HD (720p)*\nDuration: ${data.duration || 'Unknown'}`
-    }, { quoted: m })
+      caption: `🎥 *Downloaded in HD (720p)*\nDuration: ${data.duration || 'Unknown'}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m })
   } catch (e) {
     return m.reply(`⚠️ Error sending the video: ${e.message}`)
   }

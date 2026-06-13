@@ -3,6 +3,7 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 import FormData from "form-data";
+import { downloadButtons } from '../system/buttons.js'
 
 class XMinus {
   async t() {

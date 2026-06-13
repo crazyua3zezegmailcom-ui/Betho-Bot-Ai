@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, args }) => {
   try {
@@ -95,7 +96,9 @@ let handler = async (m, { conn, args }) => {
     if (!imageUrl) return conn.reply(m.chat, 'Failed to retrieve the image URL.', m);
 
     // Send the image URL as a photo to the chat
-    await conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `Logo for "${text}"` }, { quoted: m });
+    await conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `Logo for "${text}"`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: channelButton()}, { quoted: m });
 
   } catch (error) {
     console.error(error);

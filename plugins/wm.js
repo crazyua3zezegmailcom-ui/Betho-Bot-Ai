@@ -1,4 +1,5 @@
 import { addExif } from "../lib/sticker.js";
+import { channelButton } from '../system/buttons.js'
 
 let handler = async (m, { conn, text }) => {
   if (!m.quoted) throw "قم بالاشارة للملصق التي تريد تغيير حقوقه يا عزيزي!";

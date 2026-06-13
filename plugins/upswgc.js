@@ -2,6 +2,7 @@
 // instagram.com/𝐶𝑟𝑎𝑧𝑦_ouafy
 
 import { prepareWAMessageMedia } from '@adiwajshing/baileys'
+import { channelButton } from '../system/buttons.js'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text && !m.quoted) {

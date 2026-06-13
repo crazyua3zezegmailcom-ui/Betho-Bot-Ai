@@ -2,6 +2,7 @@ import axios from "axios";
 import FormData from "form-data";
 import * as cheerio from "cheerio";
 import { URL } from "url";
+import { downloadButtons } from '../system/buttons.js'
 
 const base = {
     _token: "https://snapvn.com/id",
@@ -77,7 +78,9 @@ let handler = async (m, { conn, text }) => {
                    `Caption: ${result.caption}`;
         
         // إرسال الميديا مباشرة
-        await conn.sendFile(m.chat, mediaBuffer, fileName, info, m);
+        await conn.sendFile(m.chat, mediaBuffer, fileName, info, m)
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
+    ;
     } catch (error) {
         await conn.reply(m.chat, `Error: ${error.message}`, m);
     }

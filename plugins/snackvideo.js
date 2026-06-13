@@ -7,6 +7,7 @@
  */
 import * as cheerio from 'cheerio'
 import fetch from 'node-fetch'
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, {
     conn,
@@ -20,6 +21,8 @@ let handler = async (m, {
         let res = await snack(text)
         let capt = `username : ${res.author}\nlike : ${res.like}\ncomment : ${res.comment}\nshare : ${res.share}`
         await conn.sendFile(m.chat, res.media, '', capt, m)
+    
+    try { await conn.sendMessage(m.chat, { text: '⬇️ *تم التحميل بنجاح*', footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』', buttons: downloadButtons() }, { quoted: m }) } catch (_e) {}
     } catch (e) {
         console.log(e);
         m.reply('failed');

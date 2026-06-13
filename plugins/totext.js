@@ -5,6 +5,7 @@
 
 import axios from 'axios';
 import FormData from 'form-data';
+import { channelButton } from '../system/buttons.js'
 
 /**
  * Performs OCR on an image buffer using the ocr.space API.

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { downloadButtons } from '../system/buttons.js'
 
 const CONFIG = {
   video: { ext: ["mp4"], q: ["144p", "240p", "360p", "480p", "720p", "1080p"] }
@@ -105,6 +106,11 @@ ${usedPrefix}ytmp4 https://youtu.be/xxxxx 720p
 Enjoy your video!`,
       m
     )
+    await conn.sendMessage(m.chat, {
+      text: `🎬 *${result.title}*\n📺 ${result.author}\n🎞 ${quality}`,
+      footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+      buttons: downloadButtons()
+    }, { quoted: m })
 
   } catch (err) {
     m.reply("❌ Error: " + err.message)

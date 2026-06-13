@@ -3,6 +3,7 @@
 import fetch from "node-fetch"
 import fs from "fs"
 import path from "path"
+import { downloadButtons } from '../system/buttons.js'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
@@ -41,8 +42,9 @@ ${usedPrefix}${command} https://open.spotify.com/track/1Yk0cQdMLx5RzzFTYwmuld
           `🎶 *Spotify Downloader*\n\n` +
           `• *Title:* ${song.title}\n` +
           `• *Artist:* ${song.artist}\n` +
-          `• *Duration:* ${song.duration || "Unknown"}`
-      },
+          `• *Duration:* ${song.duration || "Unknown"}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()},
       { quoted: m }
     )
 

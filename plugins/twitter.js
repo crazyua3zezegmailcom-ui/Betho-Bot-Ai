@@ -1,5 +1,6 @@
 
 import * as cheerio from "cheerio";
+import { downloadButtons } from '../system/buttons.js'
 
 async function downloadTwitterMedia(q) {
   let t = await fetch("https://x2twitter.com/api/userverify", {
@@ -90,7 +91,9 @@ This command lets you download videos or images from any public X (Twitter) post
   }
 
   // ── Let the user know we are working on it ─────────────────────────
-  await conn.sendMessage(m.chat, { text: '⏳ Fetching media, please wait...' }, { quoted: m });
+  await conn.sendMessage(m.chat, { text: '⏳ Fetching media, please wait...',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
   try {
     const result = await downloadTwitterMedia(url);
@@ -99,30 +102,34 @@ This command lets you download videos or images from any public X (Twitter) post
     if (result.type === 'video') {
       await conn.sendMessage(m.chat, {
         video: { url: result.url },
-        caption: '✅ Here is your video!'
-      }, { quoted: m });
+        caption: '✅ Here is your video!',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
 
     // ── Images ─────────────────────────────────────────────────────
     } else if (result.type === 'image' && result.urls?.length) {
       for (const imgUrl of result.urls) {
         await conn.sendMessage(m.chat, {
           image: { url: imgUrl },
-          caption: `🖼️ Image ${result.urls.indexOf(imgUrl) + 1} of ${result.urls.length}`
-        }, { quoted: m });
+          caption: `🖼️ Image ${result.urls.indexOf(imgUrl) + 1} of ${result.urls.length}`,
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
       }
 
     // ── No media found ─────────────────────────────────────────────
     } else {
       await conn.sendMessage(m.chat, {
-        text: '⚠️ No downloadable media found in that tweet.\nMake sure the post is public and contains a video or image.'
-      }, { quoted: m });
+        text: '⚠️ No downloadable media found in that tweet.\nMake sure the post is public and contains a video or image.',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
     }
 
   } catch (err) {
     console.error('[twitter-dl error]', err);
     await conn.sendMessage(m.chat, {
-      text: '❌ Something went wrong while fetching the media.\nPlease try again later or check if the tweet is public.'
-    }, { quoted: m });
+      text: '❌ Something went wrong while fetching the media.\nPlease try again later or check if the tweet is public.',
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
+        buttons: downloadButtons()}, { quoted: m });
   }
 };
 

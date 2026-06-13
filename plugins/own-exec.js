@@ -3,6 +3,7 @@ import { format } from 'util'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 import { createRequire } from 'module'
+import { channelButton } from '../system/buttons.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname)
