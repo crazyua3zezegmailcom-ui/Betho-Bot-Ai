@@ -513,7 +513,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 1052,
+      "exp": 1446,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -838,7 +838,8 @@
       "psenjata": 0,
       "psepick": 0,
       "robo": 0,
-      "roboxp": 0
+      "roboxp": 0,
+      "delay": 1781437278826
     },
     "264798289838144@lid": {
       "afk": -1,
@@ -1773,7 +1774,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 446,
+      "exp": 449,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -2613,7 +2614,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 148,
+      "exp": 238,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -3468,21 +3469,47 @@
       "expired": 0,
       "rpgs": false,
       "games": false,
-      "delay": 1781436991454
+      "delay": 1781437506085
+    },
+    "584261208048@s.whatsapp.net": {
+      "isBanned": false,
+      "antiSpam": true,
+      "acc": false,
+      "welcome": true,
+      "bye": true,
+      "detect": false,
+      "sWelcome": "",
+      "sBye": "",
+      "sPromote": "",
+      "sDemote": "",
+      "delete": false,
+      "antiedit": false,
+      "antiLink": false,
+      "antiCall": false,
+      "antiFoto": false,
+      "antiVideo": false,
+      "antiSticker": false,
+      "antiAudio": false,
+      "viewonce": false,
+      "antiBadword": false,
+      "simi": false,
+      "expired": 0,
+      "rpgs": false,
+      "games": false
     }
   },
   "stats": {
     "menu.js": {
-      "total": 15,
-      "success": 15,
-      "last": 1781436991454,
-      "lastSuccess": 1781436991454
+      "total": 17,
+      "success": 17,
+      "last": 1781437392853,
+      "lastSuccess": 1781437392853
     },
     "owner.js": {
-      "total": 5,
-      "success": 5,
-      "last": 1781395167411,
-      "lastSuccess": 1781395167411
+      "total": 6,
+      "success": 6,
+      "last": 1781437376644,
+      "lastSuccess": 1781437376644
     },
     "fb.js": {
       "total": 3,
@@ -3503,10 +3530,10 @@
       "lastSuccess": 1781393628102
     },
     "arfaani.js": {
-      "total": 4,
-      "success": 4,
-      "last": 1781393714901,
-      "lastSuccess": 1781393714901
+      "total": 5,
+      "success": 5,
+      "last": 1781437258919,
+      "lastSuccess": 1781437258919
     },
     "kick.js": {
       "total": 2,
@@ -3527,16 +3554,16 @@
       "lastSuccess": 1781393804021
     },
     "apk.js": {
-      "total": 6,
-      "success": 6,
-      "last": 1781395301276,
-      "lastSuccess": 1781395301276
+      "total": 7,
+      "success": 7,
+      "last": 1781437250253,
+      "lastSuccess": 1781437250253
     },
     "music.js": {
-      "total": 2,
-      "success": 2,
-      "last": 1781394589414,
-      "lastSuccess": 1781394589414
+      "total": 4,
+      "success": 4,
+      "last": 1781437506085,
+      "lastSuccess": 1781437506085
     },
     "play.js": {
       "total": 2,
@@ -3585,6 +3612,30 @@
       "success": 2,
       "last": 1781394878560,
       "lastSuccess": 1781394878560
+    },
+    "سحب.js": {
+      "total": 2,
+      "success": 0,
+      "last": 1781437234904,
+      "lastSuccess": 0
+    },
+    "تحفيل.js": {
+      "total": 2,
+      "success": 2,
+      "last": 1781437267964,
+      "lastSuccess": 1781437267964
+    },
+    "سحر.js": {
+      "total": 2,
+      "success": 2,
+      "last": 1781437278826,
+      "lastSuccess": 1781437278826
+    },
+    "getfolder.js": {
+      "total": 3,
+      "success": 3,
+      "last": 1781437450743,
+      "lastSuccess": 1781437450743
     }
   },
   "msgs": {},
