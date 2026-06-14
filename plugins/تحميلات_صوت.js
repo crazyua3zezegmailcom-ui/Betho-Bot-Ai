@@ -39,8 +39,7 @@ class SaveTube {
     if (!id) throw "رابط يوتيوب غير صالح"
 
     const cdn = await this.getCdn()
-    const info = await this.is.post(`https://${cdn.data}/v2/info`, {
-    })
+    const info = await this.is.post(`https://${cdn.data}/v2/info`, { id })
 
     const dec = await this.decrypt(info.data.data)
 
