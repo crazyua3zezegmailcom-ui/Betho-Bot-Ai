@@ -15,44 +15,48 @@ class SaveTube {
   }
 
   async decrypt(enc) {
+    if (!enc) throw new Error("البيانات المشفرة فارغة - الـ API لم يرجع بيانات")
     const buf = Buffer.from(enc, 'base64')
     const key = Buffer.from(this.ky, 'hex')
     const iv = buf.slice(0, 16)
     const data = buf.slice(16)
-
     const decipher = crypto.createDecipheriv('aes-128-cbc', key, iv)
-    const decrypted = Buffer.concat([
-      decipher.update(data),
-      decipher.final()
-    ])
-
+    const decrypted = Buffer.concat([decipher.update(data), decipher.final()])
     return JSON.parse(decrypted.toString())
   }
 
   async getCdn() {
     const res = await this.is.get("https://media.savetube.vip/api/random-cdn")
-    return { status: true, data: res.data.cdn }
+    if (!res.data?.cdn) throw new Error("فشل في الحصول على CDN")
+    return res.data.cdn
   }
 
   async download(url) {
-    const id = url.match(this.m)?.[3]
-    if (!id) throw "رابط يوتيوب غير صالح"
+    if (!this.m.test(url)) throw "رابط يوتيوب غير صالح"
 
     const cdn = await this.getCdn()
-    const info = await this.is.post(`https://${cdn.data}/v2/info`, { id })
+
+    const info = await this.is.post(`https://${cdn}/v2/info`, { url })
+    if (!info.data?.status || !info.data?.data) {
+      throw `فشل الاستعلام عن الفيديو: ${info.data?.message || 'خطأ غير معروف'}`
+    }
 
     const dec = await this.decrypt(info.data.data)
 
-    const dl = await this.is.post(`https://${cdn.data}/download`, {
-      id,
+    const dl = await this.is.post(`https://${cdn}/download`, {
+      id: dec.id,
       downloadType: 'audio',
       quality: '128',
       key: dec.key
     })
 
+    if (!dl.data?.data?.downloadUrl) {
+      throw "فشل في الحصول على رابط التحميل"
+    }
+
     return {
       title: dec.title,
-      duration: dec.duration,
+      duration: dec.durationLabel || String(dec.duration),
       thumb: dec.thumbnail,
       download: dl.data.data.downloadUrl
     }
@@ -72,12 +76,12 @@ let handler = async (m, { conn, args }) => {
   const st = new SaveTube()
 
   try {
-    m.reply("جــــاࢪي الــــتحــــمــــيل مــــن يــــوتيــــوب مـــقــــطع صــــوتــــي.............")
+    m.reply("جــــاࢪي الــــتحــــمــــيل مــــن يــــوتيــــوب مـــقــــطع صــــوتــــي.............")
 
     const res = await st.download(url)
 
     let caption = `
-🎵 *اــــسم الاغــــنــــيه :* ${res.title}
+🎵 *اــــسم الاغــــنــــيه :* ${res.title}
 ⏱ *مــــدت الــــمــــقــــطــــ؏ الصــــوتــــي🍇:* ${res.duration}
 📦 *الــــصــــيغــــه الــــمــــطلــــوبــــه:* MP3
 `
@@ -90,13 +94,12 @@ let handler = async (m, { conn, args }) => {
     }, { quoted: m })
 
   } catch (e) {
-    m.reply(`❌ خطأ: ${e}`)
+    m.reply(`❌ خطأ: ${e?.message || e}`)
   }
 }
 
 handler.help = ['صوت']
 handler.command = ['صوت']
 handler.tags = ['download']
-//handler.limit = true
 
 export default handler
