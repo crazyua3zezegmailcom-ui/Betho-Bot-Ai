@@ -3115,7 +3115,7 @@
     },
     "584261208048@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 249,
+      "exp": 375,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3129,11 +3129,11 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 14,
+      "commands": 21,
       "afk": -1,
       "afkReason": "",
       "warn": 0,
-      "Subs": 1781441565735
+      "Subs": 1781442254227
     }
   },
   "chats": {

@@ -1,6 +1,6 @@
-// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
+// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
 // أوٰأم࣬ــࢪ م࣬ٺم࣬يــژۿ . ⊹
-// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
+// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
 // أسٰـم࣬ أݪأم࣬ــࢪ شغل.js
 // ࢪأبٚــطَ قَنٰــأۿ أݪم࣬ــطَــوٰࢪ ..)✘🖤🧸.
 // https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e
@@ -8,10 +8,10 @@
 import yts from 'yt-search';
 import { createCanvas, loadImage } from 'canvas';
 import axios from 'axios';
-const { generateWAMessageContent, generateWAMessageFromContent, proto } = (await import("@whiskeysockets/baileys")).default;
+const { prepareWAMessageMedia, generateWAMessageFromContent } = (await import("@whiskeysockets/baileys")).default;
 
 const BACKGROUND_IMAGE_URL = 'https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg';
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
 const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
 
 function secondString(sec) {
@@ -25,7 +25,6 @@ function MilesNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-// دالة لإنشاء بطاقة الأغنية (تم تعديل النص إلى BETHO AI وحذف الإيموجي)
 async function createSongCard(video) {
     const canvas = createCanvas(800, 400);
     const ctx = canvas.getContext('2d');
@@ -55,9 +54,9 @@ async function createSongCard(video) {
         ctx.fillRect(50, 110, 180, 180);
     }
 
-    const setNeon = (ctx, color = '#ff00ff', blur = 8) => {
-        ctx.shadowBlur = blur;
-        ctx.shadowColor = color;
+    const setNeon = (ctx, color, blur) => {
+        ctx.shadowBlur = blur || 8;
+        ctx.shadowColor = color || '#ff00ff';
     };
     const resetShadow = (ctx) => {
         ctx.shadowBlur = 0;
@@ -80,35 +79,32 @@ async function createSongCard(video) {
     ctx.font = 'bold 22px "Segoe UI"';
     ctx.fillStyle = '#ffffff';
     setNeon(ctx, '#00ffff', 5);
-    ctx.fillText(`⏱️ ${secondString(video.duration.seconds)}`, 260, 240);
+    ctx.fillText('⏱️ ' + secondString(video.duration.seconds), 260, 240);
     resetShadow(ctx);
 
     ctx.font = '18px "Segoe UI"';
     ctx.fillStyle = '#cccccc';
     setNeon(ctx, '#aaaaaa', 3);
-    ctx.fillText(`📅 ${video.ago}`, 260, 280);
+    ctx.fillText('📅 ' + video.ago, 260, 280);
     resetShadow(ctx);
 
     ctx.font = '18px "Segoe UI"';
     ctx.fillStyle = '#ffaa00';
     setNeon(ctx, '#ffaa00', 5);
-    ctx.fillText(`👁️ ${MilesNumber(video.views)}`, 260, 320);
+    ctx.fillText('👁️ ' + MilesNumber(video.views), 260, 320);
     resetShadow(ctx);
 
-    // تعديل هنا: وضع BETHO AI فقط وبدون إيموجي
     ctx.font = 'bold 20px "Segoe UI"';
     ctx.fillStyle = 'rgba(255,255,255,0.9)';
     setNeon(ctx, '#00ffff', 5);
     ctx.fillText('BETHO AI', 630, 370);
     resetShadow(ctx);
 
-    return canvas.toBuffer();
+    return canvas.toBuffer('image/jpeg', { quality: 0.93 });
 }
 
-// دالة إرسال الرسالة التفاعلية المدمجة (صورة + أزرار + كابتشن)
 async function sendCombinedMessage(conn, chatId, video, cardBuffer, results, usedPrefix, quoted) {
-    // تجهيز الصورة كـ Message Content
-    const { imageMessage } = await generateWAMessageContent(
+    const media = await prepareWAMessageMedia(
         { image: cardBuffer },
         { upload: conn.waUploadToServer }
     );
@@ -117,68 +113,63 @@ async function sendCombinedMessage(conn, chatId, video, cardBuffer, results, use
         {
             title: '🎵 تحميل صوت (MP3)',
             rows: results.map(v => ({
-                title: v.title,
-                description: `⏱ ${v.timestamp} | 📺 ${v.author.name}`,
-                id: `${usedPrefix}صوت ${v.url}`
+                title: v.title.slice(0, 24),
+                description: '⏱ ' + v.timestamp + ' | 📺 ' + v.author.name,
+                id: usedPrefix + 'صوت ' + v.url
             }))
         },
         {
             title: '🎬 تحميل فيديو (MP4)',
             rows: results.map(v => ({
-                title: v.title,
-                description: `⏱ ${v.timestamp} | 📺 ${v.author.name}`,
-                id: `${usedPrefix}فيديو ${v.url}`
+                title: v.title.slice(0, 24),
+                description: '⏱ ' + v.timestamp + ' | 📺 ' + v.author.name,
+                id: usedPrefix + 'فيديو ' + v.url
             }))
         }
     ];
 
-    const caption = `🎵 *معلومات الأغنية* 🎵\n\n` +
-        `🎬 *العنوان:* ${video.title}\n` +
-        `📺 *القناة:* ${video.author.name}\n` +
-        `⏱️ *المدة:* ${secondString(video.duration.seconds)}\n` +
-        `📅 *تاريخ النشر:* ${video.ago}\n` +
-        `👁️ *المشاهدات:* ${MilesNumber(video.views)}\n` +
-        `🔗 *الرابط:* ${video.url}\n\n` +
-        `${myCredit}\n${emojis}`;
+    const caption =
+        '🎵 *معلومات الأغنية* 🎵\n\n' +
+        '🎬 *العنوان:* ' + video.title + '\n' +
+        '📺 *القناة:* ' + video.author.name + '\n' +
+        '⏱️ *المدة:* ' + secondString(video.duration.seconds) + '\n' +
+        '📅 *تاريخ النشر:* ' + video.ago + '\n' +
+        '👁️ *المشاهدات:* ' + MilesNumber(video.views) + '\n' +
+        '🔗 *الرابط:* ' + video.url + '\n\n' +
+        myCredit + '\n' + emojis;
 
-    const interactiveMessage = proto.Message.InteractiveMessage.fromObject({
-        body: proto.Message.InteractiveMessage.Body.fromObject({
-            text: caption
-        }),
-        footer: proto.Message.InteractiveMessage.Footer.fromObject({
-            text: "يـوٰٺـيوٰبٚ 𓆩 HULK BOT 𓆪"
-        }),
-        header: proto.Message.InteractiveMessage.Header.fromObject({
+    const interactiveMessage = {
+        body: { text: caption },
+        footer: { text: 'يـوٰٺـيوٰبٚ 𓆩 BETHO BOT 𓆪' },
+        header: {
             hasMediaAttachment: true,
-            imageMessage: imageMessage
-        }),
-        nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
+            imageMessage: media.imageMessage
+        },
+        nativeFlowMessage: {
             buttons: [
                 {
                     name: 'single_select',
                     buttonParamsJson: JSON.stringify({ title: '📥 خيارات التحميل', sections })
                 },
                 {
-                    name: "cta_url",
+                    name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
-                        display_text: ".𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ 👑",
-                        url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
+                        display_text: '.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ 👑',
+                        url: 'https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e'
                     })
                 }
             ]
-        })
-    });
+        }
+    };
 
-    const msg = generateWAMessageFromContent(chatId, {
-        viewOnceMessage: { message: { interactiveMessage } }
-    }, { userJid: conn.user.jid, quoted });
-
+    const userJid = conn?.user?.jid || quoted?.key?.participant || chatId;
+    const msg = generateWAMessageFromContent(chatId, { interactiveMessage }, { userJid, quoted });
     await conn.relayMessage(chatId, msg.message, { messageId: msg.key.id });
 }
 
 const handler = async (m, { conn, text, usedPrefix }) => {
     if (!text) {
-        return m.reply(`∘₊✧──────🌹──────✧₊∘\n┊ ⚠️ *يرجى إدخال نص أو رابط للبحث*\n∘₊✧──────🌹──────✧₊∘`);
+        return m.reply('∘₊✧──────🌹──────✧₊∘\n┊ ⚠️ *يرجى إدخال نص أو رابط للبحث*\n∘₊✧──────🌹──────✧₊∘');
     }
 
     await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
@@ -191,16 +182,12 @@ const handler = async (m, { conn, text, usedPrefix }) => {
         const video = yt_play.videos[0];
         const results = yt_play.videos.slice(0, 10);
 
-        // إنشاء البطاقة
         const cardBuffer = await createSongCard(video);
-
-        // إرسال الرسالة المدمجة (الصورة + الأزرار + الكابتشن)
         await sendCombinedMessage(conn, m.chat, video, cardBuffer, results, usedPrefix, m);
-
         await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
     } catch (e) {
         console.error(e);
-        m.reply(`❌ حدث خطأ أثناء المعالجة.`);
+        m.reply('❌ حدث خطأ أثناء المعالجة.');
     }
 };
 
