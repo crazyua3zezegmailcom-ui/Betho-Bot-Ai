@@ -513,7 +513,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 991,
+      "exp": 1052,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -2613,7 +2613,7 @@
       "emas": 0,
       "emerald": 0,
       "esteh": 0,
-      "exp": 106,
+      "exp": 148,
       "expg": 0,
       "exphero": 0,
       "expired": 0,
@@ -3467,15 +3467,16 @@
       "simi": false,
       "expired": 0,
       "rpgs": false,
-      "games": false
+      "games": false,
+      "delay": 1781436991454
     }
   },
   "stats": {
     "menu.js": {
-      "total": 14,
-      "success": 14,
-      "last": 1781395261392,
-      "lastSuccess": 1781395261392
+      "total": 15,
+      "success": 15,
+      "last": 1781436991454,
+      "lastSuccess": 1781436991454
     },
     "owner.js": {
       "total": 5,
