@@ -5,7 +5,7 @@ import { sticker } from '../lib/sticker.js';
 import uploadImage from '../lib/uploadImage.js';
 import { channelButton } from '../system/buttons.js'
 
-let handler = async (m, { text }) => {
+let handler = async (m, { conn, text }) => {
 
   if (!text) return m.reply("Please provide the text!\nExample: .bart Hello World");
 

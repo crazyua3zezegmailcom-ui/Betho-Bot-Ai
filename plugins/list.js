@@ -9,9 +9,6 @@ let handler = async (m, { conn }) => {
     image: { url: 'https://i.postimg.cc/Fsx4fvfK/IMG-20260610-WA0075.jpg' },
     gifPlayback: true,
     caption,
-    footer: '`betho Ai - 2025`',
-    buttons: [{ buttonId: '.menu all', buttonText: { displayText: 'All Menu | جميع الأوامر' }, type: 1 }],
-    headerType: 1,
     viewOnce: true
   }, { quoted: m })
 

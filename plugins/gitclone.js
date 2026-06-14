@@ -5,7 +5,7 @@ let regexRepo = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/([^\/:]+)(?:
 let regexGist = /https:\/\/gist\.github\.com\/([^\/]+)\/([a-zA-Z0-9]+)/i;
 let regexRawGitHub = /https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/([^\/]+)\/(.+)/i;
 
-let handler = async (m,{ args }) => {
+let handler = async (m, { conn, args }) => {
     if (!args[0]) throw 'Where is the GitHub link?';
 
     let isRepo = regexRepo.test(args[0]);

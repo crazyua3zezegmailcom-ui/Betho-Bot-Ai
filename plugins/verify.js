@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import { channelButton } from '../system/buttons.js'
 
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
-let handler = async function (m, { text, usedPrefix, command }) {
+let handler = async function (m, { conn, text, usedPrefix, command }) {
   let namae = conn.getName(m.sender)
   let user = global.db.data.users[m.sender]
   let ran = ["1","2","3","4","5","6","7","8","9"]

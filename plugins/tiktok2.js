@@ -1,7 +1,7 @@
 import axios from "axios";
 import { downloadButtons } from '../system/buttons.js'
 
-let handler = async (m, { args }) => {
+let handler = async (m, { conn, args }) => {
   if (!args[0]) {
     return m.reply("❌ يرجى إدخال رابط فيديو TikTok.");
   }

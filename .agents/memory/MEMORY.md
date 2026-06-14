@@ -1,0 +1,1 @@
+- [Buttons and dfail fixes](botfix-buttons-dfail.md) — dfail uses conn not this; buttons return undefined to bypass deprecated format; arrow handlers need conn in params

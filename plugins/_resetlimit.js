@@ -1,7 +1,7 @@
 import cron from "node-cron";
 
 export async function before(m) {
-  let bot = db.data.settings[conn.user.jid];
+  let bot = db.data.settings[this.user.jid];
 
   let schedule;
 

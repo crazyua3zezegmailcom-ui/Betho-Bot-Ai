@@ -1,66 +1,29 @@
 const CHANNEL_URL = 'https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e'
 
-const channelButton = () => [
-  {
-    buttonId: 'channel',
-    buttonText: { displayText: '📢 قناة المطور' },
-    type: 1
-  }
-]
+const channelButton = () => undefined
 
-const downloadButtons = (query = '') => [
-  {
-    buttonId: `download_${query}`.slice(0, 20),
-    buttonText: { displayText: '⬇️ تحميل مرة أخرى' },
-    type: 1
-  },
-  {
-    buttonId: 'channel',
-    buttonText: { displayText: '📢 قناة المطور' },
-    type: 1
-  }
-]
+const downloadButtons = (query = '') => undefined
 
-const menuButtons = () => [
-  {
-    buttonId: 'show_commands',
-    buttonText: { displayText: '📂 عرض الأوامر' },
-    type: 1
-  },
-  {
-    buttonId: 'show_channel',
-    buttonText: { displayText: '📢 قناة المطور' },
-    type: 1
-  },
-  {
-    buttonId: 'show_developer',
-    buttonText: { displayText: '👑 المطور' },
-    type: 1
-  }
-]
+const menuButtons = () => undefined
 
 const addButtons = async (conn, jid, message, buttons, quoted) => {
   try {
     if (message.image) {
       await conn.sendMessage(jid, {
         ...message,
-        buttons,
-        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
-        headerType: 4
+        footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』'
       }, { quoted })
       return
     }
     await conn.sendMessage(jid, {
       text: message.text || message.caption || '',
-      footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』',
-      buttons,
-      headerType: 1
+      footer: '『 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 』'
     }, { quoted })
-  } catch {
+  } catch (e) {
     try {
       await conn.sendMessage(jid, message, { quoted })
-    } catch (e) {
-      console.error('Send error:', e.message)
+    } catch (err) {
+      console.error('Send error:', err.message)
     }
   }
 }

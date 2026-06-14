@@ -1577,24 +1577,24 @@ async function appenTextMessage(text, chatUpdate) {
     
 export async function pollUpdate(chatUpdate) {
 for(const { key, update } of chatUpdate) {
-			if(update.pollUpdates && key.fromMe) {
-				const pollCreation = await getMessage(key)
-				if(pollCreation) {
-				    const pollUpdate = await getAggregateVotesInPollMessage({
-							message: pollCreation,
-							pollUpdates: update.pollUpdates,
-						})
-	                var toCmd = pollUpdate.filter(v => v.voters.length !== 0)[0]?.name
-	                if (toCmd == undefined) return
+                        if(update.pollUpdates && key.fromMe) {
+                                const pollCreation = await getMessage(key)
+                                if(pollCreation) {
+                                    const pollUpdate = await getAggregateVotesInPollMessage({
+                                                        message: pollCreation,
+                                                        pollUpdates: update.pollUpdates,
+                                                })
+                        var toCmd = pollUpdate.filter(v => v.voters.length !== 0)[0]?.name
+                        if (toCmd == undefined) return
                     var prefCmd = prefix+toCmd
-	                await appenTextMessage(prefCmd, chatUpdate)
-		await this.delay(1000)
-		this.sendMessage(key.remoteJid, { delete: key })
-		}
-		
-				}
-			}
-		}
+                        await appenTextMessage(prefCmd, chatUpdate)
+                await this.delay(1000)
+                this.sendMessage(key.remoteJid, { delete: key })
+                }
+                
+                                }
+                        }
+                }
 /**
  * Handle groups update
  * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['groups.update']} groupsUpdate 
@@ -1642,7 +1642,7 @@ It's detected @${participant.split(`@`)[0]} has deleted the message just now > T
 global.dfail = (type, m, conn) => {
 let tag = `@${m.sender.replace(/@.+/, '')}`
 let mentionedJid = [m.sender]
-let name = this.getName(m.sender)
+let name = conn.getName(m.sender)
 
 let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
 
@@ -1664,7 +1664,7 @@ let msg = {
         mods: 'هذه الميزة للمشرفين فقط'
         }[type]
         
-  if (msg) return this.sendMessage(m.chat, {
+  if (msg) return conn.sendMessage(m.chat, {
       text: msg, 
       contextInfo: {
       externalAdReply: {
@@ -1681,7 +1681,7 @@ let msg = {
   
 - /daftar name. age\n\n قبل ان تضغط على زر تسجيل الدخول رجاء تأكد أنك مشترك في قناتي على الواتساب \n\n https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e`}[type]
   
-  if (daftar) return this.sendUrlImageButton(m.chat, daftar, [{name: "quick_reply", buttonParamsJson: `{"display_text": "تسجيل الدخول", "id": "@verify"}`}], wm, registrasi, fkon)
+  if (daftar) return conn.sendUrlImageButton(m.chat, daftar, [{name: "quick_reply", buttonParamsJson: `{"display_text": "تسجيل الدخول", "id": "@verify"}`}], wm, registrasi, fkon)
         }
 
 function ucapan() {

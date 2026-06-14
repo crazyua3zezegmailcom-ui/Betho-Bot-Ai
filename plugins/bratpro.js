@@ -3,26 +3,8 @@ const handler = async (m, { conn, text }) => {
   if (!text) return m.reply("Example: .bratpro Betho Bot");
 
   try {
-    const caption = `Please choose the desired type:\n\n1. *Image 🖼️*\n2. *Video 🎥*`;
-    await conn.sendMessage(
-      m.chat,
-      {
-        text: caption,
-        footer: "Betho Bot ~ By Moureddine ouafy",
-        buttons: [
-          {
-            buttonId: `.brat ${text}`,
-            buttonText: { displayText: "Image 🖼️" },
-          },
-          {
-            buttonId: `.bratvideo ${text}`,
-            buttonText: { displayText: "Video 🎥" },
-          },
-        ],
-        viewOnce: true,
-      },
-      { quoted: m }
-    );
+    const caption = `Please choose the desired type:\n\n🖼️ *Image* → \`.brat ${text}\`\n🎥 *Video* → \`.bratvideo ${text}\``;
+    await conn.sendMessage(m.chat, { text: caption }, { quoted: m });
   } catch (err) {
     console.error(err);
     m.reply(`*An error occurred!* 😭\n${err.message || err}`);
