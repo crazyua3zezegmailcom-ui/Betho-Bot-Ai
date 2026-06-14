@@ -1,1 +1,3 @@
 - [Buttons and dfail fixes](botfix-buttons-dfail.md) — dfail uses conn not this; buttons return undefined to bypass deprecated format; arrow handlers need conn in params
+- [Plugin folder dirname trick](plugin-folder-trick.md) — global.__dirname resolves to parent dir; plugins/index path is intentional to load from plugins/
+- [Before handler export pattern](before-handler-export.md) — before handlers must be set as handler.before property, not exported as default function
