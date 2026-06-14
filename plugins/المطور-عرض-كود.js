@@ -78,6 +78,6 @@ const handler = async (m, { conn, text }) => {
 handler.help = ['getplugin'];
 handler.tags = ['owner'];
 handler.command = /^(getplugin|عرض-كود|gp|باتش-عرض)$/i;
-handler.owner = true;
+handler.rowner = true;
 
 export default handler;

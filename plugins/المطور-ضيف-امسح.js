@@ -23,6 +23,6 @@ const handler = async (m, { text, usedPrefix, command, conn }) => {
 handler.help = ['saveplugin', 'deleteplugin'].map((v) => v + ' <nombre>');
 handler.tags = ['owner'];
 handler.command = ['ضيف', 'addp', 'addplugin', 'امسح'];
-handler.owner = true;
+handler.rowner = true;
 
 export default handler;
