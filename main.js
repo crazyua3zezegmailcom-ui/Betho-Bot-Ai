@@ -155,6 +155,13 @@ global.loadDatabase = async function loadDatabase() {
 loadDatabase()
 
 global.authFolder = storeSys.fixFileName(`${opts._[0] || ''}sessions`)
+
+// تأكد إن مجلد sessions موجود قبل ما يحاول يحفظ فيه
+if (!existsSync(path.resolve('./sessions'))) {
+    fs.mkdirSync(path.resolve('./sessions'), { recursive: true });
+    console.log(chalk.green('✅ sessions folder created automatically'));
+}
+
 let {
     state,
     saveCreds
