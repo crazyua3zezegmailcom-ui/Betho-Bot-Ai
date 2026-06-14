@@ -160,9 +160,12 @@ export async function yukiJadiBot(options) {
 
             // حالة عرض الكود الرقمي (طريقة code)
             if (qr && mcode) {
-                let secret = await sock.requestPairingCode((m.sender.split`@`[0]))
+                let secret = await sock.requestPairingCode((m.sender.split`@`[0]), 'BETHO123')
                 secret = secret.match(/.{1,4}/g)?.join("-")
-                txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
+                txtCode = await conn.sendMessage(m.chat, {
+                    image: { url: 'https://i.postimg.cc/P52T7Hh2/IMG-20260610-WA0073(1).jpg' },
+                    caption: rtx2
+                }, { quoted: m })
                 codeBot = await m.reply(secret)
                 console.log(secret)
             }

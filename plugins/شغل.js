@@ -10,7 +10,7 @@ import { createCanvas, loadImage } from 'canvas';
 import axios from 'axios';
 const { generateWAMessageContent, generateWAMessageFromContent, proto } = (await import("@whiskeysockets/baileys")).default;
 
-const BACKGROUND_IMAGE_URL = 'https://raw.githubusercontent.com/mzml-gg/nezuko-Photos/main/nezuko4.jpg';
+const BACKGROUND_IMAGE_URL = 'https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg';
 const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
 const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
 
