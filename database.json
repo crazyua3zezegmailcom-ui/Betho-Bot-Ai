@@ -3115,7 +3115,7 @@
     },
     "584261208048@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 544,
+      "exp": 736,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3129,7 +3129,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 30,
+      "commands": 42,
       "afk": -1,
       "afkReason": "",
       "warn": 0,
@@ -3221,7 +3221,7 @@
     },
     "189696525205623@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 9,
+      "exp": 39,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3241,7 +3241,7 @@
       "warn": 0
     },
     "189696525205623@lid": {
-      "exp": 6,
+      "exp": 12,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3263,6 +3263,27 @@
     "201214057674@s.whatsapp.net": {
       "name": "+20 121 405 7674",
       "exp": 2,
+      "coin": 0,
+      "bank": 0,
+      "level": 0,
+      "health": 100,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "premium": false,
+      "premiumTime": 0,
+      "banned": false,
+      "bannedReason": "",
+      "commands": 0,
+      "afk": -1,
+      "afkReason": "",
+      "warn": 0
+    },
+    "120363426739371445@g.us": {
+      "name": "‌",
+      "exp": 10,
       "coin": 0,
       "bank": 0,
       "level": 0,
