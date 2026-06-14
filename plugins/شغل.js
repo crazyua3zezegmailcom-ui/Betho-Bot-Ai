@@ -1,6 +1,6 @@
 // م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
 // أوٰأم࣬ــࢪ م࣬ٺم࣬يــژۿ . ⊹
-// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
+// حہّٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
 // أسٰـم࣬ أݪأم࣬ــࢪ شغل.js
 // ࢪأبٚــطَ قَنٰــأۿ أݪم࣬ــطَــوٰࢪ ..)✘🖤🧸.
 // https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e
@@ -13,6 +13,21 @@ const { prepareWAMessageMedia, generateWAMessageFromContent } = (await import("@
 const BACKGROUND_IMAGE_URL = 'https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg';
 const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
 const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
+
+// ✅ كاش للخلفية — تتحمّل مرة واحدة فقط طول عمر البوت
+let _cachedBackground = null;
+async function getBackground() {
+    if (_cachedBackground) return _cachedBackground;
+    try {
+        _cachedBackground = await loadImage(BACKGROUND_IMAGE_URL);
+    } catch (_) {
+        _cachedBackground = null;
+    }
+    return _cachedBackground;
+}
+
+// ✅ تحميل مسبق للخلفية عند تحميل البلجن
+getBackground().catch(() => {});
 
 function secondString(sec) {
     const h = Math.floor(sec / 3600);
@@ -29,10 +44,15 @@ async function createSongCard(video) {
     const canvas = createCanvas(800, 400);
     const ctx = canvas.getContext('2d');
 
-    try {
-        const background = await loadImage(BACKGROUND_IMAGE_URL);
+    // ✅ تحميل الخلفية والـ thumbnail بالتوازي
+    const [background, coverData] = await Promise.all([
+        getBackground(),
+        axios.get(video.thumbnail, { responseType: 'arraybuffer', timeout: 6000 }).catch(() => null)
+    ]);
+
+    if (background) {
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    } catch (err) {
+    } else {
         ctx.fillStyle = '#1a1a2e';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
@@ -40,16 +60,20 @@ async function createSongCard(video) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    try {
-        const response = await axios.get(video.thumbnail, { responseType: 'arraybuffer' });
-        const cover = await loadImage(Buffer.from(response.data));
-        ctx.save();
-        ctx.beginPath();
-        ctx.roundRect(50, 110, 180, 180, 20);
-        ctx.clip();
-        ctx.drawImage(cover, 50, 110, 180, 180);
-        ctx.restore();
-    } catch (err) {
+    if (coverData) {
+        try {
+            const cover = await loadImage(Buffer.from(coverData.data));
+            ctx.save();
+            ctx.beginPath();
+            ctx.roundRect(50, 110, 180, 180, 20);
+            ctx.clip();
+            ctx.drawImage(cover, 50, 110, 180, 180);
+            ctx.restore();
+        } catch (_) {
+            ctx.fillStyle = '#555';
+            ctx.fillRect(50, 110, 180, 180);
+        }
+    } else {
         ctx.fillStyle = '#555';
         ctx.fillRect(50, 110, 180, 180);
     }
@@ -100,7 +124,8 @@ async function createSongCard(video) {
     ctx.fillText('BETHO AI', 630, 370);
     resetShadow(ctx);
 
-    return canvas.toBuffer('image/jpeg', { quality: 0.93 });
+    // ✅ جودة 0.85 بدل 0.93 — حجم أصغر = رفع أسرع
+    return canvas.toBuffer('image/jpeg', { quality: 0.85 });
 }
 
 async function sendCombinedMessage(conn, chatId, video, cardBuffer, results, usedPrefix, quoted) {
@@ -176,7 +201,13 @@ const handler = async (m, { conn, text, usedPrefix }) => {
 
     try {
         let query = text.trim();
-        const yt_play = await yts.search(query);
+
+        // ✅ البحث في يوتيوب وتجهيز الخلفية بالتوازي
+        const [yt_play] = await Promise.all([
+            yts.search(query),
+            getBackground()
+        ]);
+
         if (!yt_play.videos.length) throw 'لا يوجد نتائج';
 
         const video = yt_play.videos[0];
