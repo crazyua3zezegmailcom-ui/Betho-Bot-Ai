@@ -1,0 +1,15 @@
+apt update -y && apt upgrade -y && pkg update -y && pkg upgrade -y && pkg install bash -y && pkg install libwebp -y && pkg install git -y && pkg install nodejs -y && pkg install ffmpeg -y && pkg install wget -y && pkg install imagemagick -y && pkg install yarn && termux-setup-storage
+
+
+cd /storage/emulated/0/Download/Rishiv18/
+
+yarn install 
+
+npm start
+
+
+///////after You Will Always Run with This 2 Cmds
+
+cd /storage/emulated/0/Download/Rishiv18/
+
+npm start
