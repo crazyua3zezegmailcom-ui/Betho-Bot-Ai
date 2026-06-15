@@ -160,7 +160,25 @@ if (!fs.existsSync(`./${global.sessions}/creds.json`)) {
       addNumber = phoneNumber.replace(/\D/g, '')
       rl.close()
     }
-    pendingPhoneNumber = addNumber // تخزين الرقم للاستخدام لاحقاً
+    pendingPhoneNumber = addNumber
+
+    // ✅ طلب كود الاقتران مباشرةً بعد إنشاء الـ socket بدون انتظار حدث 'connecting'
+    // (حدث 'connecting' قد يُطلق قبل تسجيل المستمع فيضيع)
+    setTimeout(async () => {
+      try {
+        if (conn.authState.creds.registered) return // تم الاقتران بالفعل
+        console.log(chalk.green.bold('\n⏳ Pairing code being generated.......\n'))
+        let codeBot = await conn.requestPairingCode(pendingPhoneNumber, 'BETHO123')
+        codeBot = codeBot?.match(/.{1,4}/g)?.join('-') || codeBot
+        console.log(chalk.yellow.bold(`\n╔══════════════════════════════════╗`))
+        console.log(chalk.yellow.bold(`║  🔑 Pairing Code: ${codeBot}  ║`))
+        console.log(chalk.yellow.bold(`╚══════════════════════════════════╝`))
+        console.log(chalk.gray('📲 Enter this code on your WhatsApp linked devices screen.\n'))
+        pendingPhoneNumber = null
+      } catch (err) {
+        console.error(chalk.red.bold('❌ Failed to request pairing code:'), err?.message || err)
+      }
+    }, 3000)
   }
 } else {
   console.log(chalk.green.bold('✅ Existing session found. Connecting...\n'))
@@ -190,20 +208,6 @@ async function connectionUpdate(update) {
   }
   if (global.db.data == null) loadDatabase()
   
-  // ✅ طلب رمز الاقتران بمجرد أن يصبح الاتصال "connecting"
-  if (pendingPhoneNumber && !conn.authState.creds.registered && connection === "connecting") {
-    console.log(chalk.green.bold('\n⏳ Pairing code being generated.......\n'))
-    // إضافة تأخير قصير لضمان الجاهزية
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    try {
-      let codeBot = await conn.requestPairingCode(pendingPhoneNumber, 'BETHO123')
-      codeBot = codeBot.match(/.{1,4}/g)?.join("-") || codeBot
-      console.log(chalk.yellow.bold(`🔑 Your pairing code: ${codeBot}`))
-      console.log(chalk.gray('📲 Enter this code on your WhatsApp linked devices screen.\n'))
-    } catch (err) {
-      console.error(chalk.red.bold('❌ Failed to request pairing code:'), err)
-    }
-  }
   
   if (connection === "open") {
     const userJid = jidNormalizedUser(conn.user.id)
@@ -227,7 +231,8 @@ async function connectionUpdate(update) {
   
   let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
   if (connection === "close") {
-    if ([401, 440, 428, 405].includes(reason)) {
+    if ([401, 440, 405].includes(reason)) {
+      // 428 = انقطاع مؤقت وليس logout — لا تمسح الجلسة
       console.log(chalk.red(`→ (${reason}) › Session logged out. Clearing session and preparing for re-pairing...`))
       // Clear stale session files so the bot can re-pair
       try {
