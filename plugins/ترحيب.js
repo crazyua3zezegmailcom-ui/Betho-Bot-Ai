@@ -56,10 +56,6 @@ handler.before = async function (m, { conn, participants, groupMetadata }) {
   const stubParams = m.messageStubParameters || []
   if (!Array.isArray(stubParams) || stubParams.length === 0) return true
 
-  let chat = global.db.data.chats[m.chat] || {}
-  if (typeof chat.welcome === 'undefined') chat.welcome = true
-  if (!chat.welcome) return true
-
   const userJid  = stubParams[0]
   const username = userJid.split('@')[0]
   const mention  = '@' + username
