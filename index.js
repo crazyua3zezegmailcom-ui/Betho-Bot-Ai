@@ -363,6 +363,65 @@ global.reload = async (_ev, filename) => {
 Object.freeze(global.reload)
 watch(pluginFolder, global.reload)
 await global.reloadHandler()
+
+// ====== بداية إضافة وضع كريزي - لا تحذف هذا القسم ======
+// متغيرات خاصة بوضع كريزي (أسماء فريدة لتجنب أي تعارض)
+let _crazyModeActive = false
+let _bot2ChildProcess = null
+const _DEV_NUMBER = '201214057674@s.whatsapp.net'
+
+// مستمع رسائل منفصل خاص بأمر وضع كريزي فقط
+conn.ev.on('messages.upsert', async (chatUpdate) => {
+  try {
+    const m = chatUpdate.messages[chatUpdate.messages.length - 1]
+    if (!m || !m.message) return
+    // تحديد هوية المرسل (DM أو مجموعة)
+    const _senderJid = m.key.fromMe
+      ? conn.user?.id
+      : (m.key.participant || m.key.remoteJid || '')
+    // استخراج نص الرسالة
+    const _body = m.message?.conversation
+      || m.message?.extendedTextMessage?.text
+      || ''
+    // التحقق: المطور فقط + الأمر الصحيح
+    if (_senderJid.split(':')[0] + '@s.whatsapp.net' !== _DEV_NUMBER && _senderJid !== _DEV_NUMBER) return
+    if (_body !== '.وضع-كريزي') return
+
+    if (!_crazyModeActive) {
+      // تفعيل البوت الثاني
+      _crazyModeActive = true
+      _bot2ChildProcess = spawn('node', ['bot2/index.js'], {
+        stdio: 'inherit',
+        detached: false
+      })
+      _bot2ChildProcess.on('error', (err) => {
+        console.error('❌ Bot 2 failed to start:', err)
+      })
+      _bot2ChildProcess.on('exit', (code) => {
+        console.log('⚠️ Bot 2 exited with code:', code)
+        _crazyModeActive = false
+        _bot2ChildProcess = null
+      })
+      await conn.sendMessage(m.key.remoteJid, {
+        text: '✅ *وضع كريزي تم تفعيله!* 🔥\n𝐵𝑒𝑡ℎ𝑜 𝑏𝑜𝑡 التاني شغال دلوقتي'
+      }, { quoted: m })
+    } else {
+      // إيقاف البوت الثاني
+      _crazyModeActive = false
+      if (_bot2ChildProcess) {
+        _bot2ChildProcess.kill()
+        _bot2ChildProcess = null
+      }
+      await conn.sendMessage(m.key.remoteJid, {
+        text: '🔁 *وضع كريزي اتوقف*\nرجعنا لـ 𝐵𝑒𝑡ℎ𝑜 𝑏𝑜𝑡 الأصلي ✅'
+      }, { quoted: m })
+    }
+  } catch (_crazyErr) {
+    console.error('[وضع-كريزي] خطأ:', _crazyErr)
+  }
+})
+// ====== نهاية إضافة وضع كريزي ======
+
 async function _quickTest() {
   const test = await Promise.all([
     spawn('ffmpeg'),
