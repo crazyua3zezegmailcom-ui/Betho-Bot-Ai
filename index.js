@@ -455,15 +455,23 @@ async function _quickTest() {
 setInterval(async () => {
   const tmpDir = join(__dirname, 'tmp')
   try {
+    // إنشاء المجلد تلقائياً إن لم يكن موجوداً
+    if (!existsSync(tmpDir)) {
+      mkdirSync(tmpDir, { recursive: true })
+      return
+    }
     const filenames = readdirSync(tmpDir)
+    if (filenames.length === 0) return
+    let deleted = 0
     filenames.forEach(file => {
-      const filePath = join(tmpDir, file)
-      unlinkSync(filePath)
+      try {
+        const filePath = join(tmpDir, file)
+        unlinkSync(filePath)
+        deleted++
+      } catch {}
     })
-    console.log(chalk.gray(`ﺡﺎﺠﻨﺑ TMP ﺪﻠﺠﻣ ﻑﺬﺣ ﻢﺗ 🦙`))
-  } catch {
-    console.log(chalk.gray(`ﺡﺎﺠﻨﺑ TMP ﻞﺧﺍﺩ ﺕﺎﻔﻠﻤﻟﺍ ﻑﺬﺣ ﻢﺘﻳ ﻢﻟ`))
-  }
+    if (deleted > 0) console.log(chalk.gray(`🗑️ TMP: حُذف ${deleted} ملف بنجاح`))
+  } catch {}
 }, 30 * 1000)
 _quickTest().catch(console.error)
 async function isValidPhoneNumber(number) {
