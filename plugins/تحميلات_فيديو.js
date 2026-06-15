@@ -2,23 +2,7 @@ import axios from 'axios';
 import { generateWAMessageFromContent } from '@whiskeysockets/baileys';
 
 // دالة التوثيق (Contact Quote) كما طلبتها
-function contactQuote(m) {
-  return {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'HULK'
-    },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:HULK BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 // وظائف التحميل
 async function startConversion(videoUrl, quality) {
@@ -43,14 +27,13 @@ async function waitForDownload(statusUrl) {
 }
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  const fkontak = contactQuote(m);
 
   // 1. عرض خيارات الجودة
   if (command === 'فيديو') {
-    if (!text) return conn.reply(m.chat, `*🎬 تحميل فيديو يوتيوب*\n\nيرجى إرسال الرابط مع الأمر.\nمثال:\n${usedPrefix}فيديو https://youtu.be/xxx`, fkontak);
+    if (!text) return conn.reply(m.chat, `*🎬 تحميل فيديو يوتيوب*\n\nيرجى إرسال الرابط مع الأمر.\nمثال:\n${usedPrefix}فيديو https://youtu.be/xxx`);
     
     const url = text.trim();
-    if (!url.includes('youtu')) return conn.reply(m.chat, `❌ رابط يوتيوب غير صحيح.`, fkontak);
+    if (!url.includes('youtu')) return conn.reply(m.chat, `❌ رابط يوتيوب غير صحيح.`);
 
     // جميع الجودات المطلوبة
     const qualities = ["144p", "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p"];
@@ -72,7 +55,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     const msg = generateWAMessageFromContent(m.chat, {
       viewOnceMessage: { message: { interactiveMessage } }
-    }, { userJid: conn.user.jid, quoted: fkontak });
+    }, { userJid });
 
     return await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
   }
@@ -84,7 +67,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     const videoUrl = Buffer.from(encodedUrl, 'base64').toString();
 
     // الرد الفوري عند الضغط
-    await conn.reply(m.chat, `⏳ جاري تنزيل الفيديو بجودة - ${quality}\nيرجى الانتظار...`, fkontak);
+    await conn.reply(m.chat, `⏳ جاري تنزيل الفيديو بجودة - ${quality}\nيرجى الانتظار...`);
 
     try {
       const statusUrl = await startConversion(videoUrl, quality.trim());
@@ -96,10 +79,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         video: Buffer.from(response.data),
         mimetype: 'video/mp4',
         caption: `✅ تم تحميل الفيديو بنجاح.\nالجودة: ${quality}`
-      }, { quoted: fkontak });
+      }, {});
 
     } catch (err) {
-      await conn.reply(m.chat, `❌ فشل تحميل الفيديو: ${err.message}`, fkontak);
+      await conn.reply(m.chat, `❌ فشل تحميل الفيديو: ${err.message}`);
     }
   }
 };

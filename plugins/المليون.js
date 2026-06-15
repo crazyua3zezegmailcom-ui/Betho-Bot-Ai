@@ -124,7 +124,7 @@ async function startNewQuestion(conn, m, id, level, src) {
         conn.sendButton(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌛ *انتهى الوقت يا بطل*\n│ 💡 *الإجابة كانت:* ${question.response}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, null, null, [[`↬ لعبة جديدة`, `.المليون`]], null, null);
     }, gameDuration), level, remainingHelps, remainingHints, remainingResponses, remainingReducedOptions];
 
-    let message = `.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢\n⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩\nＢＹ 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *السؤال:* ${question.question}\n│\n│ ⌬ *المستوى:* ${level}\n│ ⌬ *الوقت:* 60 ثانية ⏳\n│ ⌬ *الجائزة:* ${basePoints * level}xp 💰\n╯───≪ ⚙️🧩⚙️ ≫───╰`;
+    let message = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥\n⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩\n𝐵𝑦 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *السؤال:* ${question.question}\n│\n│ ⌬ *المستوى:* ${level}\n│ ⌬ *الوقت:* 60 ثانية ⏳\n│ ⌬ *الجائزة:* ${basePoints * level}xp 💰\n╯───≪ ⚙️🧩⚙️ ≫───╰`;
 
     await conn.sendButton(m.chat, message, 'FREE BOT WHATSAPP 3RAB Life', 'https://qu.ax/Cnbf.jpg', [
         [`① ↫ ${options[0]}`, `.المليون ${options[0]}`],

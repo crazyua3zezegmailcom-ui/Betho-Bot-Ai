@@ -67,7 +67,7 @@ const handler = async (m, { conn, command }) => {
             interactiveMessage: proto.Message.InteractiveMessage.create({
               header: proto.Message.InteractiveMessage.Header.create({
                 hasMediaAttachment: false,
-                title: `.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢\n🍒 𝑩𝒆𝒕𝒉𝒐 🍇\nＢＹ 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *هل العبارة التالية صحيحة؟* 🤔\n│ \n│ ⌬ \`\`\`${q.q}\`\`\`\n╯───≪ 🌿🍉🍡 ≫───╰`,
+                title: `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥\n🍒 𝑩𝒆𝒕𝒉𝒐 🍇\n𝐵𝑦 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *هل العبارة التالية صحيحة؟* 🤔\n│ \n│ ⌬ \`\`\`${q.q}\`\`\`\n╯───≪ 🌿🍉🍡 ≫───╰`,
               }),
               body: proto.Message.InteractiveMessage.Body.create({ text: "" }),
               footer: proto.Message.InteractiveMessage.Footer.create({

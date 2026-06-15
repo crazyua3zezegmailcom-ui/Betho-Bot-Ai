@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) return m.reply(`*⚠️ يـرجى كـتابة رقـم الـهاتف بـعد الأمـر!*\n*مثال:* ${usedPrefix + command} +20111854xxxx`);
@@ -10,7 +10,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     await m.react('⏳');
 
-    let statusMsg = await m.reply(`*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*\n\n*_ جاري الفحص والتعديل يرجى الانتظار والصلاة على النبي..... 🕒 _*`);
+    let statusMsg = await m.reply(`*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*\n\n*_ جاري الفحص والتعديل يرجى الانتظار والصلاة على النبي..... 🕒 _*`);
 
     try {
         let jid = number + '@s.whatsapp.net';

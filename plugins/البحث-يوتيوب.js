@@ -11,26 +11,15 @@ import { createCanvas, loadImage } from 'canvas';
 const { prepareWAMessageMedia, generateWAMessageFromContent, proto } = (await import("@whiskeysockets/baileys")).default;
 
 // الإعدادات والخلفية
-const BACKGROUND_IMAGE_URL = 'https://raw.githubusercontent.com/mzml-gg/nezuko-Photos/main/nezuko9.jpg';
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const BACKGROUND_IMAGE_URL = 'https://raw.githubusercontent.com/mzml-gg/betho-Photos/main/betho9.jpg';
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 
 // الزخارف المطلوبة
 const startDeco = `☽⚝ͫ͢❏ِꏍ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ ﷽⎆☽⚝ͫ͢❏ِ🍡ꏍﭕ﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ\n╮ ⊰✫⊱─⊰✫⊱─⊰✫⊱╭`;
 const endDeco = `┘⊰✫⊱─⊰✫⊱─⊰✫⊱└\n☽⚝ͫ͢❏ِꏍ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ ﷽⎆☽⚝ͫ͢❏ِꏍﭕ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ`;
 
 /* ========= دالة جهة الاتصال (Quote) ========= */
-function contactQuote(m) {
-  return {
-    key: { participants: '0@s.whatsapp.net', remoteJid: 'status@broadcast', fromMe: false, id: 'HULK' },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:HULK BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 // دالة لإنشاء بطاقة البحث مع التعديلات الجديدة للألوان والخطوط
 async function createSearchCard(video) {
@@ -129,10 +118,9 @@ async function createSearchCard(video) {
 }
 
 const handler = async (m, { conn, usedPrefix, command, text }) => {
-  const fkontak = contactQuote(m);
   
   if (!text) {
-    return conn.reply(m.chat, `${startDeco}\n\nيرجى كتابة اسم الفيديو للبحث على YouTube.\n\nمثال: \`${usedPrefix + command} اغنية حزينة\`\n\n${endDeco}`, fkontak);
+    return conn.reply(m.chat, `${startDeco}\n\nيرجى كتابة اسم الفيديو للبحث على YouTube.\n\nمثال: \`${usedPrefix + command} اغنية حزينة\`\n\n${endDeco}`);
   }
 
   await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
@@ -143,7 +131,7 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
 
     if (!videos.length) {
         await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-        return conn.reply(m.chat, `${startDeco}\n\nلم يتم العثور على أي نتائج!\n\n${endDeco}`, fkontak);
+        return conn.reply(m.chat, `${startDeco}\n\nلم يتم العثور على أي نتائج!\n\n${endDeco}`);
     }
 
     const firstVideo = videos[0];
@@ -174,7 +162,7 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
         body: {
         text: `${startDeco}\n\nتم العثور على: \`${videos.length}\` نتيجة\n\nالعنوان: \`${firstVideo.title}\`\n\n${endDeco}`
         },
-        footer: { text: '.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢' },
+        footer: { text: '.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥' },
         header: {
         title: '```🍉 نتائج البحث في YouTube```',
         hasMediaAttachment: true,
@@ -194,7 +182,7 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
     };
 
     const userJid = conn?.user?.jid || m.key.participant || m.chat;
-    const msg = generateWAMessageFromContent(m.chat, { interactiveMessage }, { userJid, quoted: fkontak });
+    const msg = generateWAMessageFromContent(m.chat, { interactiveMessage }, { userJid });
     
     await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });

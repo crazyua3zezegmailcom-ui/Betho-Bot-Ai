@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 const startDeco = `☽⚝ͫ͢❏ِꏍ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ ﷽⎆☽⚝ͫ͢❏ِ🍡ꏍﭕ﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ\n╮ ⊰✫⊱─⊰✫⊱─⊰✫⊱╭`;
 const endDeco = `┘⊰✫⊱─⊰✫⊱─⊰✫⊱└\n☽⚝ͫ͢❏ِꏍ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ ﷽⎆☽⚝ͫ͢❏ِꏍﭕ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ`;
 
@@ -17,18 +17,7 @@ const AX = axios.create({
   },
 });
 
-function contactQuote(m) {
-  return {
-    key: { participants: '0@s.whatsapp.net', remoteJid: 'status@broadcast', fromMe: false, id: 'HULK' },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 // Search EgyDead and return matching posts
 async function searchEgyDead(query) {
@@ -108,7 +97,6 @@ async function getDownloadLinks(pageUrl) {
 }
 
 const handler = async (m, { conn, usedPrefix, command, text }) => {
-  const fkontak = contactQuote(m);
   const isMovie = ['فليم', 'فيلم', 'movie'].includes(command);
   const label = isMovie ? '🎬 فيلم' : '📺 مسلسل';
 
@@ -116,7 +104,6 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
     return conn.reply(
       m.chat,
       `${startDeco}\n\n${label}\n\nأرسل اسم المحتوى أو رابط الصفحة مباشرة.\n\nأمثلة:\n• \`${usedPrefix + command} sonic\`\n• \`${usedPrefix + command} https://tv9.egydead.live/sonic-the-hedgehog-3-2024/\`\n\n${endDeco}`,
-      fkontak,
     );
   }
 
@@ -129,7 +116,7 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
 
       if (!links.length) {
         await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-        return conn.reply(m.chat, `${startDeco}\n\n❌ لم يتم العثور على روابط تحميل في هذه الصفحة.\n\n${endDeco}`, fkontak);
+        return conn.reply(m.chat, `${startDeco}\n\n❌ لم يتم العثور على روابط تحميل في هذه الصفحة.\n\n${endDeco}`);
       }
 
       let msg = `${startDeco}\n\n${label}: *${pageTitle}*\n\n📥 *روابط التحميل:*\n`;
@@ -140,12 +127,12 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
 
       if (poster) {
         try {
-          await conn.sendMessage(m.chat, { image: { url: poster }, caption: msg }, { quoted: fkontak });
+          await conn.sendMessage(m.chat, { image: { url: poster }, caption: msg }, {});
         } catch (_) {
-          await conn.reply(m.chat, msg, fkontak);
+          await conn.reply(m.chat, msg);
         }
       } else {
-        await conn.reply(m.chat, msg, fkontak);
+        await conn.reply(m.chat, msg);
       }
 
       return await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
@@ -159,7 +146,6 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
       return conn.reply(
         m.chat,
         `${startDeco}\n\n❌ لم يتم العثور على نتائج لـ: *${text}*\n\nجرّب كلمة مختلفة أو أرسل رابط الصفحة مباشرة.\n\n${endDeco}`,
-        fkontak,
       );
     }
 
@@ -169,7 +155,7 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
 
       if (!links.length) {
         await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-        return conn.reply(m.chat, `${startDeco}\n\n❌ لم يتم العثور على روابط تحميل.\n\n${endDeco}`, fkontak);
+        return conn.reply(m.chat, `${startDeco}\n\n❌ لم يتم العثور على روابط تحميل.\n\n${endDeco}`);
       }
 
       let msg = `${startDeco}\n\n${label}: *${pageTitle || results[0].title}*\n\n📥 *روابط التحميل:*\n`;
@@ -180,12 +166,12 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
 
       if (poster) {
         try {
-          await conn.sendMessage(m.chat, { image: { url: poster }, caption: msg }, { quoted: fkontak });
+          await conn.sendMessage(m.chat, { image: { url: poster }, caption: msg }, {});
         } catch (_) {
-          await conn.reply(m.chat, msg, fkontak);
+          await conn.reply(m.chat, msg);
         }
       } else {
-        await conn.reply(m.chat, msg, fkontak);
+        await conn.reply(m.chat, msg);
       }
       return await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
     }
@@ -197,7 +183,7 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
     });
     msg += `📌 مثال: \`${usedPrefix + command} ${results[0].url}\`\n\n${endDeco}`;
 
-    await conn.reply(m.chat, msg, fkontak);
+    await conn.reply(m.chat, msg);
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
   } catch (err) {
     console.error('[فليم-مسلسل]', err);
@@ -205,7 +191,6 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
     await conn.reply(
       m.chat,
       `${startDeco}\n\n❌ حدث خطأ:\n${err.message}\n\n${endDeco}`,
-      fkontak,
     );
   }
 };

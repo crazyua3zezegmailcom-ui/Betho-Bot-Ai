@@ -2,32 +2,20 @@ import axios from 'axios';
 import { generateWAMessageFromContent } from '@whiskeysockets/baileys';
 
 // الحقوق والزخارف الخاصة بك
-const myCredit = `.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢`;
+const myCredit = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥`;
 const emojis = `ⲂＹ 𝐶𝑟𝑎𝑧𝑦 3ℝΑＢ 𝒅𝒆𝒗𝒔 🥝👑`;
 
-function contactQuote(m) {
-  return {
-    key: { participants: '0@s.whatsapp.net', remoteJid: 'status@broadcast', fromMe: false, id: 'BETHO' },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'User',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  const fkontak = contactQuote(m);
 
   if (command === 'تيك' || command === 'tiktok') {
-    if (!text) return conn.reply(m.chat, `*_هـلا_* 🫠\n\n📌 يـرجـى إرسـال الـرابط مـع الأمـر.`, fkontak);
+    if (!text) return conn.reply(m.chat, `*_هـلا_* 🫠\n\n📌 يـرجـى إرسـال الـرابط مـع الأمـر.`);
     
     const url = text.trim();
-    if (!url.includes('tiktok.com')) return conn.reply(m.chat, `*_هـلا_* ❌\n\nرابـط تـيـك تـوك غـيـر صـحـيـح.`, fkontak);
+    if (!url.includes('tiktok.com')) return conn.reply(m.chat, `*_هـلا_* ❌\n\nرابـط تـيـك تـوك غـيـر صـحـيـح.`);
 
-    await conn.reply(m.chat, `*_هـلا_* ⏳\n\nجـاري جـلـب الـجـودات مـن تـيـك تـوك...`, fkontak);
+    await conn.reply(m.chat, `*_هـلا_* ⏳\n\nجـاري جـلـب الـجـودات مـن تـيـك تـوك...`);
 
     try {
       let res = await axios.get(`https://www.tikwm.com/api/?url=${url}`);
@@ -66,12 +54,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
       const msg = generateWAMessageFromContent(m.chat, {
         viewOnceMessage: { message: { interactiveMessage } }
-      }, { userJid: conn.user.jid, quoted: fkontak });
+      }, { userJid });
 
       return await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
 
     } catch (e) {
-      return conn.reply(m.chat, `*_هـلا_* ❌\n\nفـشـل فـي جـلـب الـفـيـديـو.`, fkontak);
+      return conn.reply(m.chat, `*_هـلا_* ❌\n\nفـشـل فـي جـلـب الـفـيـديـو.`);
     }
   }
 
@@ -80,7 +68,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     const [quality, encodedUrl] = text.split('|');
     const videoUrl = Buffer.from(encodedUrl, 'base64').toString('utf-8');
 
-    await conn.reply(m.chat, `*_هـلا_* ⏳\n\nجـاري الـتـحـمـيـل بـدقـة ${quality} جـاري الـتـحـويـل لـوضـع HD...`, fkontak);
+    await conn.reply(m.chat, `*_هـلا_* ⏳\n\nجـاري الـتـحـمـيـل بـدقـة ${quality} جـاري الـتـحـويـل لـوضـع HD...`);
 
     try {
       const captionText = `*_هـلا_*\n\n✅ تـم الـتـحـمـيـل بـنـجـاح\n🎬 الـجـودة: ${quality === 'HD' ? '1080p (High Quality)' : 'Standard'}\n\n${emojis}\n\nتـم بـواسـطـة\n${myCredit}`;
@@ -90,15 +78,15 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         video: { url: videoUrl },
         mimetype: 'video/mp4',
         caption: captionText,
-        fileName: `Nezuko_HD.mp4`,
+        fileName: `Betho_HD.mp4`,
         // هذه الإعدادات تجبر واتساب على محاولة عرضها كـ HD
         height: 1920,
         width: 1080,
         headerType: 4
-      }, { quoted: fkontak });
+      }, {});
 
     } catch (err) {
-      await conn.reply(m.chat, `*_هـلا_* ❌\n\nفـشـل الـتـحـمـيـل: ${err.message}`, fkontak);
+      await conn.reply(m.chat, `*_هـلا_* ❌\n\nفـشـل الـتـحـمـيـل: ${err.message}`);
     }
   }
 };

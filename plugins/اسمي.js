@@ -5,7 +5,7 @@ const { generateWAMessageFromContent, proto } = pkg;
 
 // الحقوق والستايل
 const myCredit = `*_ 𝑩𝒆𝒕𝒉𝒐 𖠌 𝑩𝒐𝒕 _*`;
-const emojis = `ＢＹ 𝐶𝑟𝑎𝑧𝑦 👑`;
+const emojis = `𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑`;
 
 // القائمة المحدثة بالأنماط الجديدة (17 نمط حالياً)
 const styles = [

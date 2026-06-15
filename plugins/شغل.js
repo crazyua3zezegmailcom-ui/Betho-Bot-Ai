@@ -11,7 +11,7 @@ import axios from 'axios';
 const { prepareWAMessageMedia, generateWAMessageFromContent } = (await import("@whiskeysockets/baileys")).default;
 
 const BACKGROUND_IMAGE_URL = 'https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg';
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
 
 // ✅ كاش للخلفية — تتحمّل مرة واحدة فقط طول عمر البوت
@@ -179,7 +179,7 @@ async function sendCombinedMessage(conn, chatId, video, cardBuffer, results, use
                 {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
-                        display_text: '.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ 👑',
+                        display_text: '.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 👑',
                         url: 'https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e'
                     })
                 }

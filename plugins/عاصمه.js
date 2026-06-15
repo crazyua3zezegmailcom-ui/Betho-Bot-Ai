@@ -4,7 +4,7 @@ import { prepareWAMessageMedia, generateWAMessageFromContent } from "@whiskeysoc
 
 const timeout = 60000;
 const points = 500;
-const THUMB_URL = "https://raw.githubusercontent.com/mzml-gg/nezuko-Photos/main/nezuko4.jpg"; 
+const THUMB_URL = "https://raw.githubusercontent.com/mzml-gg/betho-Photos/main/betho4.jpg"; 
 
 let handler = async (m, { conn, command }) => {
     let jid = m.sender;
@@ -67,7 +67,7 @@ let handler = async (m, { conn, command }) => {
 
       const interactiveMessage = {
         body: {
-          text: `.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢\n🍒 𝑩𝒆𝒕𝒉𝒐 🍇\nＢＹ 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *${q.question}* 🏦\n│\n│ ⌬ *الوقت:* ${(timeout / 1000).toFixed(0)} ثانية ⏳\n│ ⌬ *الجائزة:* ${points}xp 💰\n╯───≪ 🌿🍉🍡 ≫───╰`,
+          text: `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥\n🍒 𝑩𝒆𝒕𝒉𝒐 🍇\n𝐵𝑦 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *${q.question}* 🏦\n│\n│ ⌬ *الوقت:* ${(timeout / 1000).toFixed(0)} ثانية ⏳\n│ ⌬ *الجائزة:* ${points}xp 💰\n╯───≪ 🌿🍉🍡 ≫───╰`,
         },
         footer: { text: "FREE BOT WHATSAPP 3RAB Life" },
         header: {

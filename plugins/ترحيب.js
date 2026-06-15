@@ -38,21 +38,7 @@ handler.help    = ['on welcome', 'off welcome']
 handler.before = async function (m, { conn, participants, groupMetadata }) {
   if (!m.isGroup || !m.messageStubType) return true
 
-  const fkontak = {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'Halo'
-    },
-    message: {
-      contactMessage: {
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:${dev}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  }
-
+  
   const stubParams = m.messageStubParameters || []
   if (!Array.isArray(stubParams) || stubParams.length === 0) return true
 
@@ -281,7 +267,7 @@ handler.before = async function (m, { conn, participants, groupMetadata }) {
       ...(imgBuffer ? { image: imgBuffer } : {}),
       caption: welcomeText,
       mentions: [userJid]
-    }, { quoted: fkontak })
+    }, {})
 
   // ─── مغادرة عضو ──────────────────────────────────────
   } else if (
@@ -307,7 +293,7 @@ handler.before = async function (m, { conn, participants, groupMetadata }) {
       ...(imgBuffer ? { image: imgBuffer } : {}),
       caption: byeText,
       mentions: [userJid]
-    }, { quoted: fkontak })
+    }, {})
   }
 
   return true

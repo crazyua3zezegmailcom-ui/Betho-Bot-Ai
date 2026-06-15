@@ -1,22 +1,6 @@
 import fetch from 'node-fetch';
 
-function contactQuote(m) {
-  return {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'BETHO_MENU'
-    },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'User',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 function extractCommands(plugin, usedPrefix) {
   let cmds = [];
@@ -118,7 +102,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     image: { url: selection },
     caption: menuText,
     contextInfo
-  }, { quoted: contactQuote(m) });
+  }, {});
 };
 
 handler.command = /^(م1)$/i;

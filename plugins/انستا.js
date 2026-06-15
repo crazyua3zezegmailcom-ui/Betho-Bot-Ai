@@ -1,52 +1,22 @@
 import fetch from 'node-fetch'
 
 // الحقوق الجديدة الخاصة بك
-const myCredit = `.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ Ａ ⃝🌿ᶦ🎀`
+const myCredit = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥Ａ ⃝🌿ᶦ🎀`
 
 // دالة جهة الاتصال (تأثير كرت المطور)
-function contactQuote(m) {
-  return {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'BETHO'
-    },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'User',
-        vcard: `BEGIN:VCARD
-VERSION:3.0
-N:${m.pushName || 'User'};;;;
-FN:${m.pushName || 'User'}
-item1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}
-item1.X-ABLabel:📞 WhatsApp
-ORG:BETHO BOT ✓
-TITLE:Developer
-END:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  }
-}
+
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-    const fkontak = contactQuote(m)
-
     // التحقق من وجود رابط
     if (!args[0]) {
         return conn.reply(
-            m.chat,
-            fkontak
-        )
+            m.chat)
     }
 
     // رسالة التحميل بدون زخرفة
     await conn.reply(
         m.chat,
-        `*⏳ جاري التحميل...*`,
-        fkontak
-    )
+        `*⏳ جاري التحميل...*`)
 
     try {
         const apiUrl = `https://tanjirodev.online/api/down-snap?url=${encodeURIComponent(args[0])}`
@@ -69,16 +39,14 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
                 video: { url: downloadUrl },
                 caption: `✅ *${title}*\n\nتم بواسطه\n${myCredit}\n\n*تم التحميل بنجاح*`
             },
-            { quoted: fkontak }
+            {}
         )
 
     } catch (e) {
         console.error(e)
         await conn.reply(
             m.chat,
-            `*❌ حدث خطأ أثناء التحميل:*\n${e.message || e}`,
-            fkontak
-        )
+            `*❌ حدث خطأ أثناء التحميل:*\n${e.message || e}`)
     }
 }
 

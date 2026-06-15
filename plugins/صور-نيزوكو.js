@@ -4,40 +4,29 @@ const { generateWAMessageContent, generateWAMessageFromContent, proto } =
   (await import("@whiskeysockets/baileys")).default;
 
 // الحقوق والستايل
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
 
 // قائمة الـ 40 برومبت لبيثو
-const nezukoPrompts = [
-  "Nezuko Kamado cute", "Nezuko with Zenitsu", "Nezuko and Tanjiro siblings", 
-  "Nezuko demon form badass", "Nezuko chibi aesthetic", "Nezuko fanart HD", 
-  "Nezuko Kamado wallpaper 4k", "Nezuko in the box", "Nezuko running funny", 
-  "Nezuko pink aesthetic anime", "Nezuko Kamado icon", "Nezuko sleeping cute", 
-  "Nezuko smiling anime", "Nezuko bamboo mouth", "Nezuko tiny form", 
-  "Nezuko Kamado manga art", "Nezuko with flowers", "Nezuko in the snow", 
-  "Nezuko Kamado night moon", "Nezuko badass demon eyes", "Nezuko modern AU", 
-  "Nezuko kimono pattern aesthetic", "Nezuko with Inosuke funny", "Nezuko pfp HD", 
-  "Nezuko Kamado watercolor art", "Nezuko anime moments", "Nezuko angry cute", 
-  "Nezuko hair aesthetic", "Nezuko and Kanao friends", "Nezuko Kamado stickers", 
-  "Nezuko glowing demon marks", "Nezuko aesthetic pink wallpaper", "Nezuko realistic art", 
-  "Nezuko pixel art", "Nezuko Kamado sad moments", "Nezuko hashira AU", 
-  "Nezuko dancing cute", "Nezuko eating bread funny", "Nezuko Kamado sword girl", 
-  "Nezuko and Mitsuri aesthetic"
+const bethoPrompts = [
+  "Betho Kamado cute", "Betho with Zenitsu", "Betho and Tanjiro siblings", 
+  "Betho demon form badass", "Betho chibi aesthetic", "Betho fanart HD", 
+  "Betho Kamado wallpaper 4k", "Betho in the box", "Betho running funny", 
+  "Betho pink aesthetic anime", "Betho Kamado icon", "Betho sleeping cute", 
+  "Betho smiling anime", "Betho bamboo mouth", "Betho tiny form", 
+  "Betho Kamado manga art", "Betho with flowers", "Betho in the snow", 
+  "Betho Kamado night moon", "Betho badass demon eyes", "Betho modern AU", 
+  "Betho kimono pattern aesthetic", "Betho with Inosuke funny", "Betho pfp HD", 
+  "Betho Kamado watercolor art", "Betho anime moments", "Betho angry cute", 
+  "Betho hair aesthetic", "Betho and Kanao friends", "Betho Kamado stickers", 
+  "Betho glowing demon marks", "Betho aesthetic pink wallpaper", "Betho realistic art", 
+  "Betho pixel art", "Betho Kamado sad moments", "Betho hashira AU", 
+  "Betho dancing cute", "Betho eating bread funny", "Betho Kamado sword girl", 
+  "Betho and Mitsuri aesthetic"
 ];
 
 /* ========= دالة جهة الاتصال (Quote) الأصيلة ========= */
-function contactQuote(m) {
-  return {
-    key: { participants: '0@s.whatsapp.net', remoteJid: 'status@broadcast', fromMe: false, id: 'HULK' },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:HULK BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  }
-}
+
 
 /* ========= إعدادات Pinterest الأصلية (بدون تعديل) ========= */
 const base = "https://www.pinterest.com";
@@ -93,11 +82,11 @@ async function searchPinterest(query) {
 /* ========= الأمر الرئيسي ========= */
 let handler = async (m, { conn }) => {
   // اختيار برومبت عشوائي من الـ 40
-  const randomPrompt = nezukoPrompts[Math.floor(Math.random() * nezukoPrompts.length)];
+  const randomPrompt = bethoPrompts[Math.floor(Math.random() * bethoPrompts.length)];
 
   await conn.sendMessage(m.chat, {
     text: `*_جاࢪي جلب صــور نـيـزوكـو 🌸🍉_*`
-  }, { quoted: contactQuote(m) });
+  }, {});
 
   async function createImage(url) {
     const { imageMessage } = await generateWAMessageContent(
@@ -132,7 +121,7 @@ let handler = async (m, { conn }) => {
           {
             name: "cta_url",
             buttonParamsJson: JSON.stringify({
-              display_text: ".𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ 👑",
+              display_text: ".𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 👑",
               url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
             }),
           },
@@ -156,7 +145,7 @@ let handler = async (m, { conn }) => {
         },
       },
     },
-    { quoted: contactQuote(m) }
+    {}
   );
 
   await conn.relayMessage(m.chat, bot.message, { messageId: bot.key.id });

@@ -1,4 +1,4 @@
-// .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢
+// .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥
 
 import fs from 'fs';
 import path from 'path';
@@ -11,23 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // دالة اقتباس جهة الاتصال
-function contactQuote(m) {
-  return {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'BETHO_UPLOAD'
-    },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'User',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 let handler = async (m, { conn }) => {
   // 1. استيراد الروابط من ملف data-photo.json
@@ -110,11 +94,11 @@ let handler = async (m, { conn }) => {
         forwardingScore: 999,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363428186936884@newsletter',
-          newsletterName: '.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ CH 👑',
+          newsletterName: '.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 CH 👑',
           serverMessageId: -1
         },
         externalAdReply: {
-          title: ".𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢​",
+          title: ".𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥​",
           body: "ᴍ𝒐𝒏𝒕𝒆 χ 𝒛𝒊𝒂𝒅 𝒅𝒆𝒗𝒔👑 ",
           mediaType: 1,
           thumbnail: imageBuffer,
@@ -124,7 +108,7 @@ let handler = async (m, { conn }) => {
         }
       }
     },
-    { quoted: contactQuote(m) }
+    {}
   );
 
   // بدء عملية ضغط الملفات

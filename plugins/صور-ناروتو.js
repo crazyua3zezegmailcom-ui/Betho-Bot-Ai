@@ -4,7 +4,7 @@ const { generateWAMessageContent, generateWAMessageFromContent, proto } =
   (await import("@whiskeysockets/baileys")).default;
 
 // الحقوق والستايل
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
 
 // قائمة الـ 40 برومبت لناروتو أوزوماكي
@@ -26,18 +26,7 @@ const narutoPrompts = [
 ];
 
 /* ========= دالة جهة الاتصال (Quote) الأصيلة ========= */
-function contactQuote(m) {
-  return {
-    key: { participants: '0@s.whatsapp.net', remoteJid: 'status@broadcast', fromMe: false, id: 'HULK' },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:HULK BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  }
-}
+
 
 /* ========= إعدادات Pinterest الأصلية ========= */
 const base = "https://www.pinterest.com";
@@ -97,7 +86,7 @@ let handler = async (m, { conn }) => {
 
   await conn.sendMessage(m.chat, {
     text: `*_جاࢪي جلب صــور نـاروتـو 🍥🧡_*`
-  }, { quoted: contactQuote(m) });
+  }, {});
 
   async function createImage(url) {
     const { imageMessage } = await generateWAMessageContent(
@@ -132,7 +121,7 @@ let handler = async (m, { conn }) => {
           {
             name: "cta_url",
             buttonParamsJson: JSON.stringify({
-              display_text: ".𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ 👑",
+              display_text: ".𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 👑",
               url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
             }),
           },
@@ -156,7 +145,7 @@ let handler = async (m, { conn }) => {
         },
       },
     },
-    { quoted: contactQuote(m) }
+    {}
   );
 
   await conn.relayMessage(m.chat, bot.message, { messageId: bot.key.id });

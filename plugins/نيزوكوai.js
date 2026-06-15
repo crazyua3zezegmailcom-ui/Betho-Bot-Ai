@@ -80,6 +80,6 @@ ${result}
 
 handler.help = ['بيثو', 'نسيان'];
 handler.tags = ['AI'];
-handler.command = /^(بيثو|nezuko|ai|نسيان|حذف_ذاكرة_بيثو)$/i;
+handler.command = /^(بيثو|betho|ai|نسيان|حذف_ذاكرة_بيثو)$/i;
 
 export default handler;

@@ -13,31 +13,7 @@ const { generateWAMessageContent, generateWAMessageFromContent, proto } =
   (await import("@whiskeysockets/baileys")).default;
 
 /* ========= دالة جهة الاتصال (Quote) ========= */
-function contactQuote(m) {
-  return {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'HULK'
-    },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD
-VERSION:3.0
-N:${m.pushName || 'User'};;;;
-FN:${m.pushName || 'User'}
-item1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}
-item1.X-ABLabel:📞 WhatsApp
-ORG:HULK BOT ✓
-TITLE:Verified
-END:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  }
-}
+
 
 /* ========= إعدادات Pinterest ========= */
 const base = "https://www.pinterest.com";
@@ -129,7 +105,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 ┊ جـاري جٓـلـب الـصـور مـن بـينتـرست…
 ∘₊✧──────🌹──────✧₊∘`
     },
-    { quoted: contactQuote(m) }
+    {}
   );
 
   async function createImage(url) {
@@ -145,7 +121,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     return conn.sendMessage(
       m.chat,
       { text: result.message },
-      { quoted: contactQuote(m) }
+      {}
     );
 
   let pins = result.pins.slice(0, 10);
@@ -170,7 +146,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             {
               name: "cta_url",
               buttonParamsJson: `{
-                "display_text": ".𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ 👑 ",
+                "display_text": ".𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 👑 ",
                 "url":"https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
               }`,
             },
@@ -185,7 +161,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       viewOnceMessage: {
         message: {
           interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-            body: { text: "تـم جلـب الصـور بـدقـه HD🌸 .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜣𝑻" },
+            body: { text: "تـم جلـب الصـور بـدقـه HD🌸 .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥𝑩𝜣𝑻" },
             footer: { text: "⚡ Pinterest HD Search" },
             carouselMessage:
               proto.Message.InteractiveMessage.CarouselMessage.fromObject({
@@ -195,7 +171,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         },
       },
     },
-    { quoted: contactQuote(m) }
+    {}
   );
 
   await conn.relayMessage(m.chat, bot.message, { messageId: bot.key.id });

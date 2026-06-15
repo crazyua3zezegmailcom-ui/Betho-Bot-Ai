@@ -155,7 +155,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
               {
                 name: 'cta_url',
                 buttonParamsJson: JSON.stringify({
-                  display_text: '.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜣𝑻👑',
+                  display_text: '.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥𝑩𝜣𝑻👑',
                   url: 'https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e'
                 })
               }

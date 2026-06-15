@@ -20,9 +20,9 @@ let handler = async (m, { conn, text, usedPrefix, command, isOwner }) => {
             p1Choice: null,
             p2Choice: null
         }
-        let capt = `.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢
+        let capt = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥
 🍒 𝑩𝒆𝒕𝒉𝒐 🍇
-ＢＹ 𝐶𝑟𝑎𝑧𝑦
+𝐵𝑦 𝐶𝑟𝑎𝑧𝑦
 
 ╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮
 │ ⌬ *تحدي:* حجرة - ورقة - مقص 🎮

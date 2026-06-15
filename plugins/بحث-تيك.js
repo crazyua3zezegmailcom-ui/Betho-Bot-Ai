@@ -10,7 +10,7 @@ import FormData from "form-data";
 import baileys from "@whiskeysockets/baileys";
 
 // الحقوق والستايل الخاص بك
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
 
 const ttSearch = async (query, count = 3) => {

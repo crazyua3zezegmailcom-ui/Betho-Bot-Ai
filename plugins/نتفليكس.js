@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const myCredit = `*_ .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ _*`;
+const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 const startDeco = `☽⚝ͫ͢❏ِꏍ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ ﷽⎆☽⚝ͫ͢❏ِ🍡ꏍﭕ﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ\n╮ ⊰✫⊱─⊰✫⊱─⊰✫⊱╭`;
 const endDeco = `┘⊰✫⊱─⊰✫⊱─⊰✫⊱└\n☽⚝ͫ͢❏ِꏍ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ ﷽⎆☽⚝ͫ͢❏ِꏍﭕ🍡﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ`;
 
@@ -11,18 +11,7 @@ const CATEGORY_LABELS = {
   NON_ENGLISH_TV: '📺 مسلسلات غير إنجليزية',
 };
 
-function contactQuote(m) {
-  return {
-    key: { participants: '0@s.whatsapp.net', remoteJid: 'status@broadcast', fromMe: false, id: 'HULK' },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 async function fetchNetflixTop10() {
   const res = await fetch('https://www.netflix.com/tudum/top10', {
@@ -79,7 +68,6 @@ async function fetchNetflixTop10() {
 }
 
 const handler = async (m, { conn, usedPrefix, command, text }) => {
-  const fkontak = contactQuote(m);
 
   await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
 
@@ -115,19 +103,19 @@ const handler = async (m, { conn, usedPrefix, command, text }) => {
         await conn.sendMessage(m.chat, {
           image: { url: topMovie.image },
           caption: msg,
-        }, { quoted: fkontak });
+        }, {});
       } catch (_) {
-        await conn.reply(m.chat, msg, fkontak);
+        await conn.reply(m.chat, msg);
       }
     } else {
-      await conn.reply(m.chat, msg, fkontak);
+      await conn.reply(m.chat, msg);
     }
 
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
   } catch (err) {
     console.error('[نتفليكس]', err);
     await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-    await conn.reply(m.chat, `${startDeco}\n\n❌ حدث خطأ أثناء جلب بيانات Netflix:\n${err.message}\n\n${endDeco}`, fkontak);
+    await conn.reply(m.chat, `${startDeco}\n\n❌ حدث خطأ أثناء جلب بيانات Netflix:\n${err.message}\n\n${endDeco}`);
   }
 };
 

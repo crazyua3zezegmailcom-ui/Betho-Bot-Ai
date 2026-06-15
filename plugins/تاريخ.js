@@ -19,9 +19,9 @@ let handler = async (m, { conn, usedPrefix }) => {
     let tekateki = JSON.parse(fs.readFileSync(filePath));
     let json = tekateki[Math.floor(Math.random() * tekateki.length)];
     
-    let caption = `.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢
+    let caption = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥
 🍒 𝑩𝒆𝒕𝒉𝒐 🍇
-ＢＹ 𝐶𝑟𝑎𝑧𝑦
+𝐵𝑦 𝐶𝑟𝑎𝑧𝑦
 
 ╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮
 │ ⌬ *السؤال:* ${json.question} 📜

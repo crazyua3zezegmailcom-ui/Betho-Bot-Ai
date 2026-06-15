@@ -12,31 +12,7 @@ const startDeco = `╗═══≪ 🌿🍉🍡 ≫═══╔ `;
 const endDeco   = `╝═══≪ 🌿🍉🍡 ≫═══╚ `;
 
 // دالة إنشاء تنسيق جهة الاتصال (كما هي دون تغيير)
-function contactQuote(m) {
-  return {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'HULK'
-    },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD
-VERSION:3.0
-N:${m.pushName || 'User'};;;;
-FN:${m.pushName || 'User'}
-item1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}
-item1.X-ABLabel:📞 WhatsApp
-ORG:BOT ✓
-TITLE:Verified
-END:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 const { proto } = (await import("@whiskeysockets/baileys")).default;
 const isNumber = x => typeof x === "number" && !isNaN(x);
@@ -401,7 +377,6 @@ export async function handler(chatUpdate) {
 }
 
 global.dfail = (type, m, conn) => {
-  const fkontak = contactQuote(m);
   const msg = {
     rowner: `${startDeco}\n\n⛔ هذا الأمر خاص بمطور البوت فقط.\n\n${endDeco}`,
     owner: `${startDeco}\n\n⛔ هذا الأمر خاص بمطور البوت فقط.\n\n${endDeco}`,
@@ -413,7 +388,7 @@ global.dfail = (type, m, conn) => {
     botAdmin: `${startDeco}\n\n🤖 يجب أن يكون البوت مشرفاً في المجموعة لاستخدام هذا الأمر.\n\n${endDeco}`,
     restrict: `${startDeco}\n\n🚫 هذه الميزة معطلة حالياً.\n\n${endDeco}`
   }[type];
-  if (msg) return conn.reply(m.chat, msg, m, { quoted: fkontak }).then(_ => m.react('✖️'));
+  if (msg) return conn.reply(m.chat, msg, m, {}).then(_ => m.react('✖️'));
 };
 
 let file = global.__filename(import.meta.url, true);

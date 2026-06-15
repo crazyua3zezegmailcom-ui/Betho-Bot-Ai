@@ -4,23 +4,7 @@
 import fetch from 'node-fetch';
 
 // دالة اقتباس جهة الاتصال
-function contactQuote(m) {
-  return {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'BETHO_MENU_GAMES'
-    },
-    message: {
-      contactMessage: {
-        displayName: m.pushName || 'User',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
-      }
-    },
-    participant: '0@s.whatsapp.net'
-  };
-}
+
 
 // استخراج أسماء الأوامر من handler.command
 function extractCommands(plugin, usedPrefix) {
@@ -127,7 +111,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     forwardingScore: 1,
     forwardedNewsletterMessageInfo: {
       newsletterJid: '120363428186936884@newsletter',
-      newsletterName: '.𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ CH 👑',
+      newsletterName: '.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 CH 👑',
       serverMessageId: -1
     }
   };
@@ -139,13 +123,13 @@ let handler = async (m, { conn, usedPrefix }) => {
       caption: menuText,
       gifPlayback: true,
       contextInfo
-    }, { quoted: contactQuote(m) });
+    }, {});
   } else {
     await conn.sendMessage(m.chat, {
       image: { url: selection },
       caption: menuText,
       contextInfo
-    }, { quoted: contactQuote(m) });
+    }, {});
   }
 };
 

@@ -31,7 +31,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     const menuText = `
 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢
 ⚙️ 𝗠𝗘𝗡𝗨 🧩
-ＢＹ 𝐶𝑟𝑎𝑧𝑦
+𝐵𝑦 𝐶𝑟𝑎𝑧𝑦
 
 𝗐𝖾𝒍𝒄𝒐𝒎𝒆 ${taguser}
 
@@ -64,7 +64,7 @@ FREE BOT WHATSAPP 3RAB Life`.trim()
             productImage: { url: fallbackUrl },
             productId: '24529689176623820',
             title: '𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢',
-            description: 'ＢＹ 𝐶𝑟𝑎𝑧𝑦 👑',
+            description: '𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑',
             currencyCode: 'USD',
             priceAmount1000: '0',
             retailerId: '⚙️ 𝗠𝗘𝗡𝗨 🧩',

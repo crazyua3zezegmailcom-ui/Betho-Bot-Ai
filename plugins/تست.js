@@ -11,8 +11,8 @@ const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg
 const execAsync = promisify(exec)
 
 // الروابط
-const bgUrl = "https://raw.githubusercontent.com/mzml-gg/nezuko-Photos/main/nezuko6.jpg" 
-const botAvatarUrl = "https://raw.githubusercontent.com/mzml-gg/nezuko-Photos/main/nezuko9.jpg"
+const bgUrl = "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg" 
+const botAvatarUrl = "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg"
 
 // 1. دالة جهة الاتصال (كوت)
 function contactQuote(m) {
@@ -121,7 +121,7 @@ let handler = async (m, { conn }) => {
         let media = await prepareWAMessageMedia({ image: buffer }, { upload: conn.waUploadToServer })
 
         const caption = `*﹝ ✅⃝🌸 تـم تـولـيد تقرير النـظام بـنـجـاح ﹞*
-*_🍡 .𓏲⋆˙𝑵𝜩𝒁𝑼𝑲̤͝𝜣͓ۧٛ͢ ͝ 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢​_*
+*_🍡 .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥​_*
 
 *_🌳 عـدد الاوامـر_* ( ${totalFiles} ملف )
 *_🍒 الايـرور_* ( ${totalFiles}/${totalErrors} )
@@ -147,7 +147,7 @@ let handler = async (m, { conn }) => {
                     {
                       name: "cta_url",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "Support Nezuko 👑",
+                        display_text: "Support Betho 👑",
                         url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
                       })
                     }
