@@ -314,7 +314,7 @@ const handler = async (m, { conn, args, isAdmin, isOwner }) => {
 // ═══════════════════════════════════════════════════════
 handler.before = async (m, { conn, isOwner, isAdmin, isBotAdmin }) => {
   await processMessage(m, conn, { isOwner, isAdmin, isBotAdmin });
-  return true;
+  return false;
 };
 
 handler.command  = /^حماي[هة]/i;

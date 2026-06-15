@@ -35,8 +35,12 @@ handler.admin   = true
 handler.tags    = ['group']
 handler.help    = ['on welcome', 'off welcome']
 
-handler.before = async function (m, { conn, participants, groupMetadata }) {
+handler.before = async function (m, { conn, participants, groupMetadata, chat: _chat }) {
   if (!m.isGroup || !m.messageStubType) return true
+
+  // جلب الـ chat من الـ DB (مع ضمان وجوده)
+  if (!global.db.data.chats[m.chat]) global.db.data.chats[m.chat] = {}
+  const chat = _chat || global.db.data.chats[m.chat]
 
   
   const stubParams = m.messageStubParameters || []
