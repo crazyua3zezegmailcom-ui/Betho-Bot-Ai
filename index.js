@@ -228,9 +228,23 @@ async function connectionUpdate(update) {
   let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
   if (connection === "close") {
     if ([401, 440, 428, 405].includes(reason)) {
-      console.log(chalk.red(`→ (${code}) › Cierra la session Principal.`))
+      console.log(chalk.red(`→ (${reason}) › Session logged out. Clearing session and preparing for re-pairing...`))
+      // Clear stale session files so the bot can re-pair
+      try {
+        const sessionPath = `./${global.sessions}`
+        if (fs.existsSync(sessionPath)) {
+          const files = fs.readdirSync(sessionPath)
+          for (const file of files) {
+            fs.unlinkSync(`${sessionPath}/${file}`)
+          }
+          console.log(chalk.cyan('🗑️ Old session cleared. Restart the bot to generate a new pairing code.'))
+        }
+      } catch (e) {
+        console.error('Failed to clear session:', e)
+      }
+      process.exit(0)
     }
-    console.log(chalk.yellow("......ﻲﺴﻳﺃﺮﻟﺍ ﺕﻮﺒﻟﺍ ﻂﺑﺭ ﺓﺩﺎﻋﺍ"))
+    console.log(chalk.yellow("Reconnecting bot..."))
     await global.reloadHandler(true).catch(console.error)
   }
 }
