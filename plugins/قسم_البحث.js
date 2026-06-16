@@ -75,10 +75,10 @@ let handler = async (m, { conn, usedPrefix }) => {
   const taguser = '@' + m.sender.split('@')[0];
 
   let menuText = `
-╗═══≪🌿🌹🍁 ≫═══╔
- .𓏲⋆˙𝑵𝑬𝒁𝑼𝑲𝑶 𝑩𝑶𝑻🎀​
-  𝖡𝖸  𝐶𝑟𝑎𝑧𝑦 dev 👑 
-╝═══≪ 🌿🌹🍁 ≫═══╚
+╗═══≪⚙️🧩⚙️ ≫═══╔
+ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 𝑩𝑶𝑻🧩
+      𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑
+╝═══≪ ⚙️🧩⚙️ ≫═══╚
 
 ╮──────────────╭
 𓆩⃞🔍𓆪  𝗐𝖾𝗅𝖼𝗈𝗆𝖾 ${taguser}
@@ -97,9 +97,9 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   menuText += `
 َ
-╯───≪ 🍀🍇🍍 ≫───╰
+╯───≪ ⚙️🧩⚙️ ≫───╰
 
-𓆩⃞👑 𓆪 𝗕𝗬 𝐶𝑟𝑎𝑧𝑦 👑 
+𓆩⃞👑 𓆪 𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑 
 ؍ 🌸♡゙ تاريـخ: ${currentDate}
 ؍ 🌸♡゙ اليـوم: ${dayName}
 `.trim();
@@ -111,7 +111,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     forwardingScore: 1,
     forwardedNewsletterMessageInfo: {
       newsletterJid: '120363428186936884@newsletter',
-      newsletterName: '.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 CH 👑',
+      newsletterName: '.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥  👑',
       serverMessageId: -1
     }
   };

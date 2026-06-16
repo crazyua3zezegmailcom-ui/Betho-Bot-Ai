@@ -57,7 +57,7 @@ const handler = async (m, { conn, text }) => {
             const targetName = inputName.endsWith('.js') ? inputName : `${inputName}.js`;
             filename = files.find((file) => file.toLowerCase() === targetName);
             if (!filename) {
-                m.reply('❌ الملف غير موجود. تأكد من الرقم أو الاسم.');
+                m.reply('❌ الملف مش موجود يابا اتأكد منه وابق تعال تاني ');
                 return;
             }
         }

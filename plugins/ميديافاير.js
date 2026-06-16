@@ -3,7 +3,7 @@ import cheerio from 'cheerio'
 
 // الحقوق والزخارف الخاصة بك
 const myCredit = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥`
-const emojis = `ⲂＹ 𝐶𝑟𝑎𝑧𝑦 3ℝΑＢ 𝒅𝒆𝒗𝒔 🥝👑`
+const emojis = `𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑`
 
 class MediaFire {
   constructor() {
@@ -52,7 +52,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       throw new Error('لـم يـتـم الـعـثـور عـلى رابـط الـتـحـمـيـل.')
     }
 
-    const captionText = `*_هـلا_*\n\n✅ تـم الـتـحـمـيـل بـنـجـاح\n\n📄 *الاسـم:* ${res.name}\n📦 *الـحـجـم:* ${res.size}\n\n${emojis}\n\nتـم بـواسـطـة\n${myCredit}`
+    const captionText = `*_احم_*\n\n✅ تـم الـتـحـمـيـل بـنـجـاح\n\n📄 *الاسـم:* ${res.name}\n📦 *الـحـجـم:* ${res.size}\n\n${emojis}\n\nتـم بـواسـطـة\n${myCredit}`
 
     // إرسال الملف مباشرة كوثيقة (Document) لضمان الجودة وبدون حفظ في tmp
     await conn.sendMessage(m.chat, {
@@ -64,7 +64,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
   } catch (e) {
     console.error(e)
-    m.reply(`*_هـلا_* ❌\n\nفـشـل فـي جـلـب الـمـلـف: ${e.message}`)
+    m.reply(`*_احم_* ❌\n\nفـشـل فـي جـلـب الـمـلـف: ${e.message}`)
   }
 }
 

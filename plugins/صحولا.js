@@ -42,7 +42,7 @@ const handler = async (m, { conn, command }) => {
 
   if (command === "صحولا") {
     if (activeGames[id]) {
-        return conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *_لا يزال هناك سؤال لم يحل بعد!_* ⏳\n╯───≪ 🌿🍉🍡 ≫───╰`, m);
+        return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌬ *_لا يزال هناك سؤال لم يحل بعد!_* ⏳\n╯───≪ 🫐🪻🧩 ≫───╰`, m);
     }
 
     const q = questions[Math.floor(Math.random() * questions.length)];
@@ -67,7 +67,7 @@ const handler = async (m, { conn, command }) => {
             interactiveMessage: proto.Message.InteractiveMessage.create({
               header: proto.Message.InteractiveMessage.Header.create({
                 hasMediaAttachment: false,
-                title: `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥\n🍒 𝑩𝒆𝒕𝒉𝒐 🍇\n𝐵𝑦 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *هل العبارة التالية صحيحة؟* 🤔\n│ \n│ ⌬ \`\`\`${q.q}\`\`\`\n╯───≪ 🌿🍉🍡 ≫───╰`,
+                title: `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥\n⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️\n𝐵𝑦 𝐶𝑟𝑎𝑧𝑦\n\n╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌬ *هل العبارة التالية صحيحة؟* 🤔\n│ \n│ ⌬ \`\`\`${q.q}\`\`\`\n╯───≪ 🫐🪻🧩 ≫───╰`,
               }),
               body: proto.Message.InteractiveMessage.Body.create({ text: "" }),
               footer: proto.Message.InteractiveMessage.Footer.create({
@@ -89,14 +89,14 @@ const handler = async (m, { conn, command }) => {
   if (command.startsWith("اجابة_")) {
     const answer = command.replace("اجابة_", "").trim();
     const game = activeGames[id];
-    if (!game) return conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *_لا توجد لعبة نشطة الآن 📯📍_* \n╯───≪ 🌿🍉🍡 ≫───╰`, m);
+    if (!game) return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌬ *_لا توجد لعبة نشطة الآن 📯📍_* \n╯───≪ 🫐🪻🧩 ≫───╰`, m);
 
     const correct = (answer === "صح" && game.question.a) || (answer === "خطأ" && !game.question.a);
 
     if (correct) {
-        await conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *_إجابة صحيحة مبروك ✨✅_* \n│ 💰 *أحسنت يا بطل*\n╯───≪ 🌿🍉🍡 ≫───╰`, m);
+        await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌬ *_إجابة صحيحة مبروك ✨✅_* \n│ 💰 *أحسنت يا بطل*\n╯───≪ 🫐🪻🧩 ≫───╰`, m);
     } else {
-        await conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *_إجابة خاطئة للأسف 🛠️❌_* \n│ 💡 *الجواب الصح هو:* ${game.question.a ? "✅ صح" : "❌ خطأ"}\n╯───≪ 🌿🍉🍡 ≫───╰`, m);
+        await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌬ *_إجابة خاطئة للأسف 🛠️❌_* \n│ 💡 *الجواب الصح هو:* ${game.question.a ? "✅ صح" : "❌ خطأ"}\n╯───≪ 🫐🪻🧩 ≫───╰`, m);
     }
 
     delete activeGames[id];

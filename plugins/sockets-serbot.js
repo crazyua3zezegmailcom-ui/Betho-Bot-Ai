@@ -1,4 +1,4 @@
-// أوامر السيربوت - تنصيب البوت
+// أوامر البوتات الفرعيه - تنصيب البوت
 // BY 𝐶𝑟𝑎𝑧𝑦
 
 const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion } = (await import("@whiskeysockets/baileys"))
@@ -23,7 +23,7 @@ let drm1 = ""
 let drm2 = ""
 
 // رسائل بسيطة ومنطقية بدون زخارف مفرطة
-let rtx = `📱 *وضع السيربوت - رمز QR*
+let rtx = `📱 *وضع البوت الفرعي - رمز QR*
 
 1️⃣ اضغط على النقاط الثلاث أعلى التطبيق
 2️⃣ اختر "الأجهزة المرتبطة" (Linked Devices)
@@ -31,7 +31,7 @@ let rtx = `📱 *وضع السيربوت - رمز QR*
 
 ⚠️ ملاحظة: ينتهي صلاحية الرمز خلال 45 ثانية`.trim()
 
-let rtx2 = `🔢 *وضع السيربوت - كود رقمي*
+let rtx2 = `🔢 *وضع البوت الفرعي - كود *
 
 1️⃣ اضغط على النقاط الثلاث أعلى التطبيق
 2️⃣ اختر "الأجهزة المرتبطة" (Linked Devices)
@@ -56,11 +56,11 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
 
     let time = global.db.data.users[m.sender].Subs + 120000
     if (new Date - global.db.data.users[m.sender].Subs < 120000)
-        return conn.reply(m.chat, `⏳ يرجى الانتظار ${msToTime(time - new Date())} قبل إعادة ربط السيربوت.`, m)
+        return conn.reply(m.chat, `⏳ يرجى الانتظار ${msToTime(time - new Date())} قبل إعادة ربط بوت فرعي .`, m)
 
     let socklimit = global.conns.filter(sock => sock?.user).length
     if (socklimit >= 200) {
-        return m.reply(`🚫 لا توجد أماكن متاحة للسيربوتات حالياً. حاول لاحقاً.`)
+        return m.reply(`🚫 لا توجد أماكن متاحة للبوتات الفرعيه حالياً. حاول لاحقاً.`)
     }
 
     let mentionedJid = await m.mentionedJid
@@ -232,10 +232,10 @@ export async function yukiJadiBot(options) {
                 let userName, userJid
                 userName = sock.authState.creds.me.name || 'مجهول'
                 userJid = sock.authState.creds.me.jid || `${path.basename(pathYukiJadiBot)}@s.whatsapp.net`
-                console.log(chalk.bold.cyanBright(`\n✅ سيربوت جديد: ${userName} (+${path.basename(pathYukiJadiBot)}) تم الاتصال بنجاح.`))
+                console.log(chalk.bold.cyanBright(`\n✅ بوت فرعي جديد: ${userName} (+${path.basename(pathYukiJadiBot)}) تم الاتصال بنجاح.`))
                 sock.isInit = true
                 global.conns.push(sock)
-                m?.chat ? await conn.sendMessage(m.chat, { text: isSubBotConnected(m.sender) ? `@${m.sender.split('@')[0]}، أنت متصل بالفعل.` : `✅ تم تسجيل سيربوت جديد! [@${m.sender.split('@')[0]}]\nيمكنك استخدام *infobot#* لعرض المعلومات.`, mentions: [m.sender] }, { quoted: m }) : ''
+                m?.chat ? await conn.sendMessage(m.chat, { text: isSubBotConnected(m.sender) ? `@${m.sender.split('@')[0]}، أنت متصل بالفعل.` : `✅ تم تسجيل بوت فرعي جديد! [@${m.sender.split('@')[0]}]\nيمكنك استخدام *infobot#* لعرض المعلومات.`, mentions: [m.sender] }, { quoted: m }) : ''
             }
         }
 

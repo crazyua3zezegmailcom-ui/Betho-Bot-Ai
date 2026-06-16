@@ -59,8 +59,8 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   let menuText = `
 ╗═══≪ ⚙️🧩⚙️ ≫═══╔
- 𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢
-  𝖡𝖸  𝐶𝑟𝑎𝑧𝑦 𝒅𝒆𝒗 👑 
+     𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢
+    𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑 
 ╝═══≪ ⚙️🧩⚙️ ≫═══╚
 
 ╮──────────────╭
@@ -82,7 +82,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 َ
 ╯───≪ ⚙️🧩⚙️ ≫───╰
 
-𓆩⃞⚙️𓆪 𝗕𝗬 𝐶𝑟𝑎𝑧𝑦 ⚙️
+𓆩⃞⚙️𓆪 𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 ⚙️
 ؍ 🌸♡゙ تاريـخ: ${currentDate}
 ؍ 🌸♡゙ اليـوم: ${dayName}
 `.trim();
@@ -93,7 +93,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     forwardingScore: 1,
     forwardedNewsletterMessageInfo: {
       newsletterJid: '120363428186936884@newsletter',
-      newsletterName: '𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ CH 👑',
+      newsletterName: '𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢  👑',
       serverMessageId: -1
     }
   };

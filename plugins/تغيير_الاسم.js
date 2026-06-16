@@ -5,12 +5,12 @@ let handler = async (m, { conn, text, isAdmin, isOwner, isBotAdmin }) => {
     if (!m.isGroup) return m.reply('❌ *هذا الأمر يعمل في الجروبات فقط*');
     if (!isAdmin && !isOwner) return m.reply('❌ *يجب أن تكون مشرفاً لاستخدام هذا الأمر*');
     if (!isBotAdmin) return m.reply('❌ *يجب أن يكون البوت مشرفاً*');
-    if (!text) return m.reply(`╗═══≪ 🌿🍉🍡 ≫═══╔\n📝 *يرجى كتابة الاسم الجديد*\n\nمثال:\n.تغيير_الاسم بيثو بوت\n╝═══≪ 🌿🍉🍡 ≫═══╚`);
+    if (!text) return m.reply(`╗═══≪ 🫐🪻🧩 ≫═══╔\n📝 *يرجى كتابة الاسم الجديد*\n\nمثال:\n.تغيير_الاسم بيثو بوت\n╝═══≪ 🫐🪻🧩 ≫═══╚`);
 
     try {
         await conn.groupUpdateSubject(m.chat, text);
         
-        let successMsg = `╗═══≪ 🌿🍉🍡 ≫═══╔
+        let successMsg = `╗═══≪ ⚙️🧩⚙️ ≫═══╔
 ✅ *تم تغيير اسم الجروب*
 
 📝 *الاسم الجديد:* ${text}
@@ -18,7 +18,7 @@ let handler = async (m, { conn, text, isAdmin, isOwner, isBotAdmin }) => {
 📅 *التاريخ:* ${new Date().toLocaleString('ar-EG')}
 
 ✨ *تم التحديث بنجاح*
-╝═══≪ 🌿🍉🍡 ≫═══╚`;
+╝═══≪ ⚙️🧩⚙️ ≫═══╚`;
 
         await conn.sendMessage(m.chat, { text: successMsg, mentions: [m.sender] }, { quoted: m });
     } catch (err) {

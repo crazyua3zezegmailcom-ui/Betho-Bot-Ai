@@ -55,15 +55,15 @@ async function fetchWithTimeout(url, timeout = 20000, options = {}) {
 
 let handler = async (m, { conn }) => {
   const devName = '𝐶𝑟𝑎𝑧𝑦';
-  const num1    = '15877004085';
-  const num2    = '201214057674';
+  const num1    = '201214057674';
+  const num2    = '201275681011';
   const num3    = '201201756710';
 
   const vcard1 = `BEGIN:VCARD\nVERSION:3.0\nFN:${devName} ★\nTEL;type=CELL;waid=${num1}:+${num1}\nEND:VCARD`;
   const vcard2 = `BEGIN:VCARD\nVERSION:3.0\nFN:${devName}\nTEL;type=CELL;waid=${num2}:+${num2}\nEND:VCARD`;
   const vcard3 = `BEGIN:VCARD\nVERSION:3.0\nFN:${devName}\nTEL;type=CELL;waid=${num3}:+${num3}\nEND:VCARD`;
 
-  const img      = 'https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg';
+  const img      = 'https://i.postimg.cc/pXdnLtm5/file-000000003f4c71f491ea3ab5e4b3d6ca.png';
   const voiceUrl = 'https://media1.vocaroo.com/mp3/14l3O099fwcq';
 
   const caption = `${HEADER}

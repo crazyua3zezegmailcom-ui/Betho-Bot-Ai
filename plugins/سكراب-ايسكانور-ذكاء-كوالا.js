@@ -114,7 +114,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!query && m.quoted?.text) query = m.quoted.text;
     if (!query) {
         await conn.sendMessage(m.chat, {
-            text: `🐨 *كوالا (Koala AI) – ذكاء اصطناعي متكامل*\n\nالاستخدام:\n${usedPrefix}${command} سؤالك\nمثال: ${usedPrefix}${command} كيف أتعلم البرمجة؟`
+            text: `🤡 *لمبي (LMBE AI) – ذكاء اصطناعي متكامل*\n\nالاستخدام:\n${usedPrefix}${command} سؤالك\nمثال: ${usedPrefix}${command} كيف أتعلم البرمجة؟`
         }, { quoted: m });
         return;
     }
@@ -138,7 +138,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         // إضافة التعليمات النظامية (System Prompt)
         messagesForAI.unshift({
             role: 'system',
-            content: 'أنت مساعد ذكي ومفيد يدعى "كوالا". أجب بدقة واحترافية.'
+            content: 'أنت مساعد ذكي ومفيد يدعى "لمبي". أجب بدقة واحترافية.'
         });
 
         // 3. الحصول على الرد من OpenAI (أو Gemini)
@@ -149,7 +149,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
         // 5. إرسال الرد للمستخدم
         await conn.sendMessage(m.chat, {
-            text: `🐨 *Koala:*\n${aiReply}`,
+            text: `🤡 *LMBE:*\n${aiReply}`,
             contextInfo: { mentionedJid: [m.sender] }
         }, { quoted: m });
     } catch (error) {
@@ -166,18 +166,18 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 const resetHandler = async (m, { conn }) => {
     const waUserId = m.sender;
     if (userChats.delete(waUserId)) {
-        await conn.sendMessage(m.chat, { text: '🗑️ تم مسح محادثتك مع كوالا. سيتم إنشاء محادثة جديدة.' }, { quoted: m });
+        await conn.sendMessage(m.chat, { text: '🗑️ تم مسح محادثتك مع لمبي. سيتم إنشاء محادثة جديدة.' }, { quoted: m });
     } else {
         await conn.sendMessage(m.chat, { text: 'ℹ️ لا توجد محادثة نشطة.' }, { quoted: m });
     }
 };
 
 // ========== تسجيل الأوامر ==========
-handler.command = /^(كوالا|koala)$/i;
+handler.command = /^(لمبي|LMBE)$/i;
 handler.group = false;
 handler.limit = true;
 
-resetHandler.command = /^(كوالا مسح|koala reset)$/i;
+resetHandler.command = /^(لمبي مسح|LMBE REMOVE)$/i;
 
 export { resetHandler };
 export default handler;

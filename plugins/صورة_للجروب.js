@@ -33,7 +33,7 @@ let handler = async (m, { conn, isAdmin, isBotAdmin, isOwner }) => {
         // تنفيذ تغيير الصورة
         await conn.updateProfilePicture(m.chat, media);
 
-        let successMsg = `╗═══≪ 🌿🍉🍡 ≫═══╔
+        let successMsg = `╗═══≪ ⚙️🧩⚙️ ≫═══╔
 ✅ *تم تغيير الصورة بنجاح*
 
 📸 *الصورة الجديدة تم تعيينها*
@@ -41,7 +41,7 @@ let handler = async (m, { conn, isAdmin, isBotAdmin, isOwner }) => {
 📅 *التاريخ:* ${new Date().toLocaleString('ar-EG')}
 
 ✨ *الجروب الآن بمظهر جديد*
-╝═══≪ 🌿🍉🍡 ≫═══╚`;
+╝═══≪ ⚙️🧩⚙️ ≫═══╚`;
 
         await conn.sendMessage(m.chat, {
             image: media,
@@ -51,11 +51,11 @@ let handler = async (m, { conn, isAdmin, isBotAdmin, isOwner }) => {
 
     } catch (err) {
         console.error(err);
-        await m.reply(`╗═══≪ 🌿🍉🍡 ≫═══╔
+        await m.reply(`╗═══≪ ⚙️🧩⚙️ ≫═══╔
 ❌ *فشل تغيير صورة الجروب*
 
 ⚠️ *السبب:* ${err.message}
-╝═══≪ 🌿🍉🍡 ≫═══╚`);
+╝═══≪ ⚙️🧩⚙️ ≫═══╚`);
     }
 };
 

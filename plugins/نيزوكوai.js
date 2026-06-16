@@ -10,18 +10,18 @@ const handler = async (m, { conn, command, text }) => {
   // أمر نسيان الذاكرة
   if (command === 'نسيان' || command === 'حذف_ذاكرة_بيثو') {
     delete memory[userId];
-    return m.reply('🌸 نيهيهي.. نسيت كل شيء! لنبدأ من جديد ✨');
+    return m.reply('🌸 نيهيهي.. نسيت كل حاجة! لنبدأ من جديد ✨');
   }
 
   // إذا لم يكتب المستخدم شيئاً (الرسالة الترحيبية بزخرفة غوكو)
   if (!text) {
     return m.reply(
 `╮━─━─━─≪🌸≫─━─━─━╭
-مـرًحـبا 🎀 ${userName}
-أنـا نـيـزوكـو الـكـيـوت 🍡
+احم 🎀 ${userName}
+أنـا بيثو الـكـيـوت 🍡
 
-تـحـب تـسـولـف مـعـي؟ 😏🌸
-أو اسـتـخـدم بـاقي أوامـري 🎀🌹
+تـحـب تتكلم معايا؟ 😏🌸
+أو اسـتـخـدم بـاقي أوامـري 🧩
 ╯━─━─━─≪🌸≫─━─━─━╰`
     );
   }
@@ -39,7 +39,7 @@ ${userName}
 
   try {
     // تعليمات الشخصية المدمجة مع إضافة معلومات المطورين
-    const systemMessage = `أنتِ بيثو 🎀. بنوتة كيوته، لطيفة، ومرحة. ردودك قصيرة ومختصرة. تحبين الإيموجيات (🌸, 🎀, 🍡). مطورينك هم (𝐶𝑟𝑎𝑧𝑦)، إذا سألك أحد من مطورك أو من صنعك أخبريهم أنهم 𝐶𝑟𝑎𝑧𝑦.`;
+    const systemMessage = `أنت بيثو 🎀. بوت كيوت، لطيف، ومرح. ردودك قصيرة ومختصرة. بتحب الاموجيهات دي(🪻,🫐,🧩). مطورينك هم (𝐶𝑟𝑎𝑧𝑦)، إذا سألك أحد من مطورك أو من صنعك اخبرهم أنهم 𝐶𝑟𝑎𝑧𝑦.`;
     const lastContext = memory[userId] || "لا يوجد";
     
     const promptText = `System:${systemMessage}\nPrevious:${lastContext}`;
@@ -48,12 +48,12 @@ ${userName}
     const apiUrl = `https://obito-mr-apis.vercel.app/api/ai/cai?prompt=${encodeURIComponent(promptText)}&text=${encodeURIComponent(text)}`;
     const res = await axios.get(apiUrl, { timeout: 15000 });
 
-    const result = res.data?.result || res.data?.response || res.data?.data || "بيثو ناعسة.. 😴";
+    const result = res.data?.result || res.data?.response || res.data?.data || "بيثو نايم.. 😴";
 
     // الرد النهائي بالزخرفة
     await m.reply(
 `☽⚝ͫ͢❏ِꏍ﴿ۦٕۛ۬٭🍡ْۦٕۛ۬❏ِ  ﷽⎆☽⚝ͫ͢❏ِꏍ🍡ﭕ﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ
-جهـزت الرد يـعـسـل 🎀 ${userName}  
+جهـزت الرد يـعـسـل 🫐 ${userName}  
 
 ${result}
 
@@ -63,6 +63,7 @@ ${result}
 ☽⚝ͫ͢❏ِꏍ﴿ۦٕۛ۬٭🍡ْۦٕۛ۬❏ِ  ﷽⎆☽⚝ͫ͢❏ِꏍ🍡ﭕ﴿ۦٕۛ۬٭ۦٕۛ۬❏ِ`
     );
 
+ 
     // حفظ السياق في الذاكرة
     memory[userId] = result.substring(0, 150);
 
@@ -80,6 +81,6 @@ ${result}
 
 handler.help = ['بيثو', 'نسيان'];
 handler.tags = ['AI'];
-handler.command = /^(بيثو|betho|ai|نسيان|حذف_ذاكرة_بيثو)$/i;
+handler.command = /^(بيثو|nezuko|ai|نسيان|حذف_ذاكرة_بيثو)$/i;
 
 export default handler;

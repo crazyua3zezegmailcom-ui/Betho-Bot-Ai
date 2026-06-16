@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text }) => {
   if (!text) {
-    return m.reply(`🍇 *أمر إنشاء الصور* 🍇
+    return m.reply(`🧩 *أمر إنشاء الصور* 🧩
 
 ⌬ الاستخدام:
 .تخيل <وصف الصورة>
@@ -27,7 +27,7 @@ let handler = async (m, { conn, text }) => {
     
     const imageBuffer = await response.buffer();
     
-    const caption = `🍇🍍🌴🍀🌳🌿🫠
+    const caption = `🫐🪻🧩⚙️💮🌷🫠
 
 ✅ *تم إنشاء الصورة بنجاح*
 
@@ -53,6 +53,6 @@ handler.command = /^(تخيل2)$/i;
 handler.limit = true;
 
 const myCredit = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥`;
-const emojis = `ⲂＹ 𝐶𝑟𝑎𝑧𝑦 3ℝΑＢ 𝒅𝒆𝒗𝒔 🥝👑`;
+const emojis = `𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑`;
 
 export default handler;

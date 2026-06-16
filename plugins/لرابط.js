@@ -6,122 +6,104 @@ import axios from 'axios'
 import FormData from 'form-data'
 import { fileTypeFromBuffer } from 'file-type'
 
+// ─── رفع عبر 0x0.st ──────────────────────────────────────
+async function uploadTo0x0(buffer, fileName, mimeType) {
+  const form = new FormData()
+  form.append('file', buffer, { filename: fileName, contentType: mimeType })
+
+  const res = await axios.post('https://0x0.st', form, {
+    headers: form.getHeaders(),
+    maxContentLength: Infinity,
+    maxBodyLength: Infinity,
+    timeout: 60000
+  })
+
+  const url = (res.data || '').trim()
+  if (!url.startsWith('http')) throw new Error('رابط غير صحيح من 0x0.st')
+  return url
+}
+
+// ─── رفع عبر uguu.se (احتياطي) ───────────────────────────
+async function uploadToUguu(buffer, fileName, mimeType) {
+  const form = new FormData()
+  form.append('files[]', buffer, { filename: fileName, contentType: mimeType })
+
+  const res = await axios.post('https://uguu.se/upload.php', form, {
+    headers: form.getHeaders(),
+    maxContentLength: Infinity,
+    maxBodyLength: Infinity,
+    timeout: 60000
+  })
+
+  const data = res.data
+  const url = data?.files?.[0]?.url || data?.files?.[0]
+  if (!url || !url.startsWith('http')) throw new Error('رابط غير صحيح من uguu.se')
+  return url
+}
+
+// ─── الهاندلر الرئيسي ─────────────────────────────────────
 const handler = async (m, { conn, command }) => {
-  const q = m.quoted || m
+  const q    = m.quoted || m
   const mime = (q.msg || q).mimetype || q.mediaType || ''
+
   if (!mime) {
     return conn.sendMessage(m.chat, {
-      text: `⚠️ أرسل الوسائط مع الأمر *.${command}* أو رد على وسائط بهذا الأمر.`,
+      text: `⚠️ أرسل الوسائط مع الأمر *.${command}* أو رد على وسائط بهذا الأمر.`
     }, { quoted: m })
   }
 
-  // تحميل الوسائط
-  const media = await q.download()
-  const tempDir = './temp'
-  if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir)
+  await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
 
-  const ext = mime.split('/')[1] || 'dat'
+  let media
+  try {
+    media = await q.download()
+  } catch (e) {
+    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
+    return conn.sendMessage(m.chat, {
+      text: '❌ تعذّر تحميل الملف، تأكد من الرد على وسائط صحيحة.'
+    }, { quoted: m })
+  }
+
+  const fileInfo = await fileTypeFromBuffer(media)
+  const ext      = fileInfo?.ext || mime.split('/')[1] || 'dat'
+  const mimeType = fileInfo?.mime || mime
   const fileName = `media_${Date.now()}.${ext}`
-  const filePath = path.join(tempDir, fileName)
-  fs.writeFileSync(filePath, media)
 
-  const buffer = fs.readFileSync(filePath)
+  let url = null
+  let usedService = ''
 
-  // إرسال رد فعل "جار التحميل"
+  // حاول 0x0.st أولاً
+  try {
+    url = await uploadTo0x0(media, fileName, mimeType)
+    usedService = '0x0.st'
+  } catch (e1) {
+    console.error('0x0.st فشل:', e1.message)
+    // احتياطي: uguu.se
+    try {
+      url = await uploadToUguu(media, fileName, mimeType)
+      usedService = 'uguu.se'
+    } catch (e2) {
+      console.error('uguu.se فشل:', e2.message)
+    }
+  }
+
+  if (!url) {
+    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
+    return conn.sendMessage(m.chat, {
+      text: '❌ فشل الرفع على جميع الخوادم، حاول لاحقاً.'
+    }, { quoted: m })
+  }
+
   await conn.sendMessage(m.chat, {
-    react: { text: '⏳', key: m.key }
-  })
+    text: `🔗 *الرابط:*\n${url}`
+  }, { quoted: m })
 
-  // رفع إلى خدمات استضافة الملفات المختلفة
-  const uploadToSupa = async (buffer) => {
-    try {
-      const form = new FormData()
-      form.append('file', buffer, 'upload.jpg')
-      const res = await axios.post('https://i.supa.codes/api/upload', form, {
-        headers: form.getHeaders()
-      })
-      return res.data?.link || null
-    } catch (err) {
-      console.error('خطأ Supa:', err?.response?.data || err.message)
-      return null
-    }
-  }
-
-  const uploadToTmpFiles = async (filePath) => {
-    try {
-      const buf = fs.readFileSync(filePath)
-      const { ext, mime } = await fileTypeFromBuffer(buf)
-      const form = new FormData()
-      form.append('file', buf, {
-        filename: `${Date.now()}.${ext}`,
-        contentType: mime
-      })
-      const res = await axios.post('https://tmpfiles.org/api/v1/upload', form, {
-        headers: form.getHeaders()
-      })
-      return res.data.data.url.replace('s.org/', 's.org/dl/')
-    } catch (err) {
-      console.error('خطأ TmpFiles:', err)
-      return null
-    }
-  }
-
-  const uploadToUguu = async (filePath) => {
-    try {
-      const form = new FormData()
-      form.append('files[]', fs.createReadStream(filePath))
-      const res = await axios.post('https://uguu.se/upload.php', form, {
-        headers: form.getHeaders()
-      })
-      return res.data.files?.[0]?.url || null
-    } catch (err) {
-      console.error('خطأ Uguu:', err)
-      return null
-    }
-  }
-
-  const uploadToFreeImageHost = async (buffer) => {
-    try {
-      const form = new FormData()
-      form.append('source', buffer, 'file')
-      const res = await axios.post('https://freeimage.host/api/1/upload', form, {
-        params: {
-          key: '6d207e02198a847aa98d0a2a901485a5' // استبدل إذا تجاوزت الحصة
-        },
-        headers: form.getHeaders()
-      })
-      return res.data.image.url
-    } catch (err) {
-      console.error('خطأ FreeImageHost:', err?.response?.data || err.message)
-      return null
-    }
-  }
-
-  const [supa, tmp, uguu, freehost] = await Promise.all([
-    uploadToSupa(buffer),
-    uploadToTmpFiles(filePath),
-    uploadToUguu(filePath),
-    uploadToFreeImageHost(buffer),
-  ])
-
-  let message = '*✅ تم الرفع بنجاح إلى عدة خدمات:*\n'
-  if (supa) message += `\n🔗 *أݪــࢪابــــط الاول* ${supa}`
-  if (tmp) message += `\n🔗 *الــــࢪابــــط الثــــاني* ${tmp}`
-  if (uguu) message += `\n🔗 *الࢪابــــط الــــثالــــث* ${uguu}`
-  if (freehost) message += `\n🔗 *FreeImage.Host:* ${freehost}`
-
-  await conn.sendMessage(m.chat, { text: message }, { quoted: m })
-  await conn.sendMessage(m.chat, {
-    react: { text: '✅', key: m.key }
-  })
-
-  // حذف الملف المؤقت
-  fs.unlinkSync(filePath)
+  await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
 }
 
-handler.help = ['tourl-pro']
-handler.tags = ['uploader']
+handler.help    = ['لرابط']
+handler.tags    = ['uploader']
 handler.command = /^(لرابط)$/i
-handler.limit = true
+handler.limit   = true
 
 export default handler

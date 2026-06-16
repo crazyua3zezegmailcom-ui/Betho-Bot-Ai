@@ -4,17 +4,15 @@ import os from 'os'
 import { createCanvas, loadImage } from 'canvas'
 import { exec } from 'child_process'
 import { promisify } from 'util'
-import speed from "performance-now" // مكتبة حساب السرعة بدقة
+import speed from "performance-now"
 import pkg from '@whiskeysockets/baileys'
 const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg
 
 const execAsync = promisify(exec)
 
-// الروابط
 const bgUrl = "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg" 
 const botAvatarUrl = "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg"
 
-// 1. دالة جهة الاتصال (كوت)
 function contactQuote(m) {
   return {
     key: {
@@ -34,27 +32,22 @@ function contactQuote(m) {
 }
 
 let handler = async (m, { conn }) => {
-    // حساب السرعة (البداية)
     let timestamp = speed()
     
-    // بيانات النظام
     let uptimeMs = process.uptime() * 1000
     let uptimeFormatted = clockString(uptimeMs)
     let today = new Date()
     let dateStr = `${today.getFullYear()}/${(today.getMonth()+1).toString().padStart(2,'0')}/${today.getDate().toString().padStart(2,'0')}`
     
-    // عدد الملفات والأخطاء
     const pluginsDir = path.join(process.cwd(), './plugins')
     const totalFiles = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js')).length
     let totalErrors = global.db?.data?.stats?.errors || 0 
 
-    // الرام والمعالج للصورة
     const totalRamSys = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2)
     const freeRamSys = (os.freemem() / 1024 / 1024 / 1024).toFixed(2)
     const usedRamSys = (totalRamSys - freeRamSys).toFixed(2)
     const cpuModel = os.cpus()[0].model.split(' ')[0] + " Core"
 
-    // مساحة القرص
     let totalDisk = "100GB", usedDisk = "45GB" 
     try {
         const { stdout } = await execAsync(`df -h . | tail -1 | awk '{print $2,$3}'`)
@@ -62,7 +55,6 @@ let handler = async (m, { conn }) => {
         if (parts.length >= 2) { totalDisk = parts[0]; usedDisk = parts[1]; }
     } catch (e) {}
 
-    // --- تصميم الصورة (Canvas) ---
     const width = 1000, height = 650
     const canvas = createCanvas(width, height)
     const ctx = canvas.getContext('2d')
@@ -114,30 +106,28 @@ let handler = async (m, { conn }) => {
 
         const buffer = canvas.toBuffer('image/png')
         
-        // حساب زمن الاستجابة (النهاية)
         let latensi = speed() - timestamp
 
-        // تجهيز الميديا
         let media = await prepareWAMessageMedia({ image: buffer }, { upload: conn.waUploadToServer })
 
-        const caption = `*﹝ ✅⃝🌸 تـم تـولـيد تقرير النـظام بـنـجـاح ﹞*
-*_🍡 .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥​_*
+        const caption = `*﹝ ✅⃝🌸  احم امسك تقرير عشان تعرف اني شغال تنين ﹞*
+*_🐺 .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥​_*
 
-*_🌳 عـدد الاوامـر_* ( ${totalFiles} ملف )
-*_🍒 الايـرور_* ( ${totalFiles}/${totalErrors} )
-*_🍇 سـرعـه الأداه_* ( ${latensi.toFixed(4)} _ms_ )
-*_🍉 وقـت تشـغيل نـيزوكو_* ( ${uptimeFormatted} )
+*_🪻 عـدد الاوامـر_* ( ${totalFiles} ملف )
+*_🫐 الايـرور_* ( ${totalFiles}/${totalErrors} )
+*_🧩 سـرعـه الأداه_* ( ${latensi.toFixed(4)} _ms_ )
+*_⚙️ وقـت تشـغيل بيثو_* ( ${uptimeFormatted} )
 
 
-*_🥭 تـعلـم كيـفيه صـنعه_* ابحث في اليوتيوب بيثو ai free bot WhatsApp 3rab_top_devs | القناه عرب توب ديف |`.trim()
+*_😊اعتبرني صحبك حبيبك 😇 موجود ديما عشان اطلعك من ضيقك _*
+*_🤍 صلي علي النبي 🤍_*`.trim()
 
-        // --- إرسال الرسالة بدون علامة التوجيه ---
         let msg = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
             message: {
               interactiveMessage: proto.Message.InteractiveMessage.fromObject({
                 body: proto.Message.InteractiveMessage.Body.fromObject({ text: caption }),
-                footer: proto.Message.InteractiveMessage.Footer.fromObject({ text: "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥" }),
+                footer: proto.Message.InteractiveMessage.Footer.fromObject({ text: "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥" }),
                 header: proto.Message.InteractiveMessage.Header.fromObject({
                   hasMediaAttachment: true,
                   imageMessage: media.imageMessage
@@ -147,7 +137,7 @@ let handler = async (m, { conn }) => {
                     {
                       name: "cta_url",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "Support Betho 👑",
+                        display_text: "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 𝐶ℎ𝑎𝑛𝑛𝑒𝑙 👑",
                         url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
                       })
                     }
@@ -155,8 +145,8 @@ let handler = async (m, { conn }) => {
                 }),
                 contextInfo: {
                   mentionedJid: [m.sender],
-                  forwardingScore: 0,   // تم تصفير السكور لإخفاء علامة التوجيه
-                  isForwarded: false    // إيقاف علامة "معاد توجيهه"
+                  forwardingScore: 0,
+                  isForwarded: false
                 }
               })
             }

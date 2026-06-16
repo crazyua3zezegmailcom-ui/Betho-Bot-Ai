@@ -42,7 +42,7 @@ export async function handler(m, { command, text, conn }) {
 
             global.db.data.users[m.sender].exp += totalPoints;
 
-            conn.sendButton(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة صحيحة مبروك ✨✅_*\n│ 💰 *الجائزة:* ${totalPoints}xp\n│ ⚡ *بونص السرعة:* ${speedBonus}\n│ 📈 *المستوى التالي:* ${currentLevel + 1}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, null, null, [[`↬ السؤال التالي`, `.المليون`]], null, null);
+            conn.sendButton(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_ي ابن اللعيبه ي فاجر صح✨✅_*\n│ 💰 *الجائزة:* ${totalPoints}xp\n│ ⚡ *بونص السرعة:* ${speedBonus}\n│ 📈 *المستوى التالي:* ${currentLevel + 1}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, null, null, [[`↬ السؤال التالي`, `.المليون`]], null, null);
 
             if (currentLevel === 5 || currentLevel === 10) {
                 conn.reply(m.chat, `🎉 مبروك! وصلت للمستوى ${currentLevel} وحصلت على مكافأة 1000xp إضافية!`, m);

@@ -1,6 +1,6 @@
-// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
+// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ بيثو ؍ 🌸♡゙ ُ𓂁
 // أوٰأم࣬ــࢪ م࣬ٺم࣬يــژۿ . ⊹
-// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
+// حہּٰقَــــوٰقَ 𝐶𝑟𝑎𝑧𝑦 𝒅𝒆𝒗 🐦☕
 // أݪــسٰࢪقَــۿ ݪأ ٺــفَـيډڪٰٖ يم࣬غٰــفَݪ
 // أسٰـم࣬ أݪأم࣬ــࢪ رستر.js
 // ٺـأࢪيخَ صَـنٰأـ؏ٚـۿ أݪــبٚوٰٺ ؍ 🌸♡゙ ُ𓂁 2024_9_22
@@ -13,18 +13,18 @@ let handler = async (m, { conn, isROwner, text }) => {
 if (conn.user.jid == conn.user.jid) {
 async function loading() {
 var hawemod = ["10%", "30%", "50%", "80%", "100%" ]
-let { key } = await conn.sendMessage(m.chat, {text: `*∘₊✧──────🌹──────✧₊∘*
+let { key } = await conn.sendMessage(m.chat, {text: `*∘₊✧──────🪻──────✧₊∘*
 *جَارِ إِعَادَةُ التَّشْغِيلِ...*
-∘₊✧──────🌹──────✧₊∘*`}, {quoted: m})
+∘₊✧──────🪻──────✧₊∘*`}, {quoted: m})
 for (let i = 0; i < hawemod.length; i++) {
 await new Promise(resolve => setTimeout(resolve, 1000)); 
-await conn.sendMessage(m.chat, {text: `*∘₊✧──────🌹──────✧₊∘*
+await conn.sendMessage(m.chat, {text: `*∘₊✧──────🪻──────✧₊∘*
 ${hawemod[i]}
-∘₊✧──────🌹──────✧₊∘*`, edit: key}, {quoted: m})}
-await conn.sendMessage(m.chat, {text: `*∘₊✧──────🌹──────✧₊∘*
+∘₊✧──────🪻──────✧₊∘*`, edit: key}, {quoted: m})}
+await conn.sendMessage(m.chat, {text: `*∘₊✧──────🪻──────✧₊∘*
 🚀 جَارِ إِعَادَةُ تَشْغِيلِ الْبُوتِ...
 يُرْجَى الْاِنْتِظَارُ لَحْظَةً
-∘₊✧──────🌹──────✧₊∘*`, edit: key}, {quoted: m});         
+∘₊✧──────🪻──────✧₊∘*`, edit: key}, {quoted: m});         
 //process.send("reset")
 process.exit(0); 
 }

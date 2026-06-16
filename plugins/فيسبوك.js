@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // الحقوق الخاصة بك
-const myCredit = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥Ａ ⃝🌿ᶦ🎀`;
+const myCredit = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥`;
 
 async function fesnuk(postUrl, cookie = "", userAgent = "") {
     if (!postUrl || !postUrl.trim()) throw new Error("يرجى تحديد رابط فيسبوك صالح.");

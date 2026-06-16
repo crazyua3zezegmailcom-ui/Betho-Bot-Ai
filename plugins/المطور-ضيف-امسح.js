@@ -1,18 +1,18 @@
 import fs from 'fs';
 
 const handler = async (m, { text, usedPrefix, command, conn }) => {
-  if (!text) throw `🤔 امم.. ما الاسم الذي أعطيه للأمر؟`;
+  if (!text) throw `🤔 احم....اسمي الامر االرد؟`;
 
   const path = `plugins/${text}.js`;
 
   if (command === 'ضيف' || command === 'addp' || command === 'addplugin') {
-    if (!m.quoted || !m.quoted.text) throw `📩 الرد على الرسالة ليتم حفظها!`;
+    if (!m.quoted || !m.quoted.text) throw `رد علي الرساله عشان احفظها يعم `;
 
     await fs.writeFileSync(path, m.quoted.text);
 
     m.reply(`✅ تم الحفظ باسم ${path} بنجاح!`);
   } else if (command === 'امسح') {
-    if (!fs.existsSync(path)) throw `❌ الملف "${path}" غير موجود لحذفه!`;
+    if (!fs.existsSync(path)) throw `❌ الملف "${path}" مش موجوده عشان امسحها يحبيبي !`;
 
     fs.unlinkSync(path);
 

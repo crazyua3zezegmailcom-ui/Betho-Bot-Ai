@@ -1,6 +1,6 @@
-// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
+// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ بيثو ؍ 🌸♡゙ ُ𓂁
 // أوٰأم࣬ــࢪ م࣬ٺم࣬يــژۿ . ⊹
-// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
+// حہּٰقَــــوٰقَ 𝐶𝑟𝑎𝑧𝑦 𝒅𝒆𝒗 🐦☕
 // أݪــسٰࢪقَــۿ ݪأ ٺــفَـيډڪٰٖ يم࣬غٰــفَݪ
 // أسٰـم࣬ أݪأم࣬ــࢪ بينترست.js
 // ٺـأࢪيخَ صَـنٰأـ؏ٚـۿ أݪــبٚوٰٺ ؍ 🌸♡゙ ُ𓂁 2024_9_22
@@ -161,7 +161,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       viewOnceMessage: {
         message: {
           interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-            body: { text: "تـم جلـب الصـور بـدقـه HD🌸 .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥𝑩𝜣𝑻" },
+            body: { text: "تـم جلـب الصـور بـدقـه HD🪻 .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥𝑩𝜣𝑻" },
             footer: { text: "⚡ Pinterest HD Search" },
             carouselMessage:
               proto.Message.InteractiveMessage.CarouselMessage.fromObject({

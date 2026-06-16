@@ -8,7 +8,7 @@ import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     // التحقق من النص
-    if (!text) return m.reply(`⚠️ *يـا هـلا بـك فـي مـعمل نـيزوكو*\n\nيرجى كتابة وصف للصورة التي تريد توليدها.\nمثال: \`${usedPrefix + command} مدينة مستقبلية بنظام النيون\``);
+    if (!text) return m.reply(`⚠️ *يـا هـلا بـك فـي مـعمل بيثو*\n\nيرجى كتابة وصف للصورة التي تريد توليدها.\nمثال: \`${usedPrefix + command} مدينة مستقبلية بنظام النيون\``);
 
     await m.react('🎨');
     
@@ -49,7 +49,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         // 3. إرسال الصورة النهائية بالوصف العربي والزخرفة
         await conn.sendMessage(m.chat, { 
             image: { url: resultUrl }, 
-            caption: `*𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢*\n\n✨ *تـم رسـم خـيالك بـنجاح!*\n📝 *الـطلب:* ${text}\n🚀 *الـتقنية:* Flux Pro 2 v1.0\n\n*اسـتمتـع بـالنتيجة مـع نـيزوكو 🎀*` 
+            caption: `*𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢*\n\n✨ *تـم رسـم خـيالك بـنجاح!*\n📝 *الـطلب:* ${text}\n🚀 *الـتقنية:* Flux Pro 2 v1.0\n\n*اسـتمتـع بـالنتيجة مـع بيثو 🧩*` 
         }, { quoted: m });
 
         await m.react('✅');

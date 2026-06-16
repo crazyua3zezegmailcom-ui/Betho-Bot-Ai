@@ -136,7 +136,7 @@ handler.before = async function (m, { conn, participants, groupMetadata, chat: _
       ctx.shadowBlur  = 14
       ctx.font      = 'bold 38px sans-serif'
       ctx.fillStyle = '#ffffff'
-      ctx.fillText('أهلاً بك ✦', textX, textBaseY)
+      ctx.fillText('نورت/ي ', textX, textBaseY)
       ctx.restore()
 
       ctx.save()
@@ -192,11 +192,11 @@ handler.before = async function (m, { conn, participants, groupMetadata, chat: _
     ctx.restore()
 
     // عدد الأعضاء
-    ctx.direction = 'rtl'
-    ctx.textAlign = 'right'
-    ctx.font      = '17px sans-serif'
-    ctx.fillStyle = '#a1a1aa'
-    ctx.fillText(`👥 العضو رقم ${memberCount}`, textX, 275)
+  ctx.direction = 'rtl'
+  ctx.textAlign = 'right'
+  ctx.font      = '17px sans-serif'
+  ctx.fillStyle = '#a1a1aa'
+  ctx.fillText(`👥 العضو رقم ${memberCount}`, textX, 275)
 
     // اسم البوت
     ctx.direction  = 'ltr'

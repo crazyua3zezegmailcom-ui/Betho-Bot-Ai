@@ -9,7 +9,7 @@ const handler = async (m, { conn }) => {
     let id = m.chat;
 
     if (conn.tekateki[id]) {
-        return conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *_لا يزال هناك سؤال جاري!_* ⚠️\n╯───≪ 🌿🍉🍡 ≫───╰`, conn.tekateki[id][0]);
+        return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌬ *_لا يزال هناك سؤال جاري!_* ⚠️\n╯───≪ 🫐🪻🧩 ≫───╰`, conn.tekateki[id][0]);
     }
 
     let filePath = './src/game/dean.json';
@@ -27,16 +27,16 @@ const handler = async (m, { conn }) => {
     let json = tekateki[Math.floor(Math.random() * tekateki.length)];
 
     let caption = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥
-🍒 𝑩𝒆𝒕𝒉𝒐 🍇
+⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️
 𝐵𝑦 𝐶𝑟𝑎𝑧𝑦
 
-╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮
+╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮
 │ ⌬ *السؤال:* ${json.question} 🕋
 │ 
 │ ⌬ *الاعـب:* @${m.sender.split('@')[0]}
 │ ⌬ *الوقت:* ${(timeout / 1000).toFixed(0)} ثانية ⏳
 │ ⌬ *الجائزة:* ${poin}xp 💰
-╯───≪ 🌿🍉🍡 ≫───╰
+╯───≪ 🫐🪻🧩 ≫───╰
 FREE BOT WHATSAPP 3RAB Life`.trim();
 
     conn.tekateki[id] = [
@@ -45,7 +45,7 @@ FREE BOT WHATSAPP 3RAB Life`.trim();
         poin,
         setTimeout(async () => {
             if (conn.tekateki[id]) {
-                await conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌛ *انتهى الوقت يا بطل*\n│ 💡 *الإجابة كانت:* ${json.response}\n╯───≪ 🌿🍉🍡 ≫───╰`, conn.tekateki[id][0]);
+                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌛ *انتهى الوقت يا بطل*\n│ 💡 *الإجابة كانت:* ${json.response}\n╯───≪ 🫐🪻🧩 ≫───╰`, conn.tekateki[id][0]);
                 delete conn.tekateki[id];
             }
         }, timeout)

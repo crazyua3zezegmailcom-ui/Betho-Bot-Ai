@@ -29,14 +29,14 @@ const handler = async (m, { conn, isAdmin, isBotAdmin }) => {
     await conn.sendMessage(m.chat, { delete: m.key });
 
     // 5. إرسال تأكيد بالزخرفة الجديدة
-    let msg = `╗═══≪ 🌿🍉🍡 ≫═══╔
+    let msg = `╗═══≪ ⚙️🧩⚙️ ≫═══╔
 🗑️ *تم الحذف بنجاح*
 
 𓆩⃞🍒𓆪 *الحالة:* تم التطهير ✅
 𓆩⃞🍇𓆪 *بواسطة:* @${m.sender.split('@')[0]}
 
 ✨ *الشات الآن نظيف*
-╝═══≪ 🌿🍉🍡 ≫═══╚`;
+╝═══≪ ⚙️🧩⚙️ ≫═══╚`;
 
     const confirmation = await conn.sendMessage(m.chat, { 
         text: msg, 

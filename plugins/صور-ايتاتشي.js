@@ -5,7 +5,7 @@ const { generateWAMessageContent, generateWAMessageFromContent, proto } =
 
 // الحقوق والستايل
 const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
-const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
+const emojis = `⚙️🌹⚙️ Pineapple 🫐🪻🧩💮`;
 
 // قائمة الـ 40 برومبت لإيتاتشي أوتشيها
 const itachiPrompts = [
@@ -98,7 +98,7 @@ let handler = async (m, { conn }) => {
 
   let result = await searchPinterest(randomPrompt);
   if (!result.status)
-    return m.reply(`*_ هـلا ❌ ${result.message || 'فـشـل الـجـلـب'} _*`);
+    return m.reply(`*_ احم ❌ ${result.message || 'فـشـل الـجـلـب'} _*`);
 
   let pins = result.pins.slice(0, 10);
   let cards = [];

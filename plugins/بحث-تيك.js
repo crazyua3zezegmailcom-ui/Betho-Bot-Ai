@@ -1,6 +1,6 @@
-// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
+// م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ بيثو ؍ 🌸♡゙ ُ𓂁
 // أوٰأم࣬ــوٰ ر م࣬ٺم࣬يــژۿ . ⊹
-// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
+// حہּٰقَــــوٰقَ 𝐶𝑟𝑎𝑧𝑦 𝒅𝒆𝒗 🐦☕
 // أسٰـم࣬ أݪأم࣬ــࢪ بحث-تيك.js
 // ࢪأبٚــطَ قَنٰــأۿ أݪم࣬ــطَــوٰࢪ ..)✘🖤🧸.
 // https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e
@@ -11,7 +11,7 @@ import baileys from "@whiskeysockets/baileys";
 
 // الحقوق والستايل الخاص بك
 const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
-const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
+const emojis = `🫐🪻🧩 Pineapple ❄💮🌌🌹`;
 
 const ttSearch = async (query, count = 3) => {
     try {
@@ -76,7 +76,7 @@ async function sendVideoAlbum(conn, m, videos, caption) {
 }
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) return m.reply(`*_يرجى إدخال اسم المقطع الذي تريد البحث عنه 🔍_*\n\n*مثال:* ${usedPrefix + command} بيثو | 5`);
+    if (!text) return m.reply(`*_قول الي عايز تبحث عنه 🔍_*\n\n*مثال:* ${usedPrefix + command} بيثو | 5`);
 
     // التفاعل بانتظار
     await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
@@ -87,7 +87,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let videos = await ttSearch(query, count);
     if (!videos.length) {
         await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-        return m.reply("*_لم يتم العثور على فيديوهات، جرب كلمات بحث أخرى 🎬_*");
+        return m.reply("*_احم ملقناش حاجة جرب مره تاني 🎬_*");
     }
 
     const caption = `*_تم العثور على نتائج بحث تيك توك 🎬_*\n\n` +

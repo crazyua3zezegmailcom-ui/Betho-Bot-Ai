@@ -15,10 +15,10 @@ export async function before(m) {
         if (m.text.toLowerCase().trim() == json.response.toLowerCase().trim()) {
             global.db.data.users[m.sender].exp += this.tekateki[id][2]
             
-            m.reply(`╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮
+            m.reply(`╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮
 │ ⌬ *_إجابة صحيحة مبروك ✨✅_*
 │ 💰 *الجائزة:* ${this.tekateki[id][2]}xp
-╯───≪ 🌿🍉🍡 ≫───╰`)
+╯───≪ 🫐🪻🧩 ≫───╰`)
             
             clearTimeout(this.tekateki[id][3])
             delete this.tekateki[id]

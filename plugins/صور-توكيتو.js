@@ -5,7 +5,7 @@ const { generateWAMessageContent, generateWAMessageFromContent, proto } =
 
 // الحقوق والستايل الخاص بك
 const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
-const emojis = `🌳🌴🍀 Pineapple 🍍🌿🍇 🍉`;
+const emojis = `⚙️🌹⚙️ Pineapple 🫐🪻💮🧩`;
 
 // قائمة الـ 40 برومبت لتوكيتو مويشيرو لضمان تنوع الصور وجودتها
 const tokitoPrompts = [

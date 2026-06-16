@@ -59,10 +59,10 @@ let handler = async (m, { conn, text }) => {
   let mime = (q.msg || q).mimetype || ""
   
   if (!/image/.test(mime)) {
-    return m.reply("🍇 *أمر تعديل الصور* 🍇\n\n⌬ يرجى الرد على صورة أو إرسال صورة مع الأمر.\n⌬ مثال: الرد على صورة وكتابة .تعديل حولها لأنمي")
+    return m.reply("⚙️ *أمر تعديل الصور* ⚙️\n\n⌬ يرجى الرد على صورة أو إرسال صورة مع الأمر.\n⌬ مثال: الرد على صورة وكتابة .تعديل حولها لأنمي")
   }
   if (!text) {
-    return m.reply("🍇 *أمر تعديل الصور* 🍇\n\n⌬ أين الوصف؟\n⌬ مثال: .تعديل اجعل خلفيتها شاطئ البحر")
+    return m.reply("⚙️ *أمر تعديل الصور* ⚙️\n\n⌬ أين الوصف؟\n⌬ مثال: .تعديل اجعل خلفيتها شاطئ البحر")
   }
 
   const prompt = text.trim()
@@ -87,7 +87,7 @@ let handler = async (m, { conn, text }) => {
     const task = await ImgEditor.generate(prompt, up.publicUrl)
     const resultUrl = await ImgEditor.check(task.taskId)
 
-    const caption = `🍇🍍🌴🍀🌳🌿🫠
+    const caption = `🪻🫐🧩🌹💮🌷🫠
 
 ✅ *تم تعديل الصورة بنجاح*
 
@@ -117,6 +117,6 @@ handler.command = /^(تعديل|edit)$/i
 handler.limit = true
 
 const myCredit = `.𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥`
-const emojis = `ⲂＹ 𝐶𝑟𝑎𝑧𝑦 3ℝΑＢ 𝒅𝒆𝒗𝒔 🥝👑`
+const emojis = `𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑`
 
 export default handler

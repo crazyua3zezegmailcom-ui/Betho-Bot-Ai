@@ -8,7 +8,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.tekateki = conn.tekateki ? conn.tekateki : {};
     let id = m.chat;
     if (id in conn.tekateki) {
-        return conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌬ *_لا تزال هناك لعبة تاريخ جارية!_* ⏳\n╯───≪ 🌿🍉🍡 ≫───╰`, conn.tekateki[id][0]);
+        return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌬ *_لا تزال هناك لعبة تاريخ جارية!_* ⏳\n╯───≪ 🫐🪻🧩 ≫───╰`, conn.tekateki[id][0]);
     }
 
     let filePath = `./src/game/تاريخ.json`;
@@ -23,13 +23,13 @@ let handler = async (m, { conn, usedPrefix }) => {
 🍒 𝑩𝒆𝒕𝒉𝒐 🍇
 𝐵𝑦 𝐶𝑟𝑎𝑧𝑦
 
-╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮
+╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮
 │ ⌬ *السؤال:* ${json.question} 📜
 │ 
 │ ⌬ *الاعـب:* @${m.sender.split('@')[0]}
 │ ⌬ *الوقت:* ${(timeout / 1000).toFixed(0)} ثانية ⏳
 │ ⌬ *الجائزة:* ${poin}xp 💰
-╯───≪ 🌿🍉🍡 ≫───╰
+╯───≪ 🫐🪻🧩 ≫───╰
 FREE BOT WHATSAPP 3RAB Life`.trim();
 
     conn.tekateki[id] = [
@@ -37,7 +37,7 @@ FREE BOT WHATSAPP 3RAB Life`.trim();
         json, 
         poin,
         setTimeout(async () => {
-            if (conn.tekateki[id]) await conn.reply(m.chat, `╭───≪ 🍒 𝑩𝒆𝒕𝒉𝒐 🍇 ≫───╮\n│ ⌛ *انتهى وقت المؤرخين!*\n│ 💡 *الإجابة الصحيحة:* ${json.response}\n╯───≪ 🌿🍉🍡 ≫───╰`, conn.tekateki[id][0]);
+            if (conn.tekateki[id]) await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 ⚙️ ≫───╮\n│ ⌛ *انتهى وقت المؤرخين!*\n│ 💡 *الإجابة الصحيحة:* ${json.response}\n╯───≪ 🫐🪻🧩 ≫───╰`, conn.tekateki[id][0]);
             delete conn.tekateki[id];
         }, timeout)
     ];

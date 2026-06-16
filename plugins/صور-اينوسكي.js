@@ -136,7 +136,7 @@ let handler = async (m, { conn }) => {
       viewOnceMessage: {
         message: {
           interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-            body: { text: `*_تـم جلـب صـور إيـنـوسـكـي بـدقـه HD 🍉_*\n\n${emojis}` },
+            body: { text: `*_تـم جلـب صـور إيـنـوسـكـي بـدقـه HD 🧩_*\n\n${emojis}` },
             footer: { text: myCredit },
             carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({
               cards,

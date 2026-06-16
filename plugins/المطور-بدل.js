@@ -13,12 +13,12 @@ import path from 'path';
 // قائمة الأرقام المسموح لها بالتنفيذ
 const allowedNumbers = [
   '15877004085@s.whatsapp.net',
-  '201201756710@s.whatsapp.net'
+  '201214057674@s.whatsapp.net'
 ];
 
 const handler = async (m, { conn, text }) => {
   const emoji = '🍷️';
-  const signature = '𝓗𝓤𝓛𝓚 𝓑𝓞𝓣 🍷️';
+  const signature = '⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥🍷️';
 
   if (!allowedNumbers.includes(m.sender)) {
     await conn.sendMessage(m.chat, { text: `${emoji} ❌ غير مسموح لك باستخدام هذا الأمر.\n\n${signature}` }, { quoted: m });

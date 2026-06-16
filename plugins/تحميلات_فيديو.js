@@ -49,7 +49,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     const interactiveMessage = {
       body: { text: `🎬 *تحميل فيديو يوتيوب*\n\nاختر جودة التحميل المطلوبة:` },
-      footer: { text: '𝑵𝑬𝒁𝑼𝑲𝑶 𝑩𝑶𝑻' },
+      footer: { text:'𝑩𝑬𝑻𝑯𝑶 𝑩𝑶𝑻' },
       nativeFlowMessage: { buttons }
     };
 

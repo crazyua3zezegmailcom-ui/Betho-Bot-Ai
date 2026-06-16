@@ -5,7 +5,7 @@ const { generateWAMessageFromContent, proto } = pkg;
 
 // الحقوق والستايل
 const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
-const emojis = `ⲂＹ 𝐶𝑟𝑎𝑧𝑦 3ℝΑＢ 𝒅𝒆𝒗𝒔 🥝👑`;
+const emojis = `𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑`;
 
 const HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -28,7 +28,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             const packageName = pkgUrl.split('/').pop().split('?')[0];
             const dlPageBtn = $('a.normal-download-btn').attr('href');
             
-            if (!dlPageBtn) return m.reply("❌ تعذر العثور على زر التحميل.");
+            if (!dlPageBtn) return m.reply("❌ احم مش لاقي زر التحميل.");
             const dlPageUrl = dlPageBtn.startsWith('http') ? dlPageBtn : 'https://apkpure.com' + dlPageBtn;
 
             // 2. الدخول لصفحة التحميل لجلب الرابط النهائي
@@ -48,12 +48,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             }
 
             const caption = `
-╭───≪ 🍒 𝗔𝗣𝗞 🍇 ≫───╮
+╭───≪ ⚙️ 𝗔𝗣𝗞 ⚙️ ≫───╮
 │ ⌬ اسـم التطبيق : ${appName}
 │ ⌬ اسـم الحـزمه : ${packageName}
 │ ⌬ الـحجم : ${sizeMB} MB
 │ ⌬ رابـط مباشر : [Click]
-╯───≪ 🌿🍉🍡 ≫───╰
+╯───≪ 🫐🪻🧩 ≫───╰
 
 *_ جـاري التحـميل و الارسـال...... ⏳ _*`.trim();
 
@@ -77,7 +77,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
     // أمر البحث الأساسي
-    if (!text) return m.reply(`*_ هـلا 🫠 _*\n\n*_ يـرجـى كـتـابـة اسـم الـتـطـبـيـق بـعـد الأمـر _*\n*_ مـثـال: ${usedPrefix + command} WhatsApp _*`);
+    if (!text) return m.reply(`*_ احم 🫠 _*\n\n*_ يـرجـى كـتـابـة اسـم الـتـطـبـيـق بـعـد الأمـر _*\n*_ مـثـال: ${usedPrefix + command} WhatsApp _*`);
 
     await m.react('🔍');
     try {
@@ -113,7 +113,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
                         }),
                         footer: proto.Message.InteractiveMessage.Footer.fromObject({ text: myCredit }),
                         header: proto.Message.InteractiveMessage.Header.fromObject({
-                            title: `*_ 📥 مـحـمـل تـطـبـيـقـات نـيـزوكـو 📥 _*`,
+                            title: `*_ 📥 مـحـمـل تـطـبـيـقـات بيثو 📥 _*`,
                             hasMediaAttachment: false
                         }),
                         nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({

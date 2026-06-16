@@ -85,7 +85,7 @@ let handler = async (m, { conn }) => {
   const randomPrompt = bethoPrompts[Math.floor(Math.random() * bethoPrompts.length)];
 
   await conn.sendMessage(m.chat, {
-    text: `*_جاࢪي جلب صــور نـيـزوكـو 🌸🍉_*`
+    text: `*_جاࢪي جلب صــور نـيـزوكـو 🧩_*`
   }, {});
 
   async function createImage(url) {
@@ -136,7 +136,7 @@ let handler = async (m, { conn }) => {
       viewOnceMessage: {
         message: {
           interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-            body: { text: `*_ تـم جلـب صـور نـيـزوكـو بـدقـه HD 🌸 _*\n\n${emojis}` },
+            body: { text: `*_ تـم جلـب صـور نـيـزوكـو بـدقـه HD 🧩 _*\n\n${emojis}` },
             footer: { text: myCredit },
             carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({
               cards,
@@ -151,8 +151,8 @@ let handler = async (m, { conn }) => {
   await conn.relayMessage(m.chat, bot.message, { messageId: bot.key.id });
 };
 
-handler.help = ["بيثو-تشان"];
+handler.help = ["نيزكو-تشان"];
 handler.tags = ["photo"];
-handler.command = /^(بيثو-تشان)$/i;
+handler.command = /^(نيزكو-تشان)$/i;
 
 export default handler;
