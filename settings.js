@@ -3,7 +3,7 @@ import chalk from "chalk"
 import { fileURLToPath } from "url"
 import fs from "fs"
 // ملف الاعدادات يلزمك التعديل في بعض المناطق
-global.botNumber = "201116571308"
+global.botNumber = "201039981389"
 
 // عدل في محل owenar لي كي تحط نفسك مالك للبوت 
 global.owner = ["584261208048", "201214057674", "201201756710"]
