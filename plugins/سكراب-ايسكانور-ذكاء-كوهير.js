@@ -10,7 +10,7 @@ import fetch from 'node-fetch';
 // ========== إعدادات Cohere (ضع مفتاحك الحقيقي) ==========
 const COHERE_CONFIG = {
     apiUrl: 'https://api.cohere.com/v2/chat',
-    apiKey: '1d3mHSFcByNEydwbRctcDxwpWnUSalwx31jYOuLQ', // المفتاح من الـ cURL
+    apiKey: process.env.COHERE_API_KEY || '', // set COHERE_API_KEY in Replit Secrets
     model: 'command-a-03-2025',
     temperature: 0.3,
     stream: false // نفضل false للبساطة، لكن يمكنك تفعيله

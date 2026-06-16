@@ -12,7 +12,7 @@ import fetch from 'node-fetch';
 const RYTR_CONFIG = {
     apiUrl: 'https://api.rytr.me/',
     // التوكن من الـ cURL – قد ينتهي صلاحيته، استبدله بتوكن جديد عند الحاجة
-    bearerToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZjNkNzhjN2RiMDg2ODE5Yzk1ZGJkMSIsImlhdCI6MTc3NzU4ODEwOX0.Xc1AQLSdwbuBN-mIIRR50aQJR_hAhS3Yph54uLwrc3Y',
+    bearerToken: process.env.RYTR_BEARER_TOKEN || '', // set RYTR_BEARER_TOKEN in Replit Secrets
     // معرفات ثابتة من الطلب (يمكن تغييرها حسب حاجتك)
     languageId: '60c4eb424660040013ca8a9f',   // AR? EN? هذا المعرف للغة العربية أو الإنجليزية (يبدو عاماً)
     toneId: '60572a639bdd4272b8fe358b',       // نبرة المحادثة (عامة)

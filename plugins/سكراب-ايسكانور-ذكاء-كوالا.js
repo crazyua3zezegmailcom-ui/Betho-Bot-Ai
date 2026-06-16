@@ -10,8 +10,8 @@ import fetch from 'node-fetch';
 // ========== إعدادات Koala (من الـ cURL) ==========
 const KOALA_CONFIG = {
     apiBase: 'https://sb.koala.sh/rest/v1',
-    apiKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzZWJpeWdxdm9jb2pkbHJ5aXF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzYzMDA0MDMsImV4cCI6MTk5MTg3NjQwM30.GoveiPXyIN-WNkfqBbdDyvf0veNfNvGP6Zk_kQYfejg',
-    authToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Im9MNVEzeW54YlZPclZxNy8iLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3FzZWJpeWdxdm9jb2pkbHJ5aXF1LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIwZDdhM2JhNC05YjZhLTRmOWQtOThjMy1lYjM5YWQ5MTQ2OGIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzc4MjMzMjIwLCJpYXQiOjE3Nzc2Mjg0MjEsImVtYWlsIjoiYWJtMjI0MTRAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJnb29nbGUiLCJwcm92aWRlcnMiOlsiZ29vZ2xlIl19LCJ1c2VyX21ldGFkYXRhIjp7ImF2YXRhcl91cmwiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NKTTVfNFVUSzVLT0NRWmpfeUM0Vkh2ZjR3QzRjY3g1U2wybGlwQzNRRWxwT2hEMGc9czk2LWMiLCJlbWFpbCI6ImFibTIyNDE0QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmdWxsX25hbWUiOiJBbWluIFRoIiwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tIiwibmFtZSI6IkFtaW4gVGgiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NKTTVfNFVUSzVLT0NRWmpfeUM0Vkh2ZjR3QzRjY3g1U2wybGlwQzNRRWxwT2hEMGc9czk2LWMiLCJwcm92aWRlcl9pZCI6IjExMjMyMjQwMTk2OTM4NDYwOTA2NCIsInN1YiI6IjExMjMyMjQwMTk2OTM4NDYwOTA2NCJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6Im9hdXRoIiwidGltZXN0YW1wIjoxNzc3NjI4NDIxfV0sInNlc3Npb25faWQiOiIxNjE3YjkzMy03MGMzLTRiOGEtOGJiYi1jM2NkMTc1YzFhOTQiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.k_mBp-xgWVDoLGUV94ocAQGxwiRzqRVgrDFzm3G39H4',
+    apiKey: process.env.KOALA_API_KEY || '', // set KOALA_API_KEY in Replit Secrets
+    authToken: process.env.KOALA_AUTH_TOKEN || '', // set KOALA_AUTH_TOKEN in Replit Secrets
     userId: '0d7a3ba4-9b6a-4f9d-98c3-eb39ad91468b', // من الـ cURL
     defaultChatId: '1b6f14e8-87fc-46ae-8802-0fd507950aee', // مثال، لكننا سننشئ لكل مستخدم أو نستخدم واحداً
     defaultModel: 'gemini-3-flash', // النموذج المُستخدم في الرد
