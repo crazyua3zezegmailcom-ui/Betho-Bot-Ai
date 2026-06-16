@@ -209,7 +209,7 @@
       "warn": 0
     },
     "120363407598531220@newsletter": {
-      "exp": 1413,
+      "exp": 1415,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3241,7 +3241,7 @@
       "warn": 0
     },
     "189696525205623@lid": {
-      "exp": 68,
+      "exp": 75,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3428,7 +3428,7 @@
     },
     "201039981389@s.whatsapp.net": {
       "name": "جووو",
-      "exp": 844,
+      "exp": 1069,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3449,7 +3449,7 @@
     },
     "201201756710@s.whatsapp.net": {
       "name": "𝐌𝐀𝐅𝐈𝐀",
-      "exp": 631,
+      "exp": 657,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3968,7 +3968,7 @@
     },
     "201055879236@s.whatsapp.net": {
       "name": "✘ڪيـ𝑲𝑰𝑳𝑾𝑨ـݪۅآ𖤍",
-      "exp": 168,
+      "exp": 224,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4010,7 +4010,7 @@
     },
     "201503296108@s.whatsapp.net": {
       "name": "🧜‍♀️حً ـوُ ℍ𝕠𝕦𝕣 ريـــــــّة🌊",
-      "exp": 198,
+      "exp": 300,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4072,7 +4072,7 @@
     },
     "97711160352968@s.whatsapp.net": {
       "name": "🧜‍♀️حً ـوُ ℍ𝕠𝕦𝕣 ريـــــــّة🌊",
-      "exp": 34,
+      "exp": 49,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4092,7 +4092,7 @@
       "warn": 0
     },
     "97711160352968@lid": {
-      "exp": 16,
+      "exp": 26,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4154,7 +4154,7 @@
       "warn": 0
     },
     "156852876775586@lid": {
-      "exp": 7,
+      "exp": 15,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4277,7 +4277,7 @@
       "warn": 0
     },
     "107576649863199@lid": {
-      "exp": 1,
+      "exp": 17,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4298,6 +4298,27 @@
     },
     "212511425097958@lid": {
       "exp": 16,
+      "coin": 0,
+      "bank": 0,
+      "level": 0,
+      "health": 100,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "premium": false,
+      "premiumTime": 0,
+      "banned": false,
+      "bannedReason": "",
+      "commands": 0,
+      "afk": -1,
+      "afkReason": "",
+      "warn": 0
+    },
+    "202203352547544@s.whatsapp.net": {
+      "name": "وزير الرحلات",
+      "exp": 9,
       "coin": 0,
       "bank": 0,
       "level": 0,
