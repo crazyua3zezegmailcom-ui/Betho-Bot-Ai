@@ -160,10 +160,13 @@ async function processMessage(m, conn, { isOwner, isAdmin, isBotAdmin } = {}) {
 
   if (!chatId.endsWith('@g.us')) return;
   if (!isEnabled(chatId)) return;
-  if (isOwner || isAdmin || isBotAdmin) return;
+
+  // استثناء: تجاهل رسائل المالك والمشرفين (هم معفيون)
+  if (isOwner || isAdmin) return;
 
   const state = getState(chatId);
-  const body  = (m.body || '').trim();
+  // m.text هو الحقل الصحيح في Baileys (m.body غير موجود)
+  const body  = (m.text || '').trim();
   const msg   = m.message;
   const name  = senderId.split('@')[0];
 
