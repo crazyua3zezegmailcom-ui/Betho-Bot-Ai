@@ -1,13 +1,11 @@
 // حہّٰقَـــوٰقَ 𝐶𝑟𝑎𝑧𝑦 💻🔥
 // أمر دعوه — يبعت دعوة مجموعة حقيقية للشخص (للأدمن فقط)
 
-import { proto, generateWAMessageFromContent } from '@whiskeysockets/baileys'
-
 let handler = async (m, { conn, text, isAdmin, isOwner, usedPrefix, command }) => {
 
   if (!text) return m.reply(
     `╔══════════════════╗\n` +
-    `║   📨 *أمر الدعوة*  ║\n` +
+    `║   📨 *أمر الدعوة*   ║\n` +
     `╚══════════════════╝\n\n` +
     `📌 *الاستخدام:*\n` +
     `${usedPrefix}${command} <رقم الهاتف>\n\n` +
@@ -33,37 +31,18 @@ let handler = async (m, { conn, text, isAdmin, isOwner, usedPrefix, command }) =
     const inviteCode = await conn.groupInviteCode(groupJid)
     if (!inviteCode) return m.reply('❌ *فشل جلب كود الدعوة، تأكد أن البوت أدمن!*')
 
-    // ─── تاريخ الانتهاء (3 أيام) ───
+    // ─── تاريخ الانتهاء (3 أيام بالثواني) ───
     const inviteExpiration = Math.floor((Date.now() + 3 * 24 * 60 * 60 * 1000) / 1000)
 
-    // ─── جلب صورة الجروب (اختياري) ───
-    let jpegThumbnail = null
-    try {
-      const picUrl = await conn.profilePictureUrl(groupJid, 'image')
-      const picRes = await fetch(picUrl)
-      if (picRes.ok) {
-        jpegThumbnail = Buffer.from(await picRes.arrayBuffer())
+    // ─── إرسال الدعوة عبر sendMessage بالطريقة الصحيحة ───
+    await conn.sendMessage(recipientJid, {
+      groupInvite: {
+        jid:              groupJid,
+        subject:          groupName,
+        inviteCode:       inviteCode,
+        inviteExpiration: inviteExpiration,
+        text:             `🌟 تمت دعوتك للانضمام إلى *${groupName}*`
       }
-    } catch {}
-
-    // ─── بناء رسالة الدعوة بالمسار الصحيح ───
-    const inviteMsg = proto.Message.GroupInviteMessage.fromObject({
-      inviteCode,
-      inviteExpiration,
-      groupJid,
-      groupName,
-      caption: `🌟 تمت دعوتك للانضمام إلى *${groupName}*`,
-      ...(jpegThumbnail ? { jpegThumbnail } : {})
-    })
-
-    const fullMsg = proto.Message.fromObject({ groupInviteMessage: inviteMsg })
-
-    const waMsg = generateWAMessageFromContent(recipientJid, fullMsg, {
-      userJid: conn.user.id
-    })
-
-    await conn.relayMessage(recipientJid, waMsg.message, {
-      messageId: waMsg.key.id
     })
 
     // ─── تأكيد في الجروب ───
@@ -81,6 +60,12 @@ let handler = async (m, { conn, text, isAdmin, isOwner, usedPrefix, command }) =
 
   } catch (err) {
     console.error('❌ خطأ في إرسال الدعوة:', err?.message || err)
+    if (err?.message?.includes('403') || err?.message?.includes('not-authorized')) {
+      return m.reply('❌ *فشل! تأكد أن البوت أدمن في الجروب*')
+    }
+    if (err?.message?.includes('404') || err?.message?.includes('not on whatsapp')) {
+      return m.reply('❌ *الرقم غير موجود على واتساب*')
+    }
     m.reply('❌ *فشل إرسال الدعوة — تأكد من صلاحيات البوت*')
   }
 }
