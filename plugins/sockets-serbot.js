@@ -1,7 +1,7 @@
 // أوامر البوتات الفرعيه - تنصيب البوت
 // BY 𝐶𝑟𝑎𝑧𝑦
 
-const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion } = (await import("@whiskeysockets/baileys"))
+const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion, generateWAMessageFromContent, proto } = (await import("@whiskeysockets/baileys"))
 import qrcode from "qrcode"
 import NodeCache from "node-cache"
 import fs from "fs"
@@ -161,18 +161,55 @@ export async function yukiJadiBot(options) {
             // حالة عرض الكود الرقمي (طريقة code)
             if (qr && mcode) {
                 let secret = await sock.requestPairingCode((m.sender.split`@`[0]), 'BETHO123')
-                secret = secret.match(/.{1,4}/g)?.join("-")
+                secret = secret.match(/.{1,4}/g)?.join("-") || secret
+                console.log('[تنصيب] كود الاقتران:', secret)
+
+                // إرسال صورة الدليل
                 txtCode = await conn.sendMessage(m.chat, {
                     image: { url: 'https://i.postimg.cc/P52T7Hh2/IMG-20260610-WA0073(1).jpg' },
                     caption: rtx2
                 }, { quoted: m })
-                codeBot = await m.reply(secret)
-                console.log(secret)
+
+                // إرسال الكود مع زر "نسخ الكود"
+                try {
+                    const codeWAMsg = generateWAMessageFromContent(
+                        m.chat,
+                        {
+                            interactiveMessage: proto.Message.InteractiveMessage.fromObject({
+                                body: {
+                                    text: `🔑 *كود الاقتران للبوت الفرعي:*\n\n\`\`\`${secret}\`\`\`\n\n_اضغط الزر لنسخ الكود تلقائياً_`
+                                },
+                                footer: { text: '© BETHO BOT' },
+                                header: proto.Message.InteractiveMessage.Header.fromObject({
+                                    hasMediaAttachment: false
+                                }),
+                                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
+                                    buttons: [{
+                                        name: 'cta_copy',
+                                        buttonParamsJson: JSON.stringify({
+                                            display_text: '📋 نسخ الكود',
+                                            copy_code: secret
+                                        })
+                                    }],
+                                    messageParamsJson: ''
+                                })
+                            })
+                        },
+                        { userJid: conn.user.id, quoted: m }
+                    )
+                    codeBot = await conn.relayMessage(m.chat, codeWAMsg.message, { messageId: codeWAMsg.key.id })
+                } catch (e) {
+                    // fallback: إرسال نص عادي لو فشل الزر التفاعلي
+                    console.error('[تنصيب] فشل زر النسخ، fallback للنص:', e.message)
+                    codeBot = await conn.sendMessage(m.chat, {
+                        text: `🔑 *كود الاقتران:*\n\n\`\`\`${secret}\`\`\``
+                    }, { quoted: m })
+                }
             }
             if (txtCode && txtCode.key) {
                 setTimeout(() => { conn.sendMessage(m.sender, { delete: txtCode.key }) }, 30000)
             }
-            if (codeBot && codeBot.key) {
+            if (codeBot && codeBot?.key) {
                 setTimeout(() => { conn.sendMessage(m.sender, { delete: codeBot.key }) }, 30000)
             }
 
