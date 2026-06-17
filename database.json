@@ -209,7 +209,7 @@
       "warn": 0
     },
     "120363407598531220@newsletter": {
-      "exp": 1462,
+      "exp": 1472,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3115,7 +3115,7 @@
     },
     "584261208048@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 32428,
+      "exp": 32513,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3129,7 +3129,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 209,
+      "commands": 215,
       "afk": -1,
       "afkReason": "",
       "warn": 0,
@@ -3261,8 +3261,8 @@
       "warn": 0
     },
     "201214057674@s.whatsapp.net": {
-      "name": "+20 121 405 7674",
-      "exp": 2,
+      "name": "𝓐𝓫𝓭𝓾𝓵𝓵𝓪𝓱",
+      "exp": 53,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3276,7 +3276,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 0,
+      "commands": 3,
       "afk": -1,
       "afkReason": "",
       "warn": 0
@@ -3344,7 +3344,7 @@
       "warn": 0
     },
     "151058798141443@lid": {
-      "exp": 4,
+      "exp": 28,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4423,6 +4423,26 @@
     "87605135802390@s.whatsapp.net": {
       "name": "آلَمِــــــــلَعــــــــوُنـــــــٌ آلَصـــغـــــــيـــــــّر",
       "exp": 0,
+      "coin": 0,
+      "bank": 0,
+      "level": 0,
+      "health": 100,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "premium": false,
+      "premiumTime": 0,
+      "banned": false,
+      "bannedReason": "",
+      "commands": 0,
+      "afk": -1,
+      "afkReason": "",
+      "warn": 0
+    },
+    "264798289838144@lid": {
+      "exp": 7,
       "coin": 0,
       "bank": 0,
       "level": 0,
