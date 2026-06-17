@@ -10,8 +10,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!query) {
       return m.reply(
         `╭───≪ 🍒 𝑷𝑳𝑨𝒀 🍇 ≫───╮\n` +
-        `│ ⌬ هـلا 🫠 نسيت تكتب شي!\n` +
-        `│ ⌬ عطيني اسم الأغنية أو رابط يوتيوب.\n` +
+        `│ ⌬ اح 🫠 نسيت تكتب شي!\n` +
+        `│ ⌬ عطيني اسم الأغنية\n` +
         `│ ⌬ مثال: ${usedPrefix + command} صوت الحرية\n` +
         `╰───≪ 🌿🍉🍡 ≫───╯\n\n` +
         `${myCredit}`
@@ -42,7 +42,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
 
-    // إرسال الملف كصوت (فويس) مع معلومات خارجية
     await conn.sendMessage(m.chat, {
       audio: { url: audioUrl },
       mimetype: 'audio/mpeg',
@@ -60,7 +59,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       } : undefined,
     }, { quoted: m });
 
-    // إرسال الملف كوثيقة قابلة للتحميل مع الكابشن المزخرف
     await conn.sendMessage(m.chat, {
       document: { url: audioUrl },
       mimetype: 'audio/mpeg',

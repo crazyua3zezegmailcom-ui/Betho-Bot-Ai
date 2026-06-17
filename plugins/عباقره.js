@@ -1806,7 +1806,7 @@ async function sendJokerQuestion(conn, chatId, game, teamIdx) {
 // ═══════════════════════════════════════════════════════
 //                    الهاندلر الرئيسي
 // ═══════════════════════════════════════════════════════
-let handler = async (m, { conn }) => {
+let handler = async (m, { conn, command }) => {
   const chatId = m.chat;
   const senderId = m.sender;
   const body = (m.body || '').trim();
@@ -1816,7 +1816,7 @@ let handler = async (m, { conn }) => {
     return conn.sendMessage(chatId, { text: '🚫 هذه اللعبة للجروبات فقط!' });
   }
 
-  const isStartCommand = /^العباقره$/i.test(body);
+  const isStartCommand = /^(العباقره|العباقرة|عباقره|عباقرة)$/i.test(command || '');
 
   // ─── أمر البدء ───
   if (isStartCommand) {
@@ -1841,7 +1841,7 @@ let handler = async (m, { conn }) => {
   }
 
   // ─── أمر الإيقاف ───
-  if (/^إيقاف العباقره?$/i.test(body)) {
+  if (/^(إيقاف|ايقاف)$/i.test(command || '')) {
     if (games.has(chatId)) {
       const g = games.get(chatId);
       clearTimer(g);
@@ -2129,7 +2129,7 @@ let handler = async (m, { conn }) => {
 };
 
 // ─── أمر البدء ───
-handler.command = /^(العباقره|العباقرة|عباقره|عباقرة)$/i;
+handler.command = /^(العباقره|العباقرة|عباقره|عباقرة|إيقاف|ايقاف)$/i;
 
 // ─── تفعيل الاستماع لكل الرسائل داخل الجروب أيضاً ───
 handler.all = async (m, { conn }) => {
