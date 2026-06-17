@@ -72,16 +72,28 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// ===== تحويل رابط voca.ro للرابط المباشر =====
+function resolveVocarooUrl(url) {
+  const match = url.match(/voca\.ro\/([A-Za-z0-9]+)/);
+  if (match) return `https://media1.vocaroo.com/mp3/${match[1]}`;
+  return url;
+}
+
 // ===== دالة إرسال رسالة صوتية =====
 async function sendVoice(m, conn, url) {
   try {
-    const res = await fetch(url, {
+    const directUrl = resolveVocarooUrl(url);
+    const res = await fetch(directUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0',
         'Referer': 'https://vocaroo.com/'
       }
     });
     if (!res.ok) throw new Error(`فشل تحميل الصوت: ${res.status}`);
+    const contentType = res.headers.get('content-type') || '';
+    if (!contentType.includes('audio') && !contentType.includes('octet-stream')) {
+      throw new Error(`الرابط لم يرجع صوت، نوع المحتوى: ${contentType}`);
+    }
     const inputBuffer = Buffer.from(await res.arrayBuffer());
     const oggBuffer = await convertToOggOpus(inputBuffer);
     await conn.sendMessage(
@@ -94,7 +106,7 @@ async function sendVoice(m, conn, url) {
       { quoted: m }
     );
   } catch (e) {
-    console.error("❌ خطأ في إرسال الصوت:", e);
+    console.error("❌ خطأ في إرسال الصوت:", e.message);
   }
 }
 
