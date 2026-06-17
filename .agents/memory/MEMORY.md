@@ -1,1 +1,2 @@
 - [Betho Bot branding](betho-branding.md) — all Nezuko/Monte/Ziad references replaced; pairing code is BETHO123; Baileys lib banner patched in node_modules.
+- [Plugin folder path trap](plugin-folder-path.md) — global.__dirname() strips the last path component; must use join(__dirname, './plugins') directly, not via global.__dirname().

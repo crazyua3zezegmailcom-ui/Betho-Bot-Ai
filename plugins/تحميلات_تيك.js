@@ -86,6 +86,7 @@ await conn.sendMessage(m.chat, {
 } catch (err) {
   await conn.reply(m.chat, `*_احم_* ❌\n\nفـشـل الـتـحـمـيـل: ${err.message}`);
 }
+  }
 };
 
 handler.command = /^(تيك|tiktok|جودة_تيك)$/i;
