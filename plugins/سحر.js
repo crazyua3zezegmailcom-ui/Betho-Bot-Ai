@@ -41,7 +41,7 @@ const handler = async (m, { conn }) => {
 
   for (const msg of messages) {
     await conn.sendMessage(chat, { text: msg, mentions: [mentioned] });
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 500));
   }
 
   // ─── اطرد العضو ───
