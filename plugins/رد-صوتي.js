@@ -1,3 +1,27 @@
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import fs from 'fs';
+import path from 'path';
+import { tmpdir } from 'os';
+
+const execAsync = promisify(exec);
+
+// ===== تحويل أي صوت إلى OGG Opus حقيقي =====
+async function convertToOggOpus(inputBuffer) {
+  const tmpIn  = path.join(tmpdir(), `voice_in_${Date.now()}.mp3`);
+  const tmpOut = path.join(tmpdir(), `voice_out_${Date.now()}.ogg`);
+  try {
+    fs.writeFileSync(tmpIn, inputBuffer);
+    await execAsync(
+      `ffmpeg -y -i "${tmpIn}" -c:a libopus -b:a 64k -ar 48000 -ac 1 "${tmpOut}"`
+    );
+    return fs.readFileSync(tmpOut);
+  } finally {
+    if (fs.existsSync(tmpIn))  fs.unlinkSync(tmpIn);
+    if (fs.existsSync(tmpOut)) fs.unlinkSync(tmpOut);
+  }
+}
+
 // ===== دالة حساب المسافة بين كلمتين (Levenshtein Distance) =====
 function levenshtein(a, b) {
   const m = a.length, n = b.length;
@@ -51,10 +75,19 @@ function pickRandom(arr) {
 // ===== دالة إرسال رسالة صوتية =====
 async function sendVoice(m, conn, url) {
   try {
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+        'Referer': 'https://vocaroo.com/'
+      }
+    });
+    if (!res.ok) throw new Error(`فشل تحميل الصوت: ${res.status}`);
+    const inputBuffer = Buffer.from(await res.arrayBuffer());
+    const oggBuffer = await convertToOggOpus(inputBuffer);
     await conn.sendMessage(
       m.key.remoteJid,
       {
-        audio: { url },
+        audio: oggBuffer,
         mimetype: "audio/ogg; codecs=opus",
         ptt: true,
       },
