@@ -209,7 +209,7 @@
       "warn": 0
     },
     "120363407598531220@newsletter": {
-      "exp": 1420,
+      "exp": 1434,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3093,8 +3093,8 @@
       "warn": 0
     },
     "201116571308@s.whatsapp.net": {
-      "name": "َ",
-      "exp": 138,
+      "name": "+20 111 657 1308",
+      "exp": 151,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3115,7 +3115,7 @@
     },
     "584261208048@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 32082,
+      "exp": 32180,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3129,7 +3129,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 195,
+      "commands": 200,
       "afk": -1,
       "afkReason": "",
       "warn": 0,

@@ -210,7 +210,9 @@ const voiceTriggers = [
   },
 ];
 
-export default async function before(m, { conn, bot }) {
+let handler = m => m
+
+handler.before = async function before(m, { conn }) {
   const senderNumber = m.sender?.replace(/@s\.whatsapp\.net.*/, "");
   const text = m.text?.trim() || "";
   const lowerText = text.toLowerCase();
@@ -265,3 +267,5 @@ export default async function before(m, { conn, bot }) {
 
   return false;
 }
+
+export default handler

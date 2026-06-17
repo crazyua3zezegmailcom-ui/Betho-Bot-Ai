@@ -8,15 +8,17 @@ const handler = async (m, { text, usedPrefix, command, conn }) => {
   if (command === 'ضيف' || command === 'addp' || command === 'addplugin') {
     if (!m.quoted || !m.quoted.text) throw `رد علي الرساله عشان احفظها يعم `;
 
-    await fs.writeFileSync(path, m.quoted.text);
+    fs.writeFileSync(path, m.quoted.text);
+    await global.reloadHandler(true);
 
-    m.reply(`✅ تم الحفظ باسم ${path} بنجاح!`);
+    m.reply(`✅ تم الحفظ باسم ${path} بنجاح!\n🔄 تم تحميل الـ plugin تلقائياً`);
   } else if (command === 'امسح') {
     if (!fs.existsSync(path)) throw `❌ الملف "${path}" مش موجوده عشان امسحها يحبيبي !`;
 
     fs.unlinkSync(path);
+    await global.reloadHandler(true);
 
-    m.reply(`🗑️ تم حذف الملف ${path} بنجاح!`);
+    m.reply(`🗑️ تم حذف الملف ${path} بنجاح!\n🔄 تم إعادة التحميل`);
   }
 };
 
