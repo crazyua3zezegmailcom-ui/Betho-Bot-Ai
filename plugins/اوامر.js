@@ -42,6 +42,8 @@ let handler = async (m, { conn, usedPrefix }) => {
 │ ⌬ ${usedPrefix}م4 ↫ (قـسم الذكاء) ⚙️
 │ ⌬ ${usedPrefix}م5 ↫ (قـسـم الألعاب) 🌳
 │ ⌬ ${usedPrefix}م6 ↫ (قـسـم الـبـحث) 🌴 
+│ ⌬ ${usedPrefix}م7 ↫ (قـسـم الـديـن) 📿
+│ ⌬ ${usedPrefix}م8 ↫ (قـسم المطـوريـن) 💻
 ╯───≪ ⚙️🧩⚙️ ≫───╰
 FREE BOT WHATSAPP 3RAB Life`.trim()
 
@@ -54,7 +56,9 @@ FREE BOT WHATSAPP 3RAB Life`.trim()
                 { header: "SECTION 3", title: "قسم الصور 🧩", description: "قسـم الصـور و شخصيات الانمـي ⚙️", id: ".م3" },
                 { header: "SECTION 4", title: "قسم الذكاء ⚙️", description: "قـسم الذكـاء الاصطناعي و تـعديل الصـور 👑", id: ".م4" },
                 { header: "SECTION 5", title: "قسم الألعاب 🌳", description: "فعاليات وألعاب بيثو", id: ".م5" },
-                { header: "SECTION 6", title: "قسم البحث 🌴", description: "البحث في المواقع والمنصات", id: ".م6" }
+                { header: "SECTION 6", title: "قسم البحث 🌴",      description: "البحث في المواقع والمنصات",      id: ".م6" },
+                { header: "SECTION 7", title: "قسم الدين 📿",      description: "القرآن الكريم والمحتوى الديني",   id: ".م7" },
+                { header: "SECTION 8", title: "قسم المطورين 💻",  description: "أوامر حصرية للمطورين فقط",       id: ".م8" }
             ]
         }
     ]
