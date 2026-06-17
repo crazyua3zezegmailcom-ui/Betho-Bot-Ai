@@ -10,7 +10,7 @@ const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg
 
 const execAsync = promisify(exec)
 
-const bgUrl = "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg" 
+const bgUrl = "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg" 
 const botAvatarUrl = "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg"
 
 function contactQuote(m) {
@@ -91,7 +91,7 @@ let handler = async (m, { conn }) => {
         ctx.font = 'bold 55px "Arial"'; ctx.fillStyle = '#ff1493'
         ctx.fillText('BETHO AI', startX + 20, 80)
         ctx.font = '24px "Arial"'; ctx.fillStyle = '#ffffff'
-        ctx.fillText('3RAB_TOP_DEVS', startX + 25, 115)
+        ctx.fillText('𝐶𝑟𝑎𝑧𝑦 𝐹𝑜𝑟 𝐵𝑜𝑡𝑠', startX + 25, 115)
 
         stats.forEach((stat, i) => {
             let y = startY + (i * (boxHeight + gap))
@@ -119,7 +119,7 @@ let handler = async (m, { conn }) => {
 *_⚙️ وقـت تشـغيل بيثو_* ( ${uptimeFormatted} )
 
 
-*_😊اعتبرني صحبك حبيبك 😇 موجود ديما عشان اطلعك من ضيقك _*
+*_اعتبرني صحبك حبيبك 😇 موجود ديما عشان اطلعك من ضيقك 😊_*
 *_🤍 صلي علي النبي 🤍_*`.trim()
 
         let msg = generateWAMessageFromContent(m.chat, {

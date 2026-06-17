@@ -35,7 +35,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 
 𝗐𝖾𝒍𝒄𝒐𝒎𝒆 ${taguser}
 
-╭───≪ ⚙️ 𝗠𝗘𝗡𝗨 🧩 ≫───╮
+╭───≪⚙️𝗠𝗘𝗡𝗨🧩≫───╮
 │ ⌬ ${usedPrefix}م1 ↫ (قسـم مشـرفـين) 👑 
 │ ⌬ ${usedPrefix}م2 ↫ (قـسـم تحـمـيل) ⚙️ 
 │ ⌬ ${usedPrefix}م3 ↫ (قـسـم صـور) 🧩 
@@ -45,7 +45,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 │ ⌬ ${usedPrefix}م7 ↫ (قـسـم الـديـن) 📿
 │ ⌬ ${usedPrefix}م8 ↫ (قـسم المطـوريـن) 💻
 ╯───≪ ⚙️🧩⚙️ ≫───╰
-FREE BOT WHATSAPP 3RAB Life`.trim()
+Betho Bot For Whatsapp`.trim()
 
     const sections = [
         {
@@ -58,7 +58,7 @@ FREE BOT WHATSAPP 3RAB Life`.trim()
                 { header: "SECTION 5", title: "قسم الألعاب 🌳", description: "فعاليات وألعاب بيثو", id: ".م5" },
                 { header: "SECTION 6", title: "قسم البحث 🌴",      description: "البحث في المواقع والمنصات",      id: ".م6" },
                 { header: "SECTION 7", title: "قسم الدين 📿",      description: "القرآن الكريم والمحتوى الديني",   id: ".م7" },
-                { header: "SECTION 8", title: "قسم المطورين 💻",  description: "أوامر حصرية للمطورين فقط",       id: ".م8" }
+                { header: "SECTION 8", title: "قسم المطورين 💻",  description: "أوامر  للمطورين فقط",       id: ".م8" }
             ]
         }
     ]
@@ -76,7 +76,7 @@ FREE BOT WHATSAPP 3RAB Life`.trim()
         },
         businessOwnerJid: '201116571308@s.whatsapp.net',
         caption: menuText,
-        footer: '⏤͟͞ू⃪الاقــسام MENU 🕷⃝⃕𝆺𝅥𝆹𝅥',
+        footer: '⏤͟͞ू⃪الاقــسام MENU 🤓⃝⃕𝆺𝅥𝆹𝅥',
         interactiveButtons: [
             {
                 name: "single_select",

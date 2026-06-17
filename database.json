@@ -209,7 +209,7 @@
       "warn": 0
     },
     "120363407598531220@newsletter": {
-      "exp": 1472,
+      "exp": 1479,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3094,7 +3094,7 @@
     },
     "201116571308@s.whatsapp.net": {
       "name": "َ",
-      "exp": 154,
+      "exp": 263,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3108,14 +3108,14 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 1,
+      "commands": 2,
       "afk": -1,
       "afkReason": "",
       "warn": 0
     },
     "584261208048@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 32818,
+      "exp": 34272,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3129,7 +3129,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 235,
+      "commands": 320,
       "afk": -1,
       "afkReason": "",
       "warn": 0,
@@ -3221,7 +3221,7 @@
     },
     "189696525205623@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 66,
+      "exp": 256,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3241,7 +3241,7 @@
       "warn": 0
     },
     "189696525205623@lid": {
-      "exp": 114,
+      "exp": 193,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3255,14 +3255,15 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 5,
+      "commands": 10,
       "afk": -1,
       "afkReason": "",
-      "warn": 0
+      "warn": 0,
+      "antilinkWarnings": 3
     },
     "201214057674@s.whatsapp.net": {
       "name": "𝓐𝓫𝓭𝓾𝓵𝓵𝓪𝓱",
-      "exp": 53,
+      "exp": 101,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3276,7 +3277,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 3,
+      "commands": 7,
       "afk": -1,
       "afkReason": "",
       "warn": 0
@@ -3344,7 +3345,7 @@
       "warn": 0
     },
     "151058798141443@lid": {
-      "exp": 36,
+      "exp": 43,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3365,7 +3366,7 @@
     },
     "120363407162550522@g.us": {
       "name": "تست",
-      "exp": 5,
+      "exp": 10,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4358,7 +4359,27 @@
       "warn": 0
     },
     "264798289838144@lid": {
-      "exp": 7,
+      "exp": 37,
+      "coin": 0,
+      "bank": 0,
+      "level": 0,
+      "health": 100,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "premium": false,
+      "premiumTime": 0,
+      "banned": false,
+      "bannedReason": "",
+      "commands": 2,
+      "afk": -1,
+      "afkReason": "",
+      "warn": 0
+    },
+    "120363423758386098@newsletter": {
+      "exp": 14,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4377,8 +4398,9 @@
       "afkReason": "",
       "warn": 0
     },
-    "120363423758386098@newsletter": {
-      "exp": 14,
+    "264798289838144@s.whatsapp.net": {
+      "name": "𝓐𝓫𝓭𝓾𝓵𝓵𝓪𝓱",
+      "exp": 49,
       "coin": 0,
       "bank": 0,
       "level": 0,
