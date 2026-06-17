@@ -27,6 +27,12 @@ export async function fetchWithTimeout(url, timeout = 20000, options = {}) {
   }
 }
 
+export function runConcurrent(sender, chat, fn, conn) {
+  fn().catch(err => {
+    console.error('[runConcurrent]', sender, err);
+  });
+}
+
 export async function convertToOggOpus(inputBuffer) {
   const tmpIn  = path.join(tmpdir(), `voice_in_${Date.now()}.mp3`)
   const tmpOut = path.join(tmpdir(), `voice_out_${Date.now()}.ogg`)
