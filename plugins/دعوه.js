@@ -1,11 +1,13 @@
 // حہّٰقَـــوٰقَ 𝐶𝑟𝑎𝑧𝑦 💻🔥
 // أمر دعوه — يبعت دعوة مجموعة حقيقية للشخص (للأدمن فقط)
 
+import { proto, generateWAMessageFromContent } from '@whiskeysockets/baileys'
+
 let handler = async (m, { conn, text, isAdmin, isOwner, usedPrefix, command }) => {
 
   if (!text) return m.reply(
     `╔══════════════════╗\n` +
-    `║  📨 *أمر الدعوة*  ║\n` +
+    `║   📨 *أمر الدعوة*  ║\n` +
     `╚══════════════════╝\n\n` +
     `📌 *الاستخدام:*\n` +
     `${usedPrefix}${command} <رقم الهاتف>\n\n` +
@@ -20,41 +22,52 @@ let handler = async (m, { conn, text, isAdmin, isOwner, usedPrefix, command }) =
   }
 
   const recipientJid = number + '@s.whatsapp.net'
+  const groupJid     = m.chat
 
   try {
     // ─── جلب معلومات الجروب ───
-    const metadata     = await conn.groupMetadata(m.chat)
-    const groupName    = metadata.subject || 'مجموعة واتساب'
-    const groupJid     = m.chat
+    const metadata  = await conn.groupMetadata(groupJid)
+    const groupName = metadata.subject || 'مجموعة واتساب'
 
     // ─── جلب كود الدعوة ───
-    const inviteCode   = await conn.groupInviteCode(groupJid)
+    const inviteCode = await conn.groupInviteCode(groupJid)
     if (!inviteCode) return m.reply('❌ *فشل جلب كود الدعوة، تأكد أن البوت أدمن!*')
 
-    // ─── تاريخ الانتهاء (3 أيام من الآن) ───
+    // ─── تاريخ الانتهاء (3 أيام) ───
     const inviteExpiration = Math.floor((Date.now() + 3 * 24 * 60 * 60 * 1000) / 1000)
 
     // ─── جلب صورة الجروب (اختياري) ───
-    let thumbnail = null
+    let jpegThumbnail = null
     try {
-      thumbnail = await conn.profilePictureUrl(groupJid, 'image')
-        .then(url => fetch(url).then(r => r.arrayBuffer()).then(b => Buffer.from(b)))
-        .catch(() => null)
+      const picUrl = await conn.profilePictureUrl(groupJid, 'image')
+      const picRes = await fetch(picUrl)
+      if (picRes.ok) {
+        jpegThumbnail = Buffer.from(await picRes.arrayBuffer())
+      }
     } catch {}
 
-    // ─── إرسال الدعوة الحقيقية ───
-    await conn.sendGroupV4Invite(
-      groupJid,
-      recipientJid,
+    // ─── بناء رسالة الدعوة بالمسار الصحيح ───
+    const inviteMsg = proto.Message.GroupInviteMessage.fromObject({
       inviteCode,
       inviteExpiration,
+      groupJid,
       groupName,
-      `🌟 تمت دعوتك للانضمام إلى مجموعة *${groupName}*`,
-      thumbnail
-    )
+      caption: `🌟 تمت دعوتك للانضمام إلى *${groupName}*`,
+      ...(jpegThumbnail ? { jpegThumbnail } : {})
+    })
+
+    const fullMsg = proto.Message.fromObject({ groupInviteMessage: inviteMsg })
+
+    const waMsg = generateWAMessageFromContent(recipientJid, fullMsg, {
+      userJid: conn.user.id
+    })
+
+    await conn.relayMessage(recipientJid, waMsg.message, {
+      messageId: waMsg.key.id
+    })
 
     // ─── تأكيد في الجروب ───
-    await conn.sendMessage(m.chat, {
+    await conn.sendMessage(groupJid, {
       text:
         `╔══════════════════╗\n` +
         `║  ✅ *تم إرسال الدعوة* ║\n` +
@@ -68,13 +81,7 @@ let handler = async (m, { conn, text, isAdmin, isOwner, usedPrefix, command }) =
 
   } catch (err) {
     console.error('❌ خطأ في إرسال الدعوة:', err?.message || err)
-    if (err?.message?.includes('not-authorized') || err?.message?.includes('403')) {
-      return m.reply('❌ *فشل! تأكد أن البوت أدمن في الجروب*')
-    }
-    if (err?.message?.includes('not on whatsapp') || err?.message?.includes('404')) {
-      return m.reply('❌ *الرقم غير موجود على واتساب*')
-    }
-    m.reply('❌ *فشل إرسال الدعوة — تأكد من صحة الرقم وصلاحيات البوت*')
+    m.reply('❌ *فشل إرسال الدعوة — تأكد من صلاحيات البوت*')
   }
 }
 
