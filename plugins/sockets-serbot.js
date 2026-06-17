@@ -89,7 +89,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help    = ['تنصيب']
 handler.tags    = ['serbot']
 handler.command = ['تنصيب']
-handler.owner   = true
 handler.bot     = false
 
 export default handler
