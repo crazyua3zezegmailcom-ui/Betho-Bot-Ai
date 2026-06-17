@@ -50,18 +50,23 @@ function isSubBotConnected(jid) {
     return global.conns.some(sock => sock?.user?.jid && sock.user.jid.split("@")[0] === jid.split("@")[0])
 }
 
-let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
-    if (!globalThis.db.data.settings[conn.user.jid].jadibotmd)
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+    // ── التحقق من تفعيل الخاصية (للبوت الرئيسي فقط، للفرعي يُسمح دائماً) ──
+    const botSettings = globalThis.db.data.settings?.[conn.user.jid]
+    if (botSettings && botSettings.jadibotmd === false)
         return m.reply(`⚠️ أمر *${command}* معطل حالياً.`)
 
-    let time = global.db.data.users[m.sender].Subs + 120000
-    if (new Date - global.db.data.users[m.sender].Subs < 120000)
-        return conn.reply(m.chat, `⏳ يرجى الانتظار ${msToTime(time - new Date())} قبل إعادة ربط بوت فرعي .`, m)
+    // ── Cooldown: 2 دقيقة بين كل تنصيب ──
+    const userData = global.db.data.users[m.sender]
+    const lastSubs = userData?.Subs || 0
+    const cooldownLeft = 120000 - (Date.now() - lastSubs)
+    if (cooldownLeft > 0)
+        return conn.reply(m.chat, `⏳ يرجى الانتظار ${msToTime(cooldownLeft)} قبل إعادة ربط بوت فرعي.`, m)
 
+    // ── حد أقصى 200 بوت فرعي ──
     let socklimit = global.conns.filter(sock => sock?.user).length
-    if (socklimit >= 200) {
+    if (socklimit >= 200)
         return m.reply(`🚫 لا توجد أماكن متاحة للبوتات الفرعيه حالياً. حاول لاحقاً.`)
-    }
 
     let mentionedJid = await m.mentionedJid
     let who = mentionedJid && mentionedJid[0] ? mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -78,13 +83,14 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
     yukiJBOptions.command = command
     yukiJBOptions.fromCommand = true
     yukiJadiBot(yukiJBOptions)
-    global.db.data.users[m.sender].Subs = new Date * 1
+    if (userData) userData.Subs = Date.now()
 }
 
-handler.help = ['تنصيب']
-handler.tags = ['serbot']
+handler.help    = ['تنصيب']
+handler.tags    = ['serbot']
 handler.command = ['تنصيب']
-handler.bot = false
+handler.owner   = true
+handler.bot     = false
 
 export default handler
 
