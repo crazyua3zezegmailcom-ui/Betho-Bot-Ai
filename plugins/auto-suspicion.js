@@ -12,7 +12,7 @@ const REPEAT_WINDOW_MS   = 10 * 60 * 1000  // 10 دقائق
 
 // ─── حد معدل الإجراءات التلقائية: إجراء واحد كل 20 ثانية لكل مجموعة ───
 const groupCooldown = new Map()
-const ACTION_COOLDOWN_MS = 20_000
+const ACTION_COOLDOWN_MS = 8_000 // 8 ثواني بين كل إجراء في نفس الجروب
 
 function canAct(chatId) {
   const last = groupCooldown.get(chatId) || 0

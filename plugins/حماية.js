@@ -18,7 +18,7 @@ function getState(chatId) {
 
 // ─── Rate limiter: إجراء تلقائي واحد كل 15 ثانية لكل مجموعة ───
 const protCooldown = new Map();
-const PROT_COOLDOWN_MS = 15_000;
+const PROT_COOLDOWN_MS = 5_000; // 5 ثواني بين كل إشعار جروب
 
 function canActProt(chatId) {
   const last = protCooldown.get(chatId) || 0;

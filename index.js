@@ -207,8 +207,8 @@ let _reconnectTimer = null
 
 function scheduleReconnect() {
   if (_reconnectTimer) return  // reconnect مجدول بالفعل
-  // تأخير متصاعد: 3s، 6s، 12s، 24s، بحد أقصى 60s
-  const delay = Math.min(3000 * Math.pow(2, _reconnectAttempts), 60000)
+  // تأخير متصاعد: 1s، 2s، 4s، 8s، بحد أقصى 30s
+  const delay = Math.min(1000 * Math.pow(2, _reconnectAttempts), 30000)
   _reconnectAttempts++
   console.log(chalk.yellow(`⏳ Reconnecting in ${delay / 1000}s (attempt #${_reconnectAttempts})...`))
   _reconnectTimer = setTimeout(async () => {
