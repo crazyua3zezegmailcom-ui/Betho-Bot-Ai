@@ -109,16 +109,18 @@ const question = (texto) => new Promise((resolver) => rl.question(texto, resolve
 console.info = () => {}
 const connectionOptions = {
   logger: pino({ level: 'silent' }),
-  printQRInTerminal: false, // ✅ QR معطل نهائياً
+  printQRInTerminal: false,
   mobile: MethodMobile,
-  browser: ["Windows", "Chrome", "Chrome 114.0.5735.198"], // ✅ تم تغيير إعدادات المتصفح لحل مشكلة رمز الاقتران
+  // بصمة متصفح طبيعية — تقليل خطر الحظر
+  browser: ["Ubuntu", "Chrome", "124.0.6367.82"],
   auth: {
     creds: state.creds,
     keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
   },
   markOnlineOnConnect: false,
-  generateHighQualityLinkPreview: true,
+  generateHighQualityLinkPreview: false, // تقليل الطلبات الخارجية
   syncFullHistory: false,
+  retryRequestDelayMs: 250, // تأخير بين إعادة المحاولات
   getMessage: async (key) => {
     try {
       let jid = jidNormalizedUser(key.remoteJid)
@@ -199,27 +201,45 @@ if (!opts['test']) {
   }, 30 * 1000)
 }
 
+// ─── Exponential backoff للـ reconnect — يمنع الـ spam على سيرفرات واتساب ───
+let _reconnectAttempts = 0
+let _reconnectTimer = null
+
+function scheduleReconnect() {
+  if (_reconnectTimer) return  // reconnect مجدول بالفعل
+  // تأخير متصاعد: 3s، 6s، 12s، 24s، بحد أقصى 60s
+  const delay = Math.min(3000 * Math.pow(2, _reconnectAttempts), 60000)
+  _reconnectAttempts++
+  console.log(chalk.yellow(`⏳ Reconnecting in ${delay / 1000}s (attempt #${_reconnectAttempts})...`))
+  _reconnectTimer = setTimeout(async () => {
+    _reconnectTimer = null
+    await global.reloadHandler(true).catch(console.error)
+  }, delay)
+}
+
 async function connectionUpdate(update) {
   const { connection, lastDisconnect, isNewLogin } = update
   global.stopped = connection
   if (isNewLogin) conn.isInit = true
   const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
   if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
-    await global.reloadHandler(true).catch(console.error)
+    scheduleReconnect()
     global.timestamp.connect = new Date()
   }
   if (global.db.data == null) loadDatabase()
-  
-  
+
   if (connection === "open") {
+    // إعادة ضبط عداد المحاولات عند الاتصال الناجح
+    _reconnectAttempts = 0
+    if (_reconnectTimer) { clearTimeout(_reconnectTimer); _reconnectTimer = null }
+
     const userJid = jidNormalizedUser(conn.user.id)
     const userName = conn.user.name || conn.user.verifiedName || "Unknown"
     const botNumber = conn.user.id.split(':')[0]
     const chatCount = Object.keys(conn.chats).length || 0
-    
+
     await joinChannels(conn)
-    
-    // ✅ طباعة مربع المعلومات المطلوب
+
     console.log(chalk.hex('#FFA500').bold('\n┌───────────────────────────────────┐'))
     console.log(chalk.hex('#FFA500').bold('│') + chalk.green.bold('       ✅ The bot is attached       ') + chalk.hex('#FFA500').bold('│'))
     console.log(chalk.hex('#FFA500').bold('├───────────────────────────────────┤'))
@@ -230,13 +250,11 @@ async function connectionUpdate(update) {
     console.log(chalk.hex('#FFA500').bold('│') + chalk.magentaBright.bold('   BETHO BOT - WHATSAPP BOT     ') + chalk.hex('#FFA500').bold('│'))
     console.log(chalk.hex('#FFA500').bold('└───────────────────────────────────┘\n'))
   }
-  
+
   let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
   if (connection === "close") {
     if ([401, 440, 405].includes(reason)) {
-      // 428 = انقطاع مؤقت وليس logout — لا تمسح الجلسة
       console.log(chalk.red(`→ (${reason}) › Session logged out. Clearing session and preparing for re-pairing...`))
-      // Clear stale session files so the bot can re-pair
       try {
         const sessionPath = `./${global.sessions}`
         if (fs.existsSync(sessionPath)) {
@@ -251,8 +269,7 @@ async function connectionUpdate(update) {
       }
       process.exit(0)
     }
-    console.log(chalk.yellow("Reconnecting bot..."))
-    await global.reloadHandler(true).catch(console.error)
+    scheduleReconnect()
   }
 }
 process.on('uncaughtException', console.error)

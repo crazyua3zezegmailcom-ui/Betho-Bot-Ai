@@ -6,8 +6,20 @@
 
 // ─── ثوابت ────────────────────────────────────────────────
 const BOT_PREFIXES       = ['.', '!', '#', '/']
-const SPEED_THRESHOLD_MS = 1500        // 1.5 ثانية
+// 400ms — مستحيل تقريباً لإنسان حقيقي، يتجنب طرد البشر
+const SPEED_THRESHOLD_MS = 400
 const REPEAT_WINDOW_MS   = 10 * 60 * 1000  // 10 دقائق
+
+// ─── حد معدل الإجراءات التلقائية: إجراء واحد كل 20 ثانية لكل مجموعة ───
+const groupCooldown = new Map()
+const ACTION_COOLDOWN_MS = 20_000
+
+function canAct(chatId) {
+  const last = groupCooldown.get(chatId) || 0
+  if (Date.now() - last < ACTION_COOLDOWN_MS) return false
+  groupCooldown.set(chatId, Date.now())
+  return true
+}
 
 // ─── حالة الذاكرة ─────────────────────────────────────────
 // آخر رسالة في كل مجموعة
@@ -230,15 +242,8 @@ handler.before = async function (m, { conn, isROwner, isBotAdmin }) {
         reason     = `🔤 ردّ فوري على أمر بوت (prefix) في ${diff}ms`
       }
 
-      if (shouldKick) {
-        if (!isBotAdmin) {
-          await conn.sendMessage(chatId, {
-            text: '⚠️ البوت ليس أدمن، لا يمكنه طرد الأعضاء.'
-          })
-          notifiedNoAdmin = true
-        } else {
-          kicked = await kickMember(conn, chatId, sender, reason)
-        }
+      if (shouldKick && isBotAdmin && canAct(chatId)) {
+        kicked = await kickMember(conn, chatId, sender, reason)
       }
     }
   }
@@ -276,11 +281,7 @@ handler.before = async function (m, { conn, isROwner, isBotAdmin }) {
         // المرة الثالثة فأكثر → طرد
         textMap.delete(text)
 
-        if (!isBotAdmin && !notifiedNoAdmin) {
-          await conn.sendMessage(chatId, {
-            text: '⚠️ البوت ليس أدمن، لا يمكنه طرد الأعضاء.'
-          })
-        } else if (isBotAdmin) {
+        if (isBotAdmin && canAct(chatId)) {
           await kickMember(
             conn, chatId, sender,
             `🔁 تكرار نص حرفي ${data.count} مرات خلال 10 دقائق`

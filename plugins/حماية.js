@@ -16,6 +16,17 @@ function getState(chatId) {
   return protState.get(chatId);
 }
 
+// ─── Rate limiter: إجراء تلقائي واحد كل 15 ثانية لكل مجموعة ───
+const protCooldown = new Map();
+const PROT_COOLDOWN_MS = 15_000;
+
+function canActProt(chatId) {
+  const last = protCooldown.get(chatId) || 0;
+  if (Date.now() - last < PROT_COOLDOWN_MS) return false;
+  protCooldown.set(chatId, Date.now());
+  return true;
+}
+
 function isEnabled(chatId) {
   return global.db.data.chats?.[chatId]?.protection === true;
 }
@@ -175,18 +186,26 @@ async function processMessage(m, conn, { isOwner, isAdmin, isBotAdmin } = {}) {
     const result = checkText(body);
 
     if (result?.type === 'banned') {
+      // دايماً احذف الرسالة بصمت
       await deleteMessage(conn, chatId, m);
-      const kicked = await kickMember(conn, chatId, senderId);
-      logEvent(state, senderId, 'kick', `كلمة محظورة: "${result.word}"`);
-      await conn.sendMessage(chatId, {
-        text:
-          `🚨 *تم اكتشاف محتوى مخالف!*\n\n` +
-          `👤 العضو: @${name}\n` +
-          `🚫 السبب: كلمة محظورة\n` +
-          `🗑️ الرسالة: تم حذفها\n` +
-          `${kicked ? '👢 الإجراء: تم الطرد' : '⚠️ تعذّر الطرد — تأكد إن البوت أدمن'}`,
-        mentions: [senderId]
-      });
+      // طرد + إشعار فقط لو مش في cooldown (منع إرسال كتير في وقت قصير)
+      if (canActProt(chatId)) {
+        const kicked = await kickMember(conn, chatId, senderId);
+        logEvent(state, senderId, 'kick', `كلمة محظورة: "${result.word}"`);
+        await conn.sendMessage(chatId, {
+          text:
+            `🚨 *تم اكتشاف محتوى مخالف!*\n\n` +
+            `👤 العضو: @${name}\n` +
+            `🚫 السبب: كلمة محظورة\n` +
+            `🗑️ الرسالة: تم حذفها\n` +
+            `${kicked ? '👢 الإجراء: تم الطرد' : '⚠️ تعذّر الطرد — تأكد إن البوت أدمن'}`,
+          mentions: [senderId]
+        });
+      } else {
+        // الcooldown شغال → احذف بصمت بدون إشعار
+        logEvent(state, senderId, 'kick', `كلمة محظورة (بصمت): "${result.word}"`);
+        await kickMember(conn, chatId, senderId);
+      }
       return;
     }
 
@@ -197,14 +216,19 @@ async function processMessage(m, conn, { isOwner, isAdmin, isBotAdmin } = {}) {
 
       if (warns >= 3) {
         await deleteMessage(conn, chatId, m);
-        const kicked = await kickMember(conn, chatId, senderId);
-        state.warnCount[senderId] = 0;
-        logEvent(state, senderId, 'kick', 'تجاوز 3 تحذيرات');
-        await conn.sendMessage(chatId, {
-          text: `🚨 *@${name} تم طرده بعد 3 تحذيرات!*\n${kicked ? '👢 تم الطرد' : '⚠️ تعذّر الطرد'}`,
-          mentions: [senderId]
-        });
-      } else {
+        if (canActProt(chatId)) {
+          const kicked = await kickMember(conn, chatId, senderId);
+          state.warnCount[senderId] = 0;
+          logEvent(state, senderId, 'kick', 'تجاوز 3 تحذيرات');
+          await conn.sendMessage(chatId, {
+            text: `🚨 *@${name} تم طرده بعد 3 تحذيرات!*\n${kicked ? '👢 تم الطرد' : '⚠️ تعذّر الطرد'}`,
+            mentions: [senderId]
+          });
+        } else {
+          state.warnCount[senderId] = 0;
+          await kickMember(conn, chatId, senderId);
+        }
+      } else if (canActProt(chatId)) {
         await conn.sendMessage(chatId, {
           text:
             `⚠️ *تحذير!* @${name}\n\n` +
@@ -223,18 +247,23 @@ async function processMessage(m, conn, { isOwner, isAdmin, isBotAdmin } = {}) {
     const mediaResult = await checkMedia(m);
     if (mediaResult?.suspicious) {
       await deleteMessage(conn, chatId, m);
-      const kicked = await kickMember(conn, chatId, senderId);
-      logEvent(state, senderId, 'media', mediaResult.reason);
-      const mediaType = msg.stickerMessage ? 'ستيكر' : msg.videoMessage ? 'فيديو' : 'صورة';
-      await conn.sendMessage(chatId, {
-        text:
-          `🚨 *تم اكتشاف ${mediaType} مخالف!*\n\n` +
-          `👤 العضو: @${name}\n` +
-          `🚫 السبب: ${mediaResult.reason}\n` +
-          `🗑️ المحتوى: تم حذفه\n` +
-          `${kicked ? '👢 الإجراء: تم الطرد' : '⚠️ تعذّر الطرد'}`,
-        mentions: [senderId]
-      });
+      if (canActProt(chatId)) {
+        const kicked = await kickMember(conn, chatId, senderId);
+        logEvent(state, senderId, 'media', mediaResult.reason);
+        const mediaType = msg.stickerMessage ? 'ستيكر' : msg.videoMessage ? 'فيديو' : 'صورة';
+        await conn.sendMessage(chatId, {
+          text:
+            `🚨 *تم اكتشاف ${mediaType} مخالف!*\n\n` +
+            `👤 العضو: @${name}\n` +
+            `🚫 السبب: ${mediaResult.reason}\n` +
+            `🗑️ المحتوى: تم حذفه\n` +
+            `${kicked ? '👢 الإجراء: تم الطرد' : '⚠️ تعذّر الطرد'}`,
+          mentions: [senderId]
+        });
+      } else {
+        logEvent(state, senderId, 'media', `${mediaResult.reason} (بصمت)`);
+        await kickMember(conn, chatId, senderId);
+      }
     }
   }
 }

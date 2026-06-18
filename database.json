@@ -3093,8 +3093,8 @@
       "warn": 0
     },
     "201116571308@s.whatsapp.net": {
-      "name": "َ",
-      "exp": 263,
+      "name": "+20 111 657 1308",
+      "exp": 275,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3115,7 +3115,7 @@
     },
     "584261208048@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 34272,
+      "exp": 34728,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3129,11 +3129,11 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 320,
+      "commands": 338,
       "afk": -1,
       "afkReason": "",
       "warn": 0,
-      "Subs": 1781468715718
+      "Subs": 1781718987150
     },
     "144585913327826@s.whatsapp.net": {
       "name": "خالد الفقي",
@@ -3241,7 +3241,7 @@
       "warn": 0
     },
     "189696525205623@lid": {
-      "exp": 193,
+      "exp": 202,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3450,7 +3450,7 @@
     },
     "201201756710@s.whatsapp.net": {
       "name": "𝐌𝐀𝐅𝐈𝐀",
-      "exp": 657,
+      "exp": 896,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3464,7 +3464,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 2,
+      "commands": 5,
       "afk": -1,
       "afkReason": "",
       "warn": 0,
@@ -4155,7 +4155,7 @@
       "warn": 0
     },
     "156852876775586@lid": {
-      "exp": 15,
+      "exp": 20,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4276,8 +4276,8 @@
       "warn": 0
     },
     "201122932332@s.whatsapp.net": {
-      "name": "ااااا",
-      "exp": 250,
+      "name": "+20 112 293 2332",
+      "exp": 267,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4319,7 +4319,7 @@
     },
     "201039963865@s.whatsapp.net": {
       "name": "آلَمِــــــــلَعــــــــوُنـــــــٌ آلَصـــغـــــــيـــــــّر",
-      "exp": 110,
+      "exp": 250,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4333,13 +4333,13 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 4,
+      "commands": 7,
       "afk": -1,
       "afkReason": "",
       "warn": 0
     },
     "87605135802390@lid": {
-      "exp": 8,
+      "exp": 13,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -4401,6 +4401,47 @@
     "264798289838144@s.whatsapp.net": {
       "name": "𝓐𝓫𝓭𝓾𝓵𝓵𝓪𝓱",
       "exp": 49,
+      "coin": 0,
+      "bank": 0,
+      "level": 0,
+      "health": 100,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "premium": false,
+      "premiumTime": 0,
+      "banned": false,
+      "bannedReason": "",
+      "commands": 0,
+      "afk": -1,
+      "afkReason": "",
+      "warn": 0
+    },
+    "201143080793@s.whatsapp.net": {
+      "name": "+20 114 308 0793",
+      "exp": 9,
+      "coin": 0,
+      "bank": 0,
+      "level": 0,
+      "health": 100,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "premium": false,
+      "premiumTime": 0,
+      "banned": false,
+      "bannedReason": "",
+      "commands": 0,
+      "afk": -1,
+      "afkReason": "",
+      "warn": 0
+    },
+    "187123705634947@lid": {
+      "exp": 38,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -5485,6 +5526,34 @@
       "nsfw": false,
       "economy": true,
       "gacha": true
+    },
+    "201143080793@s.whatsapp.net": {
+      "isBanned": false,
+      "isMute": false,
+      "welcome": false,
+      "sWelcome": "",
+      "sBye": "",
+      "detect": true,
+      "primaryBot": null,
+      "modoadmin": false,
+      "antiLink": true,
+      "nsfw": false,
+      "economy": true,
+      "gacha": true
+    },
+    "201214057674@s.whatsapp.net": {
+      "isBanned": false,
+      "isMute": false,
+      "welcome": false,
+      "sWelcome": "",
+      "sBye": "",
+      "detect": true,
+      "primaryBot": null,
+      "modoadmin": false,
+      "antiLink": true,
+      "nsfw": false,
+      "economy": true,
+      "gacha": true
     }
   },
   "settings": {
@@ -5509,6 +5578,10 @@
       "jadibotmd": true
     },
     "201122932332@s.whatsapp.net": {
+      "self": false,
+      "jadibotmd": true
+    },
+    "201143080793@s.whatsapp.net": {
       "self": false,
       "jadibotmd": true
     }
