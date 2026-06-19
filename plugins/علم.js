@@ -4,6 +4,7 @@ const timeout = 60000;
 
 let handler = async (m, { conn, command }) => {
     let jid = m.sender;
+    conn.Crazy = conn.Crazy || {};
     if (command.startsWith('اجاب_')) {
         let id = m.chat;
         let Crazy = conn.Crazy[id];

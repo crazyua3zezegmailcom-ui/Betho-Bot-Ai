@@ -8,6 +8,7 @@ const THUMB_URL = "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg";
 
 let handler = async (m, { conn, command }) => {
     let jid = m.sender;
+    conn.capitalGame = conn.capitalGame || {};
   if (command.startsWith("اجابه_")) {
     let id = m.chat;
     let game = conn.capitalGame[id];

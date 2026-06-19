@@ -37,7 +37,7 @@ let handler = async (m, { conn, usedPrefix, text, isAdmin, isOwner }) => {
 
     } catch (err) {
         console.error(err)
-        conn.reply(m.chat, `❌ *فشلت الترقية، تأكد أن البوت مشرف!*`, m)
+        await conn.reply(m.chat, `❌ *فشلت الترقية، تأكد أن البوت مشرف!*`, m)
     }
 }
 

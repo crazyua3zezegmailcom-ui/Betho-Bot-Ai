@@ -1,15 +1,13 @@
-// حہּٰقَــــوٰقَ 𝐶𝑟𝑎𝑧𝑦-𝒅𝒗 💻🔥
+// حہّٰقَــــوٰقَ 𝐶𝑟𝑎𝑧𝑦-𝒅𝒗 💻🔥
 // نظام التحكم في كتم المجموعات (فردي / مجموعات / الكل)
 
 let handler = async (m, { conn, command, args, usedPrefix }) => {
   
-  // جلب كل المجموعات التي يتواجد بها البوت
   let groups = Object.values(await conn.groupFetchAllParticipating())
 
   switch (command) {
     
-    case 'بانشات':
-      // 1. كتم الكل
+    case 'بان':
       if (args[0] === 'الكل') {
         groups.forEach(v => {
           global.db.data.chats[v.id].isBanned = true
@@ -17,7 +15,6 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
         return m.reply('*`❲🔒❳` تـم كـتـم جـمـيـع الـمـجـمـوعـات بـنـجـاح.*')
       }
 
-      // 2. عرض قائمة المجموعات أو كتم مجموعة برقمها
       if (args[0] === 'مجموعة') {
         if (!args[1]) {
           let txt = '*`❲🔗❳` قـائـمـة مـجـموعات الـبـوت:*\n\n'
@@ -36,13 +33,11 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
         return m.reply(`✅ تـم كـتـم الـمـجـمـوعـة:\n*${groups[index].subject}* بنجاح.`)
       }
 
-      // 3. كتم المحادثة الحالية (الافتراضي)
       global.db.data.chats[m.chat].isBanned = true
       m.reply('*`❲🔒❳` تـم كـتـم الـمـحـادثـة*\n\n*`⛊ هـذه الـمـحـادثـة لـيـس لـهـا الأذن لاسـتـعـمـالـي الآن`*')
       break
 
-    case 'بانشاتفك':
-      // 1. فك كتم الكل
+    case 'بانفك':
       if (args[0] === 'الكل') {
         groups.forEach(v => {
           global.db.data.chats[v.id].isBanned = false
@@ -50,9 +45,8 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
         return m.reply('*`❲🔓❳` تـم فـك كـتـم جـمـيـع الـمـجـمـوعـات بـنـجـاح.*')
       }
 
-      // 2. فك كتم مجموعة برقمها
       if (args[0] === 'مجموعة') {
-        if (!args[1]) return m.reply(`🌿 اسـتـخـدم الـرقـم مـن الـقـائـمـة:\n*.بانشات مجموعة* أولاً لـرؤيـة الأرقـام.`)
+        if (!args[1]) return m.reply(`🌿 اسـتـخـدم الـرقـم مـن الـقـائـمـة:\n*.بان مجموعة* أولاً لـرؤيـة الأرقـام.`)
         
         let index = parseInt(args[1]) - 1
         if (!groups[index]) return m.reply('❌ رقـم الـمـجـمـوعـة غـيـر صـحـيـح.')
@@ -61,7 +55,6 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
         return m.reply(`✅ تـم إلـغـاء كـتـم الـمـجـمـوعـة:\n*${groups[index].subject}* بنجاح.`)
       }
 
-      // 3. فك كتم المحادثة الحالية (الافتراضي)
       global.db.data.chats[m.chat].isBanned = false
       m.reply('*`❲🔓❳` تـم إلـغـاء كـتـم الـمـحـادثـة*\n\n*`⛊ هـذه الـمـحـادثـة لـهـا الأذن لاسـتـعـمـالـي الآن`*')
       break
@@ -70,7 +63,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
 
 handler.help = ['banchat']
 handler.tags = ['owner']
-handler.command = ['بانشات', 'بانشاتفك']
+handler.command = ['بان', 'بانفك']
 handler.rowner = true
 
 export default handler

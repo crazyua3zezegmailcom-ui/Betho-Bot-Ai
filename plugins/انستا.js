@@ -10,7 +10,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     // التحقق من وجود رابط
     if (!args[0]) {
         return conn.reply(
-            m.chat)
+            m.chat,
+            `*📸 تحميل انستغرام*\n\nأرسل رابط المنشور بعد الأمر:\n${usedPrefix}${command} رابط_المنشور`,
+            m)
     }
 
     // رسالة التحميل بدون زخرفة

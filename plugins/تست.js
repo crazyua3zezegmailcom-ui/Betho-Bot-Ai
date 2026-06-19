@@ -24,7 +24,7 @@ function contactQuote(m) {
     message: {
       contactMessage: {
         displayName: m.pushName || 'Unknown',
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:HULK BOT ✓\nTITLE:Verified\nEND:VCARD`
+        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
       }
     },
     participant: '0@s.whatsapp.net'
@@ -41,7 +41,7 @@ let handler = async (m, { conn }) => {
     
     const pluginsDir = path.join(process.cwd(), './plugins')
     const totalFiles = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js')).length
-    let totalErrors = global.db?.data?.stats?.errors || 0 
+    let totalErrors = global.db?.data?.stats?.errors || 0
 
     const totalRamSys = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2)
     const freeRamSys = (os.freemem() / 1024 / 1024 / 1024).toFixed(2)
@@ -137,8 +137,15 @@ let handler = async (m, { conn }) => {
                     {
                       name: "cta_url",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 𝐶ℎ𝑎𝑛𝑛𝑒𝑙 👑",
+                        display_text: "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 𝐶ℎ𝑎𝑛𝑛𝑒𝑙 👑",
                         url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
+                      })
+                    },
+                    {
+                      name: "cta_url",
+                      buttonParamsJson: JSON.stringify({
+                        display_text: "🌐 𝐵𝑒𝑡ℎ𝑜 𝑤𝑒𝑏 ",
+                        url: "https://codepen.io/Betho-Bot-/full/xbggjOo"
                       })
                     }
                   ]
@@ -172,5 +179,5 @@ function clockString(ms) {
 }
 
 handler.customPrefix = /^(تست|test)$/i
-handler.command = new RegExp
+handler.command = new RegExp('')
 export default handler

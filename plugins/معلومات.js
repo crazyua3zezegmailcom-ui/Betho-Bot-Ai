@@ -106,7 +106,7 @@ externalAdReply: {
 title: "🔰 مُفَتِّشُ الْمَجَامِيعِ",
 body: m.pushName,
 thumbnailUrl: m.pp,
-sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
+sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : '',
 mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: true

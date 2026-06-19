@@ -38,7 +38,7 @@ let handler = async (m, { conn, usedPrefix, text, isAdmin, isOwner }) => {
 
     } catch (err) {
         console.error(err)
-        conn.reply(m.chat, `❌ *حدث خطأ! تأكد أن الرقم صحيح وموجود في واتساب، وأن البوت مشرف.*`, m)
+        await conn.reply(m.chat, `❌ *حدث خطأ! تأكد أن الرقم صحيح وموجود في واتساب، وأن البوت مشرف.*`, m)
     }
 }
 

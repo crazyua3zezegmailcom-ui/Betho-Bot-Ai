@@ -105,8 +105,8 @@ return list[Math.floor(Math.random() * list.length)]
 }
 
 async function getRandomChannel() {
-let randomIndex = Math.floor(Math.random() * canalIdM.length)
-let id = canalIdM[randomIndex]
-let name = canalNombreM[randomIndex]
+let randomIndex = Math.floor(Math.random() * global.canalIdM.length)
+let id = global.canalIdM[randomIndex]
+let name = global.canalNombreM[randomIndex]
 return { id, name }
 }

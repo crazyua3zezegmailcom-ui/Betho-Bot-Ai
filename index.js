@@ -8,6 +8,7 @@ import { fileURLToPath, pathToFileURL } from 'url'
 import { platform } from 'process'
 import * as ws from 'ws'
 import fs, { readdirSync, statSync, unlinkSync, existsSync, mkdirSync, readFileSync, rmSync, watch } from 'fs'
+import os from 'os'
 import yargs from 'yargs'
 import { spawn, execSync } from 'child_process'
 import lodash from 'lodash'
@@ -196,7 +197,7 @@ if (!opts['test']) {
     if (global.db.data) await global.db.write()
     if (opts['autocleartmp'] && (global.support || {}).find) {
       const tmp = [os.tmpdir(), 'tmp', `${jadi}`]
-      tmp.forEach((filename) => cp.spawn('find', [filename, '-amin', '3', '-type', 'f', '-delete']))
+      tmp.forEach((filename) => spawn('find', [filename, '-amin', '3', '-type', 'f', '-delete']))
     }
   }, 30 * 1000)
 }
@@ -301,13 +302,6 @@ global.reloadHandler = async function (restatConn) {
   
   conn.connectionUpdate = connectionUpdate.bind(global.conn)
   conn.credsUpdate = saveCreds.bind(global.conn, true)
-  const currentDateTime = new Date()
-  const messageDateTime = new Date(conn.ev)
-  if (currentDateTime >= messageDateTime) {
-    const chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map((v) => v[0])
-  } else {
-    const chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map((v) => v[0])
-  }
   conn.ev.on('messages.upsert', conn.handler)
   conn.ev.on('connection.update', conn.connectionUpdate)
   conn.ev.on('creds.update', conn.credsUpdate)
@@ -326,11 +320,11 @@ if (global.yukiJadibts) {
   } else {
     console.log(chalk.bold.cyan(`ꕥ La carpeta: ${jadi} ya está creada.`))
   }
-  const readRutaJadiBot = readdirSync(rutaJadiBot)
+  const readRutaJadiBot = readdirSync(global.rutaJadiBot)
   if (readRutaJadiBot.length > 0) {
     const creds = 'creds.json'
     for (const gjbts of readRutaJadiBot) {
-      const botPath = join(rutaJadiBot, gjbts)
+      const botPath = join(global.rutaJadiBot, gjbts)
       if (existsSync(botPath) && statSync(botPath).isDirectory()) {
         const readBotPath = readdirSync(botPath)
         if (readBotPath.includes(creds)) {

@@ -72,7 +72,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
                 }
             ],
             "pre_generated_reply_id": pre_generated_reply_id,
-            "pre_parent_item_id": question_id,
+            "pre_parent_item_id": question_item_id,
             "origin": "https://monica.im/ar/products/ai-chat",
             "origin_page_title": "دردشة AI مجانية - افتح حصتك اليومية من المحادثات",
             "trigger_by": "auto",

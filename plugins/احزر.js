@@ -5,11 +5,12 @@ const timeout = 60000;
 
 let handler = async (m, { conn, command }) => {
     let jid = m.sender;
+    conn.𝐶𝑟𝑎𝑧𝑦 = conn.𝐶𝑟𝑎𝑧𝑦 || {};
     if (command.startsWith('جوابي_')) {
         let id = m.chat;
-        let 𝐶𝑟𝑎𝑧𝑦 = conn.𝐶𝑟𝑎𝑧𝑦[id];
+        let gameState = conn.𝐶𝑟𝑎𝑧𝑦[id];
 
-        if (!𝐶𝑟𝑎𝑧𝑦) {
+        if (!gameState) {
             return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_لا توجد لعبة نشطة الان 📯📍_*\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
         }
 
@@ -18,21 +19,21 @@ let handler = async (m, { conn, command }) => {
             return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_اختيار غير صالح يا اخي ❌_*\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
         }
 
-        let selectedAnswer = 𝐶𝑟𝑎𝑧𝑦.options[selectedAnswerIndex - 1];
-        let isCorrect = 𝐶𝑟𝑎𝑧𝑦.correctAnswer === selectedAnswer;
+        let selectedAnswer = gameState.options[selectedAnswerIndex - 1];
+        let isCorrect = gameState.correctAnswer === selectedAnswer;
 
         if (isCorrect) {
             await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة صحيحة مبروك ✨✅_*\n│ 💰 *الجائزة:* 500xp\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
             global.db.data.users[m.sender].exp += 500;
-            clearTimeout(𝐶𝑟𝑎𝑧𝑦.timer);
+            clearTimeout(gameState.timer);
             delete conn.𝐶𝑟𝑎𝑧𝑦[id];
         } else {
-            𝐶𝑟𝑎𝑧𝑦.attempts -= 1;
-            if (𝐶𝑟𝑎𝑧𝑦.attempts > 0) {
-                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة يا اخي 🛠️❌_*\n│ ⏳ *المحاولات المتبقية:* ${𝐶𝑟𝑎𝑧𝑦.attempts}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
+            gameState.attempts -= 1;
+            if (gameState.attempts > 0) {
+                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة يا اخي 🛠️❌_*\n│ ⏳ *المحاولات المتبقية:* ${gameState.attempts}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
             } else {
-                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة انتهت المحاولات 😢_*\n│ 💡 *الإجابة:* ${𝐶𝑟𝑎𝑧𝑦.correctAnswer}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
-                clearTimeout(𝐶𝑟𝑎𝑧𝑦.timer);
+                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة انتهت المحاولات 😢_*\n│ 💡 *الإجابة:* ${gameState.correctAnswer}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
+                clearTimeout(gameState.timer);
                 delete conn.𝐶𝑟𝑎𝑧𝑦[id];
             }
         }

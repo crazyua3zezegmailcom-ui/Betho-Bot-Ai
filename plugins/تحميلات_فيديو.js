@@ -55,7 +55,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     const msg = generateWAMessageFromContent(m.chat, {
       viewOnceMessage: { message: { interactiveMessage } }
-    }, { userJid });
+    }, { userJid: conn.user.jid, quoted: m });
 
     return await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
   }
