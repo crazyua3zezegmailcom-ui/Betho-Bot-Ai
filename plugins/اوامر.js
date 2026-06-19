@@ -88,8 +88,15 @@ Betho Bot For Whatsapp`.trim()
             {
                 name: "cta_url",
                 buttonParamsJson: JSON.stringify({
-                    display_text: "𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢ 👑",
+                    display_text: "قناة البوت 📢",
                     url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
+                })
+            },
+            {
+                name: "cta_url",
+                buttonParamsJson: JSON.stringify({
+                    display_text: "🌐 موقع البوت",
+                    url: "https://codepen.io/Betho-Bot-/full/xbggjOo"
                 })
             }
         ]
