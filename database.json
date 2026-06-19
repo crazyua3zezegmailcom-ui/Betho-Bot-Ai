@@ -3263,7 +3263,7 @@
     },
     "201214057674@s.whatsapp.net": {
       "name": "𝓐𝓫𝓭𝓾𝓵𝓵𝓪𝓱",
-      "exp": 243,
+      "exp": 279,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3277,7 +3277,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 13,
+      "commands": 14,
       "afk": -1,
       "afkReason": "",
       "warn": 0
@@ -5570,6 +5570,20 @@
       "gacha": true
     },
     "201275681011@s.whatsapp.net": {
+      "isBanned": false,
+      "isMute": false,
+      "welcome": false,
+      "sWelcome": "",
+      "sBye": "",
+      "detect": true,
+      "primaryBot": null,
+      "modoadmin": false,
+      "antiLink": true,
+      "nsfw": false,
+      "economy": true,
+      "gacha": true
+    },
+    "201002965431@s.whatsapp.net": {
       "isBanned": false,
       "isMute": false,
       "welcome": false,
