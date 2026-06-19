@@ -78,7 +78,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 │ ⌬ *الحجم:* ${details.size}
 │ ⌬ *نظام التشغيل:* Android 
 │ ⌬ *آخر تحديث:* ${details.lastup || 'غير معروف'}
-╯───≪ 🌿🍉🍡 ≫───╰ 
+╯───≪ ⚙️🧩⚙️ ≫───╰ 
 
 ⏳ *جاري التحميل و الإرسال...*`;
 

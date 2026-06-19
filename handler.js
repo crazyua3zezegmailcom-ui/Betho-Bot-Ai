@@ -8,8 +8,8 @@ import fetch from "node-fetch";
 import ws from "ws";
 
 // زخرفة بسيطة وجديدة (يمكنك تغييرها كما تشاء)
-const startDeco = `╗═══≪ 🌿🍉🍡 ≫═══╔ `;
-const endDeco   = `╝═══≪ 🌿🍉🍡 ≫═══╚ `;
+const startDeco = `╗═══≪ ⚙️🧩⚙️ ≫═══╔ `;
+const endDeco   = `╝═══≪ ⚙️🧩⚙️ ≫═══╚ `;
 
 // دالة إنشاء تنسيق جهة الاتصال (كما هي دون تغيير)
 

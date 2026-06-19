@@ -23,14 +23,14 @@ let handler = async (m, { conn, usedPrefix, text, isAdmin, isOwner }) => {
     try {
         await conn.groupParticipantsUpdate(m.chat, [user], 'demote')
         
-        let msg = `╗═══≪ 🌿🍉🍡 ≫═══╔
+        let msg = `╗═══≪ ⚙️🧩⚙️ ≫═══╔
 📉 *تم الإعفاء من المنصب*
 
 𓆩⃞🍒𓆪 *العضو:* @${user.split('@')[0]}
 𓆩⃞🍇𓆪 *بواسطة:* @${m.sender.split('@')[0]}
 
 ⚠️ *تم سحب صلاحيات الإشراف*
-╝═══≪ 🌿🍉🍡 ≫═══╚`;
+╝═══≪ ⚙️🧩⚙️ ≫═══╚`;
 
         await conn.sendMessage(m.chat, { 
             text: msg,

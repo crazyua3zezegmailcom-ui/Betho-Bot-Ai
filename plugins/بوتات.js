@@ -10,8 +10,8 @@ import os from 'os'
 import ws from 'ws'
 
 // زخرفة القوالب بناءً على ثيم ⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 الخاص بك
-const startDeco = `╗═══≪ 🌿🍉🍡 ≫═══╔`;
-const endDeco   = `╝═══≪ 🌿🍉🍡 ≫═══╚`;
+const startDeco = `╗═══≪ ⚙️🧩⚙️ ≫═══╔`;
+const endDeco   = `╝═══≪ ⚙️🧩⚙️ ≫═══╚`;
 
 // قائمة الصور المعتمدة للأمر ليتم اختيار واحدة منها عشوائياً
 const bethoImages = [

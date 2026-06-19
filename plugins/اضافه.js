@@ -22,14 +22,14 @@ let handler = async (m, { conn, usedPrefix, text, isAdmin, isOwner }) => {
         }
 
         // 4. الرسالة بالزخرفة الفخمة
-        let msg = `╗═══≪ 🌿🍉🍡 ≫═══╔
+        let msg = `╗═══≪ ⚙️🧩⚙️ ≫═══╔
 ➕ *تمت الإضافة بنجاح*
 
 𓆩⃞🍒𓆪 *العضو الجديد:* @${user}
 𓆩⃞🍇𓆪 *بواسطة:* @${m.sender.split('@')[0]}
 
 ✨ *منور الجروب يا بطل*
-╝═══≪ 🌿🍉🍡 ≫═══╚`;
+╝═══≪ ⚙️🧩⚙️ ≫═══╚`;
 
         await conn.sendMessage(m.chat, { 
             text: msg,
