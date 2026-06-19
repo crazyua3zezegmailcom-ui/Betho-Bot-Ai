@@ -1,6 +1,6 @@
 // م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
 // أوٰأم࣬ــࢪ م࣬ٺم࣬يــژۿ . ⊹
-// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
+// حہּٰقَــــوٰقَ 𝐶𝑟𝑎𝑧𝑦 𝒅𝒆𝒗 🐦☕
 // أݪــسٰࢪقَــۿ ݪأ ٺــفَـيډڪٰٖ يم࣬غٰــفَݪ
 // أسٰـم࣬ أݪأم࣬ــࢪ _allfake.js
 // ٺـأࢪيخَ صَـنٰأـ؏ٚـۿ أݪــبٚوٰٺ ؍ 🌸♡゙ ُ𓂁 2024_9_22
@@ -53,7 +53,7 @@ global.getFakeForward = async (thumbnail = null) => {
       externalAdReply: {
         title: global.botname || 'HULK BOT',
         body: global.dev || 'Crazy dev',
-        thumbnail: thumbnail || await (await fetch(global.icono || 'https://raw.githubusercontent.com/mzml-gg/Api-creds.json-/main/IMG-20260320-WA0382.jpg')).buffer(),
+        thumbnail: thumbnail || await (await fetch(global.icono || 'https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg')).buffer(),
         sourceUrl: global.redes,
         mediaType: 1,
         renderLargerThumbnail: false

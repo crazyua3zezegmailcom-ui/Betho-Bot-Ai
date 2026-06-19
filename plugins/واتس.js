@@ -27,7 +27,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         try {
             profilePic = await conn.profilePictureUrl(jid, 'image');
         } catch {
-            profilePic = 'https://telegra.ph/file/24fa902eee85d33618514.png';
+            profilePic = 'https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg';
         }
 
         let country = 'دولة غير معروفة 🌍';

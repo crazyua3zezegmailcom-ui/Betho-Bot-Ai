@@ -19,11 +19,11 @@ global.jadi = "Sessions/SubBot"
 global.yukiJadibts = true
 
 
-global.botname = "𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢"
-global.textbot = "𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢"
+global.botname = "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥"
+global.textbot = "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥"
 global.dev = "𝐶𝑟𝑎𝑧𝑦"
-global.author = "𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢"
-global.etiqueta = "𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢"
+global.author = "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥"
+global.etiqueta = "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥"
 global.currency = "¥enes"
 global.banner = "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg"
 global.icono = "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg"

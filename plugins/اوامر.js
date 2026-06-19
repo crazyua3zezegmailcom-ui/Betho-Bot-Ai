@@ -19,7 +19,7 @@ if (fs.existsSync(photosDir)) {
     }
 }
 
-const fallbackUrl = "https://i.postimg.cc/02tkNSHj/IMG-20260610-WA0081.jpg"
+const fallbackUrl = "https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg"
 
 let handler = async (m, { conn, usedPrefix }) => {
     const taguser = '@' + m.sender.split('@')[0]

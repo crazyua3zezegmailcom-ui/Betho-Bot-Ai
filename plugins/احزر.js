@@ -7,9 +7,9 @@ let handler = async (m, { conn, command }) => {
     let jid = m.sender;
     if (command.startsWith('جوابي_')) {
         let id = m.chat;
-        let ZIAD = conn.ZIAD[id];
+        let 𝐶𝑟𝑎𝑧𝑦 = conn.𝐶𝑟𝑎𝑧𝑦[id];
 
-        if (!ZIAD) {
+        if (!𝐶𝑟𝑎𝑧𝑦) {
             return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_لا توجد لعبة نشطة الان 📯📍_*\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
         }
 
@@ -18,30 +18,30 @@ let handler = async (m, { conn, command }) => {
             return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_اختيار غير صالح يا اخي ❌_*\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
         }
 
-        let selectedAnswer = ZIAD.options[selectedAnswerIndex - 1];
-        let isCorrect = ZIAD.correctAnswer === selectedAnswer;
+        let selectedAnswer = 𝐶𝑟𝑎𝑧𝑦.options[selectedAnswerIndex - 1];
+        let isCorrect = 𝐶𝑟𝑎𝑧𝑦.correctAnswer === selectedAnswer;
 
         if (isCorrect) {
             await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة صحيحة مبروك ✨✅_*\n│ 💰 *الجائزة:* 500xp\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
             global.db.data.users[m.sender].exp += 500;
-            clearTimeout(ZIAD.timer);
-            delete conn.ZIAD[id];
+            clearTimeout(𝐶𝑟𝑎𝑧𝑦.timer);
+            delete conn.𝐶𝑟𝑎𝑧𝑦[id];
         } else {
-            ZIAD.attempts -= 1;
-            if (ZIAD.attempts > 0) {
-                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة يا اخي 🛠️❌_*\n│ ⏳ *المحاولات المتبقية:* ${ZIAD.attempts}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
+            𝐶𝑟𝑎𝑧𝑦.attempts -= 1;
+            if (𝐶𝑟𝑎𝑧𝑦.attempts > 0) {
+                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة يا اخي 🛠️❌_*\n│ ⏳ *المحاولات المتبقية:* ${𝐶𝑟𝑎𝑧𝑦.attempts}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
             } else {
-                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة انتهت المحاولات 😢_*\n│ 💡 *الإجابة:* ${ZIAD.correctAnswer}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
-                clearTimeout(ZIAD.timer);
-                delete conn.ZIAD[id];
+                await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_إجابة خاطئة انتهت المحاولات 😢_*\n│ 💡 *الإجابة:* ${𝐶𝑟𝑎𝑧𝑦.correctAnswer}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
+                clearTimeout(𝐶𝑟𝑎𝑧𝑦.timer);
+                delete conn.𝐶𝑟𝑎𝑧𝑦[id];
             }
         }
     } else {
         try {
-            conn.ZIAD = conn.ZIAD || {};
+            conn.𝐶𝑟𝑎𝑧𝑦 = conn.𝐶𝑟𝑎𝑧𝑦 || {};
             let id = m.chat;
 
-            if (conn.ZIAD[id]) {
+            if (conn.𝐶𝑟𝑎𝑧𝑦[id]) {
                 return conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌬ *_هناك لعبة جارية بالفعل لم تنتهي بعد ❌❄️_*\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
             }
 
@@ -96,13 +96,13 @@ let handler = async (m, { conn, command }) => {
 
             conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
 
-            conn.ZIAD[id] = {
+            conn.𝐶𝑟𝑎𝑧𝑦[id] = {
                 correctAnswer: name,
                 options: options,
                 timer: setTimeout(async () => {
-                    if (conn.ZIAD[id]) {
+                    if (conn.𝐶𝑟𝑎𝑧𝑦[id]) {
                         await conn.reply(m.chat, `╭───≪ ⚙️ 𝑩𝒆𝒕𝒉𝒐 🧩 ≫───╮\n│ ⌛ *انتهى الوقت يا بطل*\n│ 💡 *الإجابة الصحيحة كانت:* ${name}\n╯───≪ ⚙️🧩⚙️ ≫───╰`, m);
-                        delete conn.ZIAD[id];
+                        delete conn.𝐶𝑟𝑎𝑧𝑦[id];
                     }
                 }, timeout),
                 attempts: 2

@@ -22,7 +22,7 @@ const handler = async (m, { conn, usedPrefix }) => {
     const taguser = '@' + m.sender.split('@')[0]
     const currentDate = new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })
     const dayName    = new Date().toLocaleDateString('ar-EG', { weekday: 'long' })
-    const imageUrl   = "https://i.postimg.cc/7LyrBXcM/unnamed.png"
+    const imageUrl   = "https://i.postimg.cc/Fsx4fvfK/IMG-20260610-WA0075.jpg"
 
     let dinCommands = []
     if (global.plugins) {

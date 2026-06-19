@@ -39,10 +39,10 @@ let handler = async (m, { conn, usedPrefix }) => {
     "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg",
     "https://i.postimg.cc/Fsx4fvfK/IMG-20260610-WA0075.jpg",
     "https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg",
-    "https://i.postimg.cc/02tkNSHj/commands.jpg",
-    "https://i.postimg.cc/fbnj1GK0/welcome.jpg",
-    "https://i.postimg.cc/wMvKKyVk/remove.jpg",
-    "https://i.postimg.cc/P52T7Hh2/install.jpg",
+    "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg",
+    "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg",
+    "https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg",
+    "https://i.postimg.cc/Fsx4fvfK/IMG-20260610-WA0075.jpg",
     "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg",
     ""
   ];

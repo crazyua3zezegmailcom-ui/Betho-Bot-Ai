@@ -56,7 +56,7 @@ handler.before = async function (m, { conn, participants, groupMetadata, chat: _
   try {
     avatarUrl = await conn.profilePictureUrl(userJid, 'image')
   } catch {
-    avatarUrl = 'https://i.imgur.com/8B4QYQY.png'
+    avatarUrl = 'https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg'
   }
 
   // ─── بناء الصورة بأسلوب نيون بنفسجي ──────────────────

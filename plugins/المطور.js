@@ -63,7 +63,7 @@ let handler = async (m, { conn }) => {
   const vcard2 = `BEGIN:VCARD\nVERSION:3.0\nFN:${devName}\nTEL;type=CELL;waid=${num2}:+${num2}\nEND:VCARD`;
   const vcard3 = `BEGIN:VCARD\nVERSION:3.0\nFN:${devName}\nTEL;type=CELL;waid=${num3}:+${num3}\nEND:VCARD`;
 
-  const img      = 'https://i.postimg.cc/pXdnLtm5/file-000000003f4c71f491ea3ab5e4b3d6ca.png';
+  const img      = 'https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg';
   const voiceUrl = 'https://media1.vocaroo.com/mp3/14l3O099fwcq';
 
   const caption = `${HEADER}

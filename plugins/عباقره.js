@@ -88,7 +88,7 @@ const questions = [
   { q: "من هو مؤسس الجمهورية التركية؟", a: ["مصطفى كمال أتاتورك", "أتاتورك", "كمال أتاتورك"], difficulty: "medium", category: "history" },
   { q: "في أي عام وُلد الرئيس المصري جمال عبد الناصر؟", a: ["1918", "١٩١٨"], difficulty: "hard", category: "history" },
   { q: "ما هو اسم أول حضارة في التاريخ؟", a: ["السومرية", "حضارة سومر", "حضارة ما بين النهرين"], difficulty: "hard", category: "history" },
-  { q: "من فتح الأندلس؟", a: ["طارق بن زياد", "موسى بن نصير وطارق بن زياد"], difficulty: "medium", category: "history" },
+  { q: "من فتح الأندلس؟", a: ["طارق بن 𝐶𝑟𝑎𝑧𝑦", "موسى بن نصير وطارق بن 𝐶𝑟𝑎𝑧𝑦"], difficulty: "medium", category: "history" },
   { q: "في أي عام أُنشئت قناة السويس؟", a: ["1869", "١٨٦٩"], difficulty: "medium", category: "history" },
   { q: "من هو مخترع الهاتف؟", a: ["ألكسندر غراهام بيل", "غراهام بيل", "بيل"], difficulty: "medium", category: "history" },
   { q: "في أي عام تأسست الأمم المتحدة رسمياً؟", a: ["1945"], difficulty: "medium", category: "history" },

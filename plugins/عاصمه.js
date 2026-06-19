@@ -4,7 +4,7 @@ import { prepareWAMessageMedia, generateWAMessageFromContent } from "@whiskeysoc
 
 const timeout = 60000;
 const points = 500;
-const THUMB_URL = "https://raw.githubusercontent.com/mzml-gg/betho-Photos/main/betho4.jpg"; 
+const THUMB_URL = "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg"; 
 
 let handler = async (m, { conn, command }) => {
     let jid = m.sender;

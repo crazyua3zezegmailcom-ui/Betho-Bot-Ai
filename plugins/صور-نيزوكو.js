@@ -151,8 +151,8 @@ let handler = async (m, { conn }) => {
   await conn.relayMessage(m.chat, bot.message, { messageId: bot.key.id });
 };
 
-handler.help = ["نيزكو-تشان"];
+handler.help = ["⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥-تشان"];
 handler.tags = ["photo"];
-handler.command = /^(نيزكو-تشان)$/i;
+handler.command = /^(⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥-تشان)$/i;
 
 export default handler;

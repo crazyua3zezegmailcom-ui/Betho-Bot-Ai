@@ -24,7 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             let $ = cheerio.load(appData);
             
             const appName = $('.details-sdk span').text() || $('h1').text().trim();
-            const appIcon = $('.main-info img').attr('src') || 'https://telegra.ph/file/07f0f6745f47970d4942d.jpg';
+            const appIcon = $('.main-info img').attr('src') || 'https://i.postimg.cc/Fsx4fvfK/IMG-20260610-WA0075.jpg';
             const packageName = pkgUrl.split('/').pop().split('?')[0];
             const dlPageBtn = $('a.normal-download-btn').attr('href');
             

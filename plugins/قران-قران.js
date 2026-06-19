@@ -10,7 +10,7 @@ import path from 'path'
 const { generateWAMessageFromContent, prepareWAMessageMedia } = (await import('@whiskeysockets/baileys')).default
 
 // صورة افتراضية للقسم
-let IMAGE_URL = "https://i.postimg.cc/7LyrBXcM/unnamed.png"
+let IMAGE_URL = "https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg"
 
 // جلسات المستخدمين
 const userSessions = new Map()

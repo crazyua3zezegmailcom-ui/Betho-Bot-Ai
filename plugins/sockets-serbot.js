@@ -171,7 +171,7 @@ export async function yukiJadiBot(options) {
 
                 // إرسال صورة الدليل
                 txtCode = await conn.sendMessage(m.chat, {
-                    image: { url: 'https://i.postimg.cc/P52T7Hh2/IMG-20260610-WA0073(1).jpg' },
+                    image: { url: 'https://i.postimg.cc/Fsx4fvfK/IMG-20260610-WA0075.jpg).jpg' },
                     caption: rtx2
                 }, { quoted: m })
 

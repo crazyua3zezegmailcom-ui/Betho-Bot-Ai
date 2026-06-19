@@ -1,6 +1,6 @@
 // م࣬ــࢪحہּٰـبٚأ بٚـڪٰٖ فَــي أوٰأم࣬ـࢪ ۿأݪــڪٰٖي ؍ 🌸♡゙ ُ𓂁
 // أوٰأم࣬ــوٰ ر م࣬ٺم࣬يــژۿ . ⊹
-// حہּٰقَــــوٰقَ 𝒎𝒐𝒏𝒕𝒆 𝒅𝒆𝒗 🐦☕
+// حہּٰقَــــوٰقَ 𝐶𝑟𝑎𝑧𝑦 𝒅𝒆𝒗 🐦☕
 // أسٰـم࣬ أݪأم࣬ــࢪ البحث-يوتيوب.js
 // ࢪأبٚــطَ قَنٰــأۿ أݪم࣬ــطَــوٰࢪ ..)✘🖤🧸.
 // https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e
@@ -11,7 +11,7 @@ import { createCanvas, loadImage } from 'canvas';
 const { prepareWAMessageMedia, generateWAMessageFromContent, proto } = (await import("@whiskeysockets/baileys")).default;
 
 // الإعدادات والخلفية
-const BACKGROUND_IMAGE_URL = 'https://raw.githubusercontent.com/mzml-gg/betho-Photos/main/betho9.jpg';
+const BACKGROUND_IMAGE_URL = 'https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg';
 const myCredit = `*_ .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 _*`;
 
 // الزخارف المطلوبة

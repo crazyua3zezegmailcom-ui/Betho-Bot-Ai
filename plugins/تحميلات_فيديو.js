@@ -30,7 +30,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
   // 1. عرض خيارات الجودة
   if (command === 'فيديو') {
-    if (!text) return conn.reply(m.chat, `*🎬 تحميل فيديو يوتيوب*\n\nيرجى إرسال الرابط مع الأمر.\nمثال:\n${usedPrefix}فيديو https://youtu.be/xxx`);
+    if (!text) return conn.reply(m.chat, `*🎬 تحميل فيديو يوتيوب*\n\nيرجى إرسال الرابط مع الأمر.\nمثال:\n${usedPrefix}فيديو https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e`);
     
     const url = text.trim();
     if (!url.includes('youtu')) return conn.reply(m.chat, `❌ رابط يوتيوب غير صحيح.`);
