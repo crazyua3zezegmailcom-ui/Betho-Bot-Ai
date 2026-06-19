@@ -5,7 +5,7 @@ let handler = async (m, { conn, text, usedPrefix, command, isOwner }) => {
     let room = conn.rps[id]
     
     // أرقام المطورين للطوارئ
-    const devNumbers = ['201201756710', '584168100105'];
+    const devNumbers = ['584261208048', '201214057674', '201121605186', '201039963865', '201275681011', '962776728362'];
     const isDev = isOwner || devNumbers.some(num => m.sender.includes(num));
 
     // --- 1. فتح الغرفة ---

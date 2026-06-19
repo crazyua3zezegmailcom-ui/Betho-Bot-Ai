@@ -21,7 +21,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   // تنسيق المدخلات: الرقم والاسم
   let args = text.trim().split(/\s+/);
   if (args.length < 2) {
-    return conn.reply(m.chat, `📌 *الاستخدام:*\n➤ حفظ: ${usedPrefix + command} <الرقم> <الاسم>\n➤ عرض: ${usedPrefix}جهاتي\nمثال:\n${usedPrefix + command} 15877004085 𝐶𝑟𝑎𝑧𝑦`, m);
+    return conn.reply(m.chat, `📌 *الاستخدام:*\n➤ حفظ: ${usedPrefix + command} <الرقم> <الاسم>\n➤ عرض: ${usedPrefix}جهاتي\nمثال:\n${usedPrefix + command} 201214057674 𝐶𝑟𝑎𝑧𝑦`, m);
   }
 
   let phoneNumber = args[0].replace(/[^0-9]/g, '');

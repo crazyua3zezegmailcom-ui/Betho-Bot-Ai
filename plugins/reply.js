@@ -111,7 +111,7 @@ async function sendVoice(m, conn, url) {
 }
 
 // ===== أرقام المطورين =====
-const devNumbers = ["584261208048"];
+const devNumbers = ["584261208048", "201214057674", "201121605186", "201039963865", "201275681011", "962776728362"];
 
 // ===== Triggers النصية العادية =====
 const textTriggers = {

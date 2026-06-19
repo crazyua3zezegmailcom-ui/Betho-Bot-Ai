@@ -28,7 +28,7 @@ const handler = async (m, { conn, text, usedPrefix, command, isOwner }) => {
     }
 
     if (!targetNumber) {
-        return m.reply(`🍃 *طريقة الاستخدام:*\n\n${usedPrefix + command} 15877004085\nأو رد على رسالة الشخص وأرسل ${usedPrefix + command}\nأو منشن الشخص`)
+        return m.reply(`🍃 *طريقة الاستخدام:*\n\n${usedPrefix + command} 201214057674\nأو رد على رسالة الشخص وأرسل ${usedPrefix + command}\nأو منشن الشخص`)
     }
 
     // التأكد من أن الرقم ليس موجودًا بالفعل

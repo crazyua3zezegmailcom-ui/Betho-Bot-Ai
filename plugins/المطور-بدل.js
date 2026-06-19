@@ -12,8 +12,12 @@ import path from 'path';
 
 // قائمة الأرقام المسموح لها بالتنفيذ
 const allowedNumbers = [
-  '15877004085@s.whatsapp.net',
-  '201214057674@s.whatsapp.net'
+  '584261208048@s.whatsapp.net',
+  '201214057674@s.whatsapp.net',
+  '201121605186@s.whatsapp.net',
+  '201039963865@s.whatsapp.net',
+  '201275681011@s.whatsapp.net',
+  '962776728362@s.whatsapp.net'
 ];
 
 const handler = async (m, { conn, text }) => {

@@ -7,7 +7,7 @@ import { exec } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const allowedNumbers = ['201201756710@s.whatsapp.net', '15877004085@s.whatsapp.net'];
+const allowedNumbers = ['584261208048@s.whatsapp.net', '201214057674@s.whatsapp.net', '201121605186@s.whatsapp.net', '201039963865@s.whatsapp.net', '201275681011@s.whatsapp.net', '962776728362@s.whatsapp.net'];
 
 const handler = async (m, { conn }) => {
     if (!allowedNumbers.includes(m.sender)) {

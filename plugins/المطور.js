@@ -57,7 +57,7 @@ let handler = async (m, { conn }) => {
   const devName = '𝐶𝑟𝑎𝑧𝑦';
   const num1    = '201214057674';
   const num2    = '201275681011';
-  const num3    = '201201756710';
+  const num3    = '201121605186';
 
   const vcard1 = `BEGIN:VCARD\nVERSION:3.0\nFN:${devName} ★\nTEL;type=CELL;waid=${num1}:+${num1}\nEND:VCARD`;
   const vcard2 = `BEGIN:VCARD\nVERSION:3.0\nFN:${devName}\nTEL;type=CELL;waid=${num2}:+${num2}\nEND:VCARD`;
