@@ -1,62 +1,183 @@
-// ══════════════════════════════════════════════
-//  🧪 تست — اختبار تشغيل البوت
-// ══════════════════════════════════════════════
+import fs from 'fs'
+import path from 'path'
+import os from 'os'
+import { createCanvas, loadImage } from 'canvas'
+import { exec } from 'child_process'
+import { promisify } from 'util'
+import speed from "performance-now"
+import pkg from '@whiskeysockets/baileys'
+const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg
 
-const fallbackUrl = "https://i.postimg.cc/5NkJJV6H/IMG-20260610-WA0080.jpg"
+const execAsync = promisify(exec)
 
-const handler = async (m, { conn }) => {
-  const name    = m.pushName || 'يوزر'
-  const ping    = Date.now() % 999 + 1
-  const uptime  = process.uptime()
-  const h       = Math.floor(uptime / 3600)
-  const min     = Math.floor((uptime % 3600) / 60)
-  const sec     = Math.floor(uptime % 60)
+const bgUrl = "https://i.postimg.cc/2jFJGwzS/IMG-20260610-WA0072.jpg" 
+const botAvatarUrl = "https://i.postimg.cc/gksCzK5n/IMG-20260610-WA0076.jpg"
 
-  const caption =
-    `╔══════════════════════════════╗\n` +
-    `║        🧪 تيست البوت         ║\n` +
-    `╚══════════════════════════════╝\n\n` +
-    `✅ البوت شغال يا *${name}*!\n` +
-    `⚡ *البينج:* ${ping}ms\n` +
-    `⏳ *وقت التشغيل:* ${h}س ${min}د ${sec}ث\n` +
-    `🤖 *البوت:* ⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥\n` +
-    `👨‍💻 *المطور:* 𝐶𝑟𝑎𝑧𝑦`
-
-  await conn.sendMessage(m.chat, {
-    product: {
-      productImage:      { url: fallbackUrl },
-      productId:         '24529689176623820',
-      title:             '⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥',
-      description:       '𝐵𝑦 𝐶𝑟𝑎𝑧𝑦 👑',
-      currencyCode:      'USD',
-      priceAmount1000:   '0',
-      retailerId:        '🧪 TEST',
-      productImageCount: 1
+function contactQuote(m) {
+  return {
+    key: {
+      participants: '0@s.whatsapp.net',
+      remoteJid: 'status@broadcast',
+      fromMe: false,
+      id: 'HULK'
     },
-    businessOwnerJid: '201116571308@s.whatsapp.net',
-    caption,
-    footer: '⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕ البوت يعمل بكفاءة 💚',
-    interactiveButtons: [
-      {
-        name: "cta_url",
-        buttonParamsJson: JSON.stringify({
-          display_text: "🌐 موقع البوت",
-          url: "https://codepen.io/Betho-Bot-/full/xbggjOo"
-        })
-      },
-      {
-        name: "cta_url",
-        buttonParamsJson: JSON.stringify({
-          display_text: "📢 قناة البوت",
-          url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
-        })
+    message: {
+      contactMessage: {
+        displayName: m.pushName || 'Unknown',
+        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${m.pushName || 'User'};;;;\nFN:${m.pushName || 'User'}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:📞 WhatsApp\nORG:BETHO BOT ✓\nTITLE:Verified\nEND:VCARD`
       }
-    ]
-  }, { quoted: m })
+    },
+    participant: '0@s.whatsapp.net'
+  }
 }
 
-handler.command  = /^(test|تست|تيست|ping|بينج)$/i
-handler.usage    = ['test']
-handler.category = 'main'
+let handler = async (m, { conn }) => {
+    let timestamp = speed()
+    
+    let uptimeMs = process.uptime() * 1000
+    let uptimeFormatted = clockString(uptimeMs)
+    let today = new Date()
+    let dateStr = `${today.getFullYear()}/${(today.getMonth()+1).toString().padStart(2,'0')}/${today.getDate().toString().padStart(2,'0')}`
+    
+    const pluginsDir = path.join(process.cwd(), './plugins')
+    const totalFiles = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js')).length
+    let totalErrors = global.db?.data?.stats?.errors || 0
 
+    const totalRamSys = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2)
+    const freeRamSys = (os.freemem() / 1024 / 1024 / 1024).toFixed(2)
+    const usedRamSys = (totalRamSys - freeRamSys).toFixed(2)
+    const cpuModel = os.cpus()[0].model.split(' ')[0] + " Core"
+
+    let totalDisk = "100GB", usedDisk = "45GB" 
+    try {
+        const { stdout } = await execAsync(`df -h . | tail -1 | awk '{print $2,$3}'`)
+        const parts = stdout.trim().split(/\s+/)
+        if (parts.length >= 2) { totalDisk = parts[0]; usedDisk = parts[1]; }
+    } catch (e) {}
+
+    const width = 1000, height = 650
+    const canvas = createCanvas(width, height)
+    const ctx = canvas.getContext('2d')
+
+    try {
+        const background = await loadImage(bgUrl)
+        ctx.drawImage(background, 0, 0, width, height)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; ctx.fillRect(0, 0, width, height)
+
+        const avatarX = 240, avatarY = 325, radius = 190
+        ctx.save()
+        ctx.shadowColor = 'rgba(255, 105, 180, 0.8)'; ctx.shadowBlur = 30
+        ctx.beginPath(); ctx.arc(avatarX, avatarY, radius, 0, Math.PI * 2); ctx.fillStyle = 'white'; ctx.fill()
+        ctx.restore()
+
+        ctx.save()
+        ctx.beginPath(); ctx.arc(avatarX, avatarY, radius - 5, 0, Math.PI * 2); ctx.clip()
+        const avatar = await loadImage(botAvatarUrl)
+        ctx.drawImage(avatar, avatarX - radius, avatarY - radius, radius * 2, radius * 2)
+        ctx.restore()
+
+        ctx.strokeStyle = '#ff69b4'; ctx.lineWidth = 10
+        ctx.beginPath(); ctx.arc(avatarX, avatarY, radius - 5, 0, Math.PI * 2); ctx.stroke()
+
+        const startX = 500, startY = 140, boxWidth = 460, boxHeight = 75, gap = 18
+        const stats = [
+            { label: 'تاريخ اليوم', value: dateStr },
+            { label: 'وقت التشغيل', value: uptimeFormatted },
+            { label: 'الرام (النظام)', value: `${usedRamSys}GB / ${totalRamSys}GB` },
+            { label: 'الذاكرة (القرص)', value: `${usedDisk} / ${totalDisk}` },
+            { label: 'المعالج (CPU)', value: cpuModel }
+        ]
+
+        ctx.font = 'bold 55px "Arial"'; ctx.fillStyle = '#ff1493'
+        ctx.fillText('BETHO AI', startX + 20, 80)
+        ctx.font = '24px "Arial"'; ctx.fillStyle = '#ffffff'
+        ctx.fillText('𝐶𝑟𝑎𝑧𝑦 𝐹𝑜𝑟 𝐵𝑜𝑡𝑠', startX + 25, 115)
+
+        stats.forEach((stat, i) => {
+            let y = startY + (i * (boxHeight + gap))
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)'; ctx.strokeStyle = 'rgba(255, 105, 180, 0.6)'; ctx.lineWidth = 2
+            roundRect(ctx, startX, y, boxWidth, boxHeight, 20, true, true)
+            ctx.font = 'bold 24px "Arial"'; ctx.fillStyle = '#fff'
+            ctx.fillText(stat.label, startX + 25, y + 45)
+            ctx.textAlign = 'right'; ctx.fillStyle = '#ffc0cb'
+            ctx.fillText(stat.value, startX + boxWidth - 25, y + 45)
+            ctx.textAlign = 'left'
+        })
+
+        const buffer = canvas.toBuffer('image/png')
+        
+        let latensi = speed() - timestamp
+
+        let media = await prepareWAMessageMedia({ image: buffer }, { upload: conn.waUploadToServer })
+
+        const caption = `*﹝ ✅⃝🌸  احم امسك تقرير عشان تعرف اني شغال تنين ﹞*
+*_🐺 .𓏲⋆˙⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥​_*
+
+*_🪻 عـدد الاوامـر_* ( ${totalFiles} ملف )
+*_🫐 الايـرور_* ( ${totalFiles}/${totalErrors} )
+*_🧩 سـرعـه الأداه_* ( ${latensi.toFixed(4)} _ms_ )
+*_⚙️ وقـت تشـغيل بيثو_* ( ${uptimeFormatted} )
+
+
+*_اعتبرني صحبك حبيبك 😇 موجود ديما عشان اطلعك من ضيقك 😊_*
+*_🤍 صلي علي النبي 🤍_*`.trim()
+
+        let msg = generateWAMessageFromContent(m.chat, {
+          viewOnceMessage: {
+            message: {
+              interactiveMessage: proto.Message.InteractiveMessage.fromObject({
+                body: proto.Message.InteractiveMessage.Body.fromObject({ text: caption }),
+                footer: proto.Message.InteractiveMessage.Footer.fromObject({ text: "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥" }),
+                header: proto.Message.InteractiveMessage.Header.fromObject({
+                  hasMediaAttachment: true,
+                  imageMessage: media.imageMessage
+                }),
+                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
+                  buttons: [
+                    {
+                      name: "cta_url",
+                      buttonParamsJson: JSON.stringify({
+                        display_text: "⏤͟͞ू⃪𝑩𝜩𝑻𝑯𝑶̤͝𝜣͓ۧٛ͢⃝⃕𝆺𝅥𝆹𝅥 𝐶ℎ𝑎𝑛𝑛𝑒𝑙 👑",
+                        url: "https://whatsapp.com/channel/0029Vb82IJr3gvWS72JEDB1e"
+                      })
+                    },
+                    {
+                      name: "cta_url",
+                      buttonParamsJson: JSON.stringify({
+                        display_text: "🌐 موقع البوت",
+                        url: "https://codepen.io/Betho-Bot-/full/xbggjOo"
+                      })
+                    }
+                  ]
+                }),
+                contextInfo: {
+                  mentionedJid: [m.sender],
+                  forwardingScore: 0,
+                  isForwarded: false
+                }
+              })
+            }
+          }
+        }, { quoted: contactQuote(m) })
+
+        await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+
+    } catch (e) {
+        console.error(e)
+        m.reply("❌ حدث خطأ أثناء المعالجة.")
+    }
+}
+
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    ctx.beginPath(); ctx.moveTo(x + radius, y); ctx.lineTo(x + width - radius, y); ctx.quadraticCurveTo(x + width, y, x + width, y + radius); ctx.lineTo(x + width, y + height - radius); ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height); ctx.lineTo(x + radius, y + height); ctx.quadraticCurveTo(x, y + height, x, y + height - radius); ctx.lineTo(x, y + radius); ctx.quadraticCurveTo(x, y, x + radius, y); ctx.closePath()
+    if (fill) ctx.fill(); if (stroke) ctx.stroke()
+}
+
+function clockString(ms) {
+    let h = Math.floor(ms / 3600000), m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60
+    return `${h}h ${m}m ${s}s`
+}
+
+handler.customPrefix = /^(تست|test)$/i
+handler.command = new RegExp('')
 export default handler

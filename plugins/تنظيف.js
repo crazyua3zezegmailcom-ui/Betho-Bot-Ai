@@ -1,26 +1,40 @@
-import { execSync } from "child_process";
+import path from "path"
+import fs from "fs"
 
-export default {
-  command: ["تنظيف"],
-  category: "owner",
-  usage: ["تنظيف"],
-  owner: true,
-  async execute(m) {
-    try {
-      m.react("🧹")
-      m.reply("*🧹╎ جاري التنظيف ...*")
-      const result = execSync(
-        'files=$(ls session/pre-key-* session/device-list-* 2>/dev/null | wc -l); rm -rf session/pre-key-* session/device-list-* 2>/dev/null; echo "$files"',
-        { encoding: 'utf-8' }
-      );
-      
-      const count = parseInt(result.trim()) || 0;
-      const message = `*🗑️╎  تم تنظيف [ ${count} ] ملف*`;
-      
-      m.react("🟢")
-      await m.reply(message);
-    } catch (error) {
-      await m.reply(`\`\`\`${error.message}\`\`\``);
+let handler = async (m, { conn }) => {
+  try {
+    await conn.sendMessage(m.chat, {
+      react: { text: "🧹", key: m.key }
+    })
+    await m.reply("*🧹╎ جاري التنظيف ...*")
+
+    const sessionDir = path.join(process.cwd(), 'Sessions', 'Principal')
+
+    let count = 0
+    if (fs.existsSync(sessionDir)) {
+      const files = fs.readdirSync(sessionDir)
+      const targets = files.filter(f =>
+        f.startsWith('pre-key-') || f.startsWith('device-list-')
+      )
+      count = targets.length
+      for (const file of targets) {
+        try { fs.unlinkSync(path.join(sessionDir, file)) } catch (_) {}
+      }
     }
+
+    await conn.sendMessage(m.chat, {
+      react: { text: "🟢", key: m.key }
+    })
+    await m.reply(`*🗑️╎  تم تنظيف [ ${count} ] ملف*`)
+
+  } catch (error) {
+    await m.reply(`\`\`\`${error.message}\`\`\``)
   }
 }
+
+handler.command  = /^(تنظيف|clean|cleanup)$/i
+handler.category = "owner"
+handler.usage    = ["تنظيف"]
+handler.owner    = true
+
+export default handler
