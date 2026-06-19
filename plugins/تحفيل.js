@@ -101,32 +101,36 @@ const messages = [
   "*_يا ابن اللبوه يا عره الرجاله 🫦_*"
 ];
 
-const handler = async (m, { conn, bot }) => {
-  let target = m.mentionedJid?.[0];
+const MAX_MESSAGES = 500;
 
-  if (!target && m.text) {
-    const num = m.text.trim().replace(/[^0-9]/g, '');
-    if (num) target = `${num}@s.whatsapp.net`;
+const handler = async (m, { conn, bot }) => {
+  const rawText = m.text ? m.text.trim() : '';
+
+  const parts = rawText.split(/\s+/);
+
+  let target = m.mentionedJid?.[0] || null;
+  let count = 100;
+
+  if (!target) {
+    const numPart = parts.find(p => /^[0-9]{5,15}$/.test(p));
+    if (numPart) target = `${numPart}@s.whatsapp.net`;
   }
 
-  if (!target) return m.reply("❌ اعمل منشن أو اكتب الرقم");
+  const countPart = parts.find(p => /^[0-9]{1,4}$/.test(p) && parseInt(p) >= 1);
+  if (countPart) count = Math.min(parseInt(countPart), MAX_MESSAGES);
 
-  await m.reply(`⏳ جاري إرسال 100 رسالة تحفيل...`);
+  if (!target) return m.reply("❌ اعمل منشن أو اكتب الرقم\n📌 مثال: .تحفيل 201xxxxxxxxx 200");
+
+  await m.reply(`⏳ جاري إرسال ${count} رسالة تحفيل...`);
 
   let sent = 0;
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < count; i++) {
     try {
       const msg = messages[i % messages.length];
-
-      await conn.sendMessage(target, {
-        text: msg
-      });
-
+      await conn.sendMessage(target, { text: msg });
       sent++;
-
       await new Promise(r => setTimeout(r, 1500));
-
     } catch (e) {
       console.log(e);
     }
@@ -135,7 +139,7 @@ const handler = async (m, { conn, bot }) => {
   await m.reply(`✅ تم إرسال ${sent} رسالة تحفيل`);
 };
 
-handler.usage = ["تحفيل @user أو رقم"];
+handler.usage = [".تحفيل [رقم أو منشن] [عدد الرسائل]  —  مثال: .تحفيل 201xxxxxxxxx 200"];
 handler.category = "owner";
 handler.command = ["تحفيل"];
 handler.owner = true;

@@ -3263,7 +3263,7 @@
     },
     "201214057674@s.whatsapp.net": {
       "name": "𝓐𝓫𝓭𝓾𝓵𝓵𝓪𝓱",
-      "exp": 350,
+      "exp": 369,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3277,7 +3277,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 18,
+      "commands": 20,
       "afk": -1,
       "afkReason": "",
       "warn": 0
