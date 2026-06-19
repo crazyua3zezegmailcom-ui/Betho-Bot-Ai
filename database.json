@@ -3094,7 +3094,7 @@
     },
     "201116571308@s.whatsapp.net": {
       "name": "+20 111 657 1308",
-      "exp": 275,
+      "exp": 280,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3115,7 +3115,7 @@
     },
     "584261208048@s.whatsapp.net": {
       "name": "𝐶𝑟𝑎𝑧𝑦",
-      "exp": 34728,
+      "exp": 35099,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -3129,7 +3129,7 @@
       "premiumTime": 0,
       "banned": false,
       "bannedReason": "",
-      "commands": 338,
+      "commands": 361,
       "afk": -1,
       "afkReason": "",
       "warn": 0,
@@ -3241,7 +3241,7 @@
       "warn": 0
     },
     "189696525205623@lid": {
-      "exp": 202,
+      "exp": 208,
       "coin": 0,
       "bank": 0,
       "level": 0,
@@ -5220,7 +5220,7 @@
       "gacha": true
     },
     "120363407162550522@g.us": {
-      "isBanned": false,
+      "isBanned": true,
       "isMute": false,
       "welcome": false,
       "sWelcome": "",

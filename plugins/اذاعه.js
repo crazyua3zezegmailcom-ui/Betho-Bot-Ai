@@ -38,16 +38,16 @@ const run = async (m, { conn }) => {
 
       for (const group of groupList) {
         try {
-          await connection.sendMessage(group.id, {
-            forward: m.quoted.fakeObj()
-          })
+          // استخدام copyNForward للإرسال الصحيح
+          await connection.copyNForward(group.id, m.quoted, true, {})
           botSuccess++
           totalSuccess++
           // تأخير بين كل رسالة لتجنب الحظر
           await new Promise(r => setTimeout(r, 1500))
-        } catch {
+        } catch (err) {
           botFailed++
           totalFailed++
+          console.log('[اذاعة] فشل إرسال للجروب:', group.id, err?.message)
         }
       }
     } catch (e) {
@@ -71,7 +71,7 @@ const run = async (m, { conn }) => {
   )
 }
 
-run.command  = ['اذاعه', 'اذاعة']
+run.command  = /^(اذاعه|اذاعة|broadcast)$/i
 run.usage    = ['اذاعه']
 run.category = 'owner'
 run.owner    = true

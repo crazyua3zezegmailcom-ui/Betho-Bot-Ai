@@ -101,7 +101,7 @@ const messages = [
   "*_يا ابن اللبوه يا عره الرجاله 🫦_*"
 ];
 
-const handler = async (m, { conn, bot }) => {
+const handler = async (m, { conn }) => {
   let target = m.mentionedJid?.[0];
 
   if (!target && m.text) {
@@ -111,33 +111,36 @@ const handler = async (m, { conn, bot }) => {
 
   if (!target) return m.reply("❌ اعمل منشن أو اكتب الرقم");
 
-  await m.reply(`⏳ جاري إرسال 100 رسالة تحفيل...`);
+  await m.reply(`⏳ جاري إرسال 100 رسالة تحفيل لـ @${target.split('@')[0]}...`, null, {
+    mentions: [target]
+  });
 
   let sent = 0;
+  const chat = m.chat;
 
   for (let i = 0; i < 100; i++) {
     try {
       const msg = messages[i % messages.length];
 
-      await conn.sendMessage(target, {
-        text: msg
+      // إرسال في نفس المحادثة (جروب أو خاص) مع الذكر
+      await conn.sendMessage(chat, {
+        text: msg + `\n@${target.split('@')[0]}`,
+        mentions: [target]
       });
 
       sent++;
-
-      await new Promise(r => setTimeout(r, 1500));
-
+      await new Promise(r => setTimeout(r, 1200));
     } catch (e) {
-      console.log(e);
+      console.log('[تحفيل] خطأ:', e?.message || e);
     }
   }
 
-  await m.reply(`✅ تم إرسال ${sent} رسالة تحفيل`);
+  await m.reply(`✅ تم إرسال ${sent}/100 رسالة تحفيل`);
 };
 
 handler.usage = ["تحفيل @user أو رقم"];
 handler.category = "owner";
-handler.command = ["تحفيل"];
+handler.command = /^(تحفيل)$/i;
 handler.owner = true;
 
 export default handler;

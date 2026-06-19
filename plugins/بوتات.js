@@ -62,11 +62,11 @@ function clockString(ms) {
 
 let handler = async (m, { conn }) => {
   // 1️⃣ إعدادات الوقت والتاريخ بتوقيت مسقط - عُمان 🇴🇲
-  const optionsTime = { timeZone: 'Asia/Muscat', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-  const optionsDate = { timeZone: 'Asia/Muscat', year: 'numeric', month: '2-digit', day: '2-digit' };
+  const optionsTime = { timeZone: 'Africa/Cairo', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const optionsDate = { timeZone: 'Africa/Cairo', year: 'numeric', month: '2-digit', day: '2-digit' };
   
-  const currentTime = new Date().toLocaleTimeString('ar-OM', optionsTime);
-  const currentDate = new Date().toLocaleDateString('ar-OM', optionsDate);
+  const currentTime = new Date().toLocaleTimeString('ar-EG', optionsTime);
+  const currentDate = new Date().toLocaleDateString('ar-EG', optionsDate);
 
   // 2️⃣ حساب وقت تشغيل السيرفر (Uptime) واستطاعة الرام
   const uptimeMs = process.uptime() * 1000;
@@ -99,7 +99,7 @@ let handler = async (m, { conn }) => {
   let reportText = `✨ *مـعـلـومـات الـبـوتـات الـفـرعـيـة والـسـيـرفـر* ✨\n\n`;
   reportText += `👥 *عدد البوتات الفرعية الإجمالي:* ${totalSubBotsCount}\n`;
   reportText += `🟢 *عدد المتصلين حالياً:* ${activeConnections.length}\n`;
-  reportText += `⏰ *الوقت:* ${currentTime} 🇴🇲 (بتوقيت عُمان)\n`;
+  reportText += `⏰ *الوقت:* ${currentTime} 🇪🇬 (بتوقيت مصر)\n`;
   reportText += `📅 *التاريخ:* ${currentDate}\n`;
   reportText += `⏳ *وقت تشغيل السيرفر:* ${serverUptime}\n`;
   reportText += `📊 *الرام المستهلك:* ${ramOutput}\n\n`;
